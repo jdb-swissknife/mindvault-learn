@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent Training -- MindVault Studio</title>
+    <style>
+        /* MindVault Brand */
+        :root {
+            --charcoal: #111111;
+            --charcoal-800: #1c1c1c;
+            --sand-100: #f7f3ee;
+            --sand-200: #ede6db;
+            --sand-300: #e7ddd3;
+            --stone-400: #a8a29e;
+            --stone-500: #78716c;
+            --stone-600: #57534e;
+            --stone-700: #44403c;
+            --rust-500: #c2703e;
+            --rust-600: #a85a2a;
+            --rust-700: #8f4a22;
+            --rust-100: #fdf2ec;
+            --success: #22C55E;
+            --text-primary: #1E293B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--sand-100);
+            color: var(--stone-600);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Top Nav */
+        .nav {
+            background: var(--charcoal);
+            padding: 16px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-brand {
+            font-family: Georgia, serif;
+            font-size: 18px;
+            color: white;
+            text-decoration: none;
+        }
+        .nav-brand .vault { color: var(--rust-500); }
+        .nav-lesson-label {
+            color: var(--stone-400);
+            font-size: 13px;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            background: var(--sand-300);
+            height: 4px;
+            width: 100%;
+        }
+        .progress-fill {
+            background: var(--rust-500);
+            height: 4px;
+            transition: width 0.4s ease;
+        }
+
+        /* Lesson Nav (horizontal dots at top) */
+        .lesson-dots {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            padding: 20px 24px 0;
+        }
+        .lesson-dot {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid var(--sand-300);
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: bold;
+            color: var(--stone-400);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .lesson-dot:hover { border-color: var(--rust-500); color: var(--rust-500); }
+        .lesson-dot.active {
+            background: var(--rust-500);
+            border-color: var(--rust-500);
+            color: white;
+        }
+        .lesson-dot.completed {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+        .lesson-dot.locked {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        /* Content */
+        .container {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .lesson-header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding-top: 8px;
+        }
+        .lesson-number {
+            display: inline-block;
+            background: var(--rust-100);
+            color: var(--rust-500);
+            font-size: 12px;
+            font-weight: bold;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .lesson-title {
+            font-family: Georgia, serif;
+            font-size: 28px;
+            color: var(--text-primary);
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .lesson-subtitle {
+            font-style: italic;
+            color: var(--stone-500);
+            font-size: 15px;
+        }
+
+        /* Sections */
+        .section {
+            margin-bottom: 32px;
+        }
+        .section h2 {
+            font-family: Georgia, serif;
+            font-size: 22px;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--sand-300);
+        }
+        .section h3 {
+            font-size: 17px;
+            font-weight: bold;
+            color: var(--stone-700);
+            margin: 20px 0 8px;
+        }
+        .section p {
+            margin-bottom: 12px;
+            font-size: 15px;
+        }
+        .section ul, .section ol {
+            margin: 8px 0 16px 24px;
+            font-size: 15px;
+        }
+        .section li { margin-bottom: 6px; }
+
+        /* Callout box */
+        .callout {
+            background: var(--rust-100);
+            border-left: 4px solid var(--rust-500);
+            padding: 16px 20px;
+            margin: 16px 0;
+            border-radius: 0 8px 8px 0;
+            font-size: 15px;
+        }
+        .callout strong { color: var(--rust-600); }
+
+        /* Code/prompt block with copy button */
+        .prompt-block {
+            position: relative;
+            background: var(--charcoal);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 16px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--rust-500);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover { background: var(--rust-600); }
+        .copy-btn.copied { background: var(--success); }
+
+        /* Tables */
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14px;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .styled-table th {
+            background: var(--charcoal);
+            color: white;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 13px;
+        }
+        .styled-table td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--sand-300);
+        }
+        .styled-table tr:last-child td { border-bottom: none; }
+
+        /* Example quote */
+        .example {
+            background: white;
+            border-left: 4px solid var(--rust-500);
+            padding: 12px 16px;
+            margin: 8px 0;
+            font-style: italic;
+            color: var(--stone-700);
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+        }
+
+        /* Step badge */
+        .step-badge {
+            display: inline-block;
+            background: var(--rust-500);
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Bottom nav */
+        .bottom-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 2px solid var(--sand-300);
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: var(--rust-500);
+            color: white;
+        }
+        .btn-primary:hover { background: var(--rust-600); }
+        .btn-secondary {
+            background: white;
+            color: var(--stone-600);
+            border: 2px solid var(--sand-300);
+        }
+        .btn-secondary:hover { border-color: var(--rust-500); color: var(--rust-500); }
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        .btn-success:hover { background: #16a34a; }
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: default;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--charcoal);
+            color: var(--stone-400);
+            text-align: center;
+            padding: 24px;
+            margin-top: 48px;
+            font-size: 13px;
+        }
+        .footer .vault { color: var(--rust-500); }
+        .footer .tagline {
+            font-family: Georgia, serif;
+            font-style: italic;
+            color: var(--stone-500);
+            margin-top: 6px;
+            font-size: 14px;
+        }
+
+        /* Lesson complete checkmark */
+        .complete-check {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .lesson-title { font-size: 22px; }
+            .section h2 { font-size: 19px; }
+            .container { padding: 16px; }
+            .prompt-block { font-size: 12px; padding: 14px; }
+            .bottom-nav { flex-direction: column-reverse; gap: 12px; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="#" class="nav-brand" onclick="showLesson(0)">Mind<span class="vault">Vault</span> Studio</a>
+    <span class="nav-lesson-label" id="navLabel">Agent Training</span>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+
+<div class="lesson-dots" id="lessonDots"></div>
+
+<div class="container" id="lessonContent"></div>
+
+<div class="footer">
+    Mind<span class="vault">Vault</span> Studio
+    <div class="tagline">"When you're stuck, our agents get you unstuck."</div>
+</div>
+
+<script>
+const lessons = [
+    {
+        id: 'intro',
+        title: 'Your Personal Agent',
+        subtitle: 'A hands-on course to master your AI assistant',
+    },
+    {
+        id: 'lesson1',
+        title: 'Subscription Tracker',
+        subtitle: 'Your agent remembers and reminds you',
+        file: 'lesson1.html'
+    },
+    {
+        id: 'lesson2',
+        title: 'Teach Your Agent a New Trick',
+        subtitle: 'Prompting + Idea Capture',
+        file: 'lesson2.html'
+    },
+];
+
+const TOTAL_LESSONS = 5; // planned
+let currentLesson = 0;
+let completedLessons = JSON.parse(localStorage.getItem('mv-completed') || '[]');
+
+function renderDots() {
+    const dots = document.getElementById('lessonDots');
+    dots.innerHTML = '';
+    for (let i = 0; i < lessons.length; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'lesson-dot';
+        if (i === currentLesson) dot.classList.add('active');
+        if (completedLessons.includes(i)) dot.classList.add('completed');
+        dot.textContent = i === 0 ? '?' : i;
+        dot.onclick = () => showLesson(i);
+        dots.appendChild(dot);
+    }
+    // future lesson placeholders
+    for (let i = lessons.length; i < TOTAL_LESSONS; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'lesson-dot locked';
+        dot.textContent = i;
+        dots.appendChild(dot);
+    }
+}
+
+function updateProgress() {
+    const pct = (completedLessons.length / TOTAL_LESSONS) * 100;
+    document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function showLesson(idx) {
+    currentLesson = idx;
+    renderDots();
+    updateProgress();
+    window.scrollTo(0, 0);
+
+    if (idx === 0) {
+        renderIntro();
+    } else if (lessons[idx] && lessons[idx].file) {
+        fetch(lessons[idx].file)
+            .then(r => r.text())
+            .then(html => {
+                document.getElementById('lessonContent').innerHTML = html;
+                document.getElementById('navLabel').textContent = 'Lesson ' + idx;
+                setupCopyButtons();
+            });
+    }
+}
+
+function renderIntro() {
+    document.getElementById('navLabel').textContent = 'Agent Training';
+    const el = document.getElementById('lessonContent');
+
+    let lessonCards = '';
+    for (let i = 1; i < lessons.length; i++) {
+        const done = completedLessons.includes(i);
+        lessonCards += `
+            <div class="lesson-card ${done ? 'completed' : ''}" onclick="showLesson(${i})" style="
+                background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 12px;
+                cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+                border-left: 4px solid ${done ? 'var(--success)' : 'var(--rust-500)'};
+            ">
+                <div>
+                    <div style="font-size:12px; color:var(--stone-400); margin-bottom:2px;">LESSON ${i}</div>
+                    <div style="font-family:Georgia,serif; font-size:17px; color:var(--text-primary);">${lessons[i].title}</div>
+                    <div style="font-size:13px; color:var(--stone-500);">${lessons[i].subtitle}</div>
+                </div>
+                <div style="font-size:20px;">${done ? '&#10003;' : '&#8594;'}</div>
+            </div>`;
+    }
+    for (let i = lessons.length; i < TOTAL_LESSONS; i++) {
+        lessonCards += `
+            <div style="
+                background: var(--sand-200); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px;
+                border-left: 4px solid var(--sand-300); opacity: 0.5;
+            ">
+                <div style="font-size:12px; color:var(--stone-400); margin-bottom:2px;">LESSON ${i}</div>
+                <div style="font-family:Georgia,serif; font-size:17px; color:var(--stone-400);">Coming soon</div>
+            </div>`;
+    }
+
+    el.innerHTML = `
+        <div class="lesson-header">
+            <div class="lesson-number">Agent Training</div>
+            <div class="lesson-title">Your Personal AI Agent</div>
+            <div class="lesson-subtitle">A hands-on course to get comfortable with your new assistant</div>
+        </div>
+
+        <div class="section">
+            <p>You now have your own personal AI agent. It runs 24/7 on a private server, and it's yours.</p>
+            <p>This course teaches you how to use it, one practical tool at a time. Each lesson gives you something your agent can do for you right now, while quietly teaching you the skills to create your own tools.</p>
+        </div>
+
+        <div class="callout">
+            <strong>How this works:</strong> Each lesson is self-contained. Read through it, then go talk to your agent. Come back anytime to review or move to the next lesson.
+        </div>
+
+        <div class="section" style="margin-top:24px;">
+            <h2>Lessons</h2>
+            ${lessonCards}
+        </div>
+    `;
+}
+
+function markComplete(idx) {
+    if (!completedLessons.includes(idx)) {
+        completedLessons.push(idx);
+        localStorage.setItem('mv-completed', JSON.stringify(completedLessons));
+    }
+    renderDots();
+    updateProgress();
+    // swap button text
+    const btn = document.getElementById('completeBtn');
+    if (btn) {
+        btn.textContent = 'Done!';
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-primary');
+        btn.disabled = true;
+    }
+}
+
+function setupCopyButtons() {
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const block = this.parentElement;
+            const code = block.textContent.replace(this.textContent, '').trim();
+            navigator.clipboard.writeText(code).then(() => {
+                this.textContent = 'Copied!';
+                this.classList.add('copied');
+                setTimeout(() => {
+                    this.textContent = 'Copy';
+                    this.classList.remove('copied');
+                }, 2000);
+            });
+        });
+    });
+}
+
+// Init
+showLesson(0);
+</script>
+</body>
+</html>

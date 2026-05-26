@@ -1,0 +1,145 @@
+<!-- Lesson 1: Subscription Tracker (partial, loaded into index.html) -->
+
+<div class="lesson-header">
+    <div class="lesson-number">Lesson 1</div>
+    <div class="lesson-title">Your Agent's First Skill: Subscription Tracker</div>
+    <div class="lesson-subtitle">A practical introduction to how AI agents use "skills" to work for you</div>
+</div>
+
+<div class="section">
+    <h2>First: What Is an AI Agent?</h2>
+    <p>You've used ChatGPT. You type a question, it answers. That's a chatbot.</p>
+    <p>An <strong>AI agent</strong> is different. It doesn't just answer questions -- it <strong>takes action</strong>. It can:</p>
+    <ul>
+        <li>Store information and remember it across conversations</li>
+        <li>Run tasks on a schedule (like a daily check-in)</li>
+        <li>Search its own memory and give you reports</li>
+        <li>Make decisions based on rules you set</li>
+    </ul>
+    <p>Think of it like hiring a virtual assistant who never sleeps, never forgets, and costs a fraction of a human employee.</p>
+</div>
+
+<div class="section">
+    <h2>So What's a "Skill"?</h2>
+    <p>A skill is a <strong>written instruction set</strong> that teaches your agent how to do a specific job.</p>
+    <p>Just like you'd train a new employee with a checklist ("when a customer calls, do X, then Y, then Z"), a skill tells your agent:</p>
+    <ul>
+        <li><strong>When</strong> to do something (trigger)</li>
+        <li><strong>How</strong> to do it (step-by-step process)</li>
+        <li><strong>Where</strong> to store and find information (data structure)</li>
+        <li><strong>What pitfalls to avoid</strong> (lessons learned)</li>
+    </ul>
+    <p>Your agent comes with dozens of pre-built skills (coding, research, email, scheduling). But the real power is <strong>custom skills</strong> built for your specific business.</p>
+
+    <h3>The Analogy</h3>
+    <table class="styled-table">
+        <tr><th>Concept</th><th>Employee World</th><th>Agent World</th></tr>
+        <tr><td>Training manual</td><td>SOP document</td><td>Skill (SKILL.md)</td></tr>
+        <tr><td>Filing cabinet</td><td>Google Drive</td><td>Fact Store (memory)</td></tr>
+        <tr><td>Daily alarm</td><td>Phone reminder</td><td>Cron Job (scheduled task)</td></tr>
+        <tr><td>"Check the files"</td><td>"Search fact_store"</td><td>Agent command</td></tr>
+        <tr><td>Learning the job</td><td>Loading the skill</td><td>Automatic on session start</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <h2>Your First Skill: Subscription Tracker</h2>
+
+    <h3>The Problem</h3>
+    <p>You sign up for free trials. You forget to cancel. You pay for tools you barely use. You're not sure what you're spending monthly on SaaS. Sound familiar?</p>
+    <p>The average small business wastes <strong>$150-300/month</strong> on forgotten or underused subscriptions.</p>
+
+    <h3>The Solution</h3>
+    <p>Your agent now has a <strong>Subscription Tracker</strong> skill. Here's what it does:</p>
+    <ol>
+        <li><strong>Listens</strong> -- You tell it about subscriptions in normal English</li>
+        <li><strong>Remembers</strong> -- Stores each one with cost, billing date, and status</li>
+        <li><strong>Watches</strong> -- Flags things you're unsure about for review</li>
+        <li><strong>Warns</strong> -- Sends you a daily alert when a free trial is about to expire</li>
+        <li><strong>Reports</strong> -- Shows you total monthly spend anytime you ask</li>
+    </ol>
+</div>
+
+<div class="section">
+    <h2>How You Talk to It</h2>
+    <p>No apps. No dashboards. No spreadsheets. Just talk to your agent:</p>
+
+    <h3>Adding a subscription:</h3>
+    <div class="example">"I signed up for Canva Pro, $13/month, trial ends June 20"</div>
+
+    <h3>Putting something on watch (not sure if keeping):</h3>
+    <div class="example">"Put Canva on watch, I'm not sure I need Pro features"</div>
+
+    <h3>Checking everything:</h3>
+    <div class="example">"What subscriptions do I have?"</div>
+
+    <h3>Deciding:</h3>
+    <div class="example">"Keep Canva" or "Cancel Canva"</div>
+
+    <h3>Checking spend:</h3>
+    <div class="example">"What's my monthly burn on subscriptions?"</div>
+
+    <p>That's it. The agent handles all the filing, tagging, and tracking behind the scenes.</p>
+</div>
+
+<div class="section">
+    <h2>What's Happening Behind the Scenes</h2>
+    <p>You don't need to know this, but it helps to understand why agents are powerful:</p>
+
+    <h3>1. Fact Store (The Agent's Memory)</h3>
+    <p>Every subscription gets stored as a structured record. The agent can search, filter, and reason across all of these instantly.</p>
+
+    <h3>2. Cron Job (The Daily Checker)</h3>
+    <p>A scheduled task runs every morning at 9 AM. It scans all subscriptions and:</p>
+    <ul>
+        <li>Warns you if a trial expires within 3 days</li>
+        <li>Reminds you about items on your "watch" list</li>
+        <li>Stays silent if nothing needs attention (no spam)</li>
+    </ul>
+
+    <h3>3. The Skill (The Instructions)</h3>
+    <p>The SKILL.md file tells any agent exactly how to parse your natural language, store with the right tags, format reports, run the daily checker, and handle status changes.</p>
+</div>
+
+<div class="section">
+    <h2>Why This Matters Beyond Subscriptions</h2>
+    <p>The subscription tracker is a <strong>learning example</strong>. It teaches you how agent skills work using something you deal with every day.</p>
+    <p>Now imagine applying the same pattern to:</p>
+
+    <table class="styled-table">
+        <tr><th>Use Case</th><th>How the Skill Would Work</th></tr>
+        <tr><td><strong>Lead tracking</strong></td><td>"Add John from ABC Roofing, met at networking event, follow up Friday"</td></tr>
+        <tr><td><strong>Expense logging</strong></td><td>"Logged $47 for office supplies at Staples"</td></tr>
+        <tr><td><strong>Content calendar</strong></td><td>"Schedule a blog post about roof inspections for next week"</td></tr>
+        <tr><td><strong>Client onboarding</strong></td><td>"New client: Mike's Plumbing, $2K/mo retainer, kickoff Thursday"</td></tr>
+        <tr><td><strong>Daily briefing</strong></td><td>Every morning: "Here's what's on your plate today..."</td></tr>
+    </table>
+
+    <p>Same pattern. You talk, agent remembers, agent acts on schedule.</p>
+</div>
+
+<div class="section">
+    <h2>Getting Started</h2>
+    <div class="callout">
+        <strong>Your agent already has this skill loaded.</strong> Just start talking.
+    </div>
+    <ol>
+        <li>Tell your agent about your current subscriptions (name, price, when you started)</li>
+        <li>Flag anything you're unsure about: "put [name] on watch"</li>
+        <li>Ask "check my subs" anytime</li>
+        <li>Your agent will check in with you periodically and alert you to expiring trials</li>
+    </ol>
+    <p>No setup, no configuration, no learning curve.</p>
+</div>
+
+<div class="callout">
+    This is the <strong>minimum viable use case</strong> for an AI agent in your business. Simple, immediate value, no risk. The goal is to get you comfortable with the idea that <strong>you can talk to your agent like an employee</strong> -- and it will actually do the work.
+</div>
+
+<div class="bottom-nav">
+    <button class="btn btn-secondary" onclick="showLesson(0)">&larr; Back</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-success" id="completeBtn" onclick="markComplete(1)">Mark Complete</button>
+        <button class="btn btn-primary" onclick="showLesson(2)">Lesson 2 &rarr;</button>
+    </div>
+</div>
