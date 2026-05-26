@@ -390,7 +390,7 @@ function renderDots() {
         dot.className = 'lesson-dot';
         if (i === currentLesson) dot.classList.add('active');
         if (completedLessons.includes(i)) dot.classList.add('completed');
-        dot.textContent = i === 0 ? '?' : i;
+        dot.textContent = i === 0 ? '🏠' : i;
         dot.onclick = () => showLesson(i);
         dots.appendChild(dot);
     }
