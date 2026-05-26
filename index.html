@@ -49,11 +49,12 @@
     <section class="hero" id="homeHero">
       <div>
         <span class="eyebrow">🧭 30-Day Agent Journey</span>
-        <h1>Your first month becoming an AI-powered business owner.</h1>
-        <p>The first 30 days build the habit: open your agent, try one useful command, unlock one new capability. After that, the map keeps expanding into advanced tools, automations, and business systems.</p>
+        <h1 id="heroTitle">Your first month becoming an AI-powered business owner.</h1>
+        <p id="heroSubtitle">The first 30 days build the habit: open your agent, try one useful command, unlock one new capability. After that, the map keeps expanding into advanced tools, automations, and business systems.</p>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
           <button class="btn btn-primary" onclick="openNextLesson()">Continue Journey</button>
           <button class="btn btn-secondary" onclick="claimDaily()">2-Minute Daily Win</button>
+          <button class="btn btn-dark" id="agentButton" onclick="openAgent()" style="display:none">Open My Agent</button>
         </div>
       </div>
       <div class="hero-card">
@@ -63,7 +64,7 @@
           <div class="reward"><b>Next unlock</b><span id="nextUnlock">Prompting formula card</span></div>
           <div class="reward"><b>Month 1 prize</b><span>Agent Operating Playbook</span></div>
           <div class="reward"><b>Habit target</b><span>30-day agent streak</span></div>
-          <div class="reward"><b>After month 1</b><span>Advanced regions unlock</span></div>
+          <div class="reward"><b>Safety rule</b><span>No passwords in chat</span></div>
         </div>
       </div>
     </section>
@@ -100,13 +101,19 @@
   <footer class="footer">Mind<span class="vault">Vault</span> Studio<div class="tagline">"When you're stuck, our agents get you unstuck."</div></footer>
 
 <script>
+const params=new URLSearchParams(location.search);
+const clientName=params.get('client')||localStorage.getItem('mvClient')||'';
+const agentUrl=params.get('agent')||localStorage.getItem('mvAgent')||'';
+if(clientName)localStorage.setItem('mvClient',clientName);
+if(agentUrl)localStorage.setItem('mvAgent',agentUrl);
+function prettyClient(name){return name?name.replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()):''}
 const lessons=[
   {n:1,week:'Week 1',icon:'💳',title:'Subscription Tracker',subtitle:'Your agent remembers and reminds you',file:'lesson1.html',unlock:'Subscription command cheat sheet',xp:100,ready:true},
   {n:2,week:'Week 1',icon:'🧠',title:'Idea Capture',subtitle:'Teach your agent a new trick',file:'lesson2.html',unlock:'Prompting formula card',xp:125,ready:true},
   {n:3,week:'Week 1',icon:'🔎',title:'Research Scout',subtitle:'Your agent finds useful answers',file:null,unlock:'Research brief template',xp:150,ready:false},
   {n:4,week:'Week 1',icon:'📝',title:'Daily Command Habit',subtitle:'Use one tiny agent command every day',file:null,unlock:'Daily command menu',xp:125,ready:false},
   {n:5,week:'Week 1',icon:'🧭',title:'Tool Request Builder',subtitle:'Describe the next tool you want',file:null,unlock:'Tool request worksheet',xp:150,ready:false},
-  {n:6,week:'Week 1',icon:'📌',title:'Memory Checkpoint',subtitle:'Teach your agent what matters',file:null,unlock:'Memory cleanup checklist',xp:125,ready:false},
+  {n:6,week:'Week 1',icon:'🛡️',title:'Agent Safety Basics',subtitle:'What to share, what not to share, and how to grant access safely',file:null,unlock:'Agent safety rules card',xp:150,ready:false},
   {n:7,week:'Week 1',icon:'🏁',title:'Week 1 Review',subtitle:'See what your agent now knows',file:null,unlock:'Week 1 field report',xp:175,ready:false},
 
   {n:8,week:'Week 2',icon:'📇',title:'Lead Capture',subtitle:'Track people, context, and follow-ups',file:null,unlock:'Lead capture prompt',xp:150,ready:false},
@@ -145,7 +152,8 @@ state.completed=state.completed||[];state.xp=state.xp||0;state.streak=state.stre
 function save(){localStorage.setItem('mvQuest',JSON.stringify(state));render();}
 function today(){return new Date().toISOString().slice(0,10)}
 function pathPct(){return Math.max(8,(state.completed.filter(n=>n<=30).length/30)*100)}
-function render(){document.getElementById('streak').textContent=state.streak;document.getElementById('xp').textContent=state.xp;document.getElementById('toolkit').textContent=state.unlocked.length;document.getElementById('progressFill').style.width=pathPct()+'%';document.documentElement.style.setProperty('--path-progress',pathPct()+'%');document.getElementById('unlockStatus').textContent=state.unlocked.length+' unlocked';document.getElementById('dailyStatus').textContent=state.lastDaily===today()?'Claimed today':'Available today';let next=lessons.find(l=>!state.completed.includes(l.n));document.getElementById('nextUnlock').textContent=next?next.unlock:'Full toolkit unlocked';const j=document.getElementById('journey');j.innerHTML='';lessons.forEach((l,i)=>{const completed=state.completed.includes(l.n);const active=state.current===l.n;const locked=!l.ready;const advanced=!!l.advanced;const stop=document.createElement('div');stop.className='stop '+(completed?'completed ':'')+(active?'active ':'')+(locked?'locked ':'')+(advanced?'advanced':'');stop.onclick=()=>locked?toast('Coming soon','This stop is part of the longer journey. New lessons unlock as MindVault releases them.'):openLesson(l.n);stop.innerHTML=`<div class="node">${completed?'✓':l.icon}</div><small>${l.week} · Stop ${l.n}</small><h3>${l.title}</h3><p>${l.subtitle}</p><div class="unlock">${completed?'Unlocked: ':locked?'Coming unlock: ':'Unlock: '}${l.unlock}</div>`;j.appendChild(stop);});}
+function render(){const label=prettyClient(clientName);if(label){document.getElementById('heroTitle').textContent=label+"'s first month becoming an AI-powered business owner.";document.getElementById('heroSubtitle').textContent='This journey is tied to your MindVault agent. Learn a skill, then jump back into your own agent and use it right away.';document.getElementById('missionText').textContent='Open one lesson, try one command inside '+label+"'s agent, then mark the stop complete.";}if(agentUrl){document.getElementById('agentButton').style.display='inline-flex';}document.getElementById('streak').textContent=state.streak;document.getElementById('xp').textContent=state.xp;document.getElementById('toolkit').textContent=state.unlocked.length;document.getElementById('progressFill').style.width=pathPct()+'%';document.documentElement.style.setProperty('--path-progress',pathPct()+'%');document.getElementById('unlockStatus').textContent=state.unlocked.length+' unlocked';document.getElementById('dailyStatus').textContent=state.lastDaily===today()?'Claimed today':'Available today';let next=lessons.find(l=>l.ready&&!state.completed.includes(l.n))||lessons.find(l=>!state.completed.includes(l.n));document.getElementById('nextUnlock').textContent=next?next.unlock:'Full toolkit unlocked';const j=document.getElementById('journey');j.innerHTML='';lessons.forEach((l,i)=>{const completed=state.completed.includes(l.n);const active=state.current===l.n;const locked=!l.ready;const advanced=!!l.advanced;const stop=document.createElement('div');stop.className='stop '+(completed?'completed ':'')+(active?'active ':'')+(locked?'locked ':'')+(advanced?'advanced':'');stop.onclick=()=>locked?toast('Coming soon','This stop is part of the longer journey. New lessons unlock as MindVault releases them.'):openLesson(l.n);stop.innerHTML=`<div class="node">${completed?'✓':l.icon}</div><small>${l.week} · Stop ${l.n}</small><h3>${l.title}</h3><p>${l.subtitle}</p><div class="unlock">${completed?'Unlocked: ':locked?'Coming unlock: ':'Unlock: '}${l.unlock}</div>`;j.appendChild(stop);});}
+function openAgent(){const url=agentUrl||localStorage.getItem('mvAgent');if(!url){toast('No agent linked','Open this course from your client portal to link your agent.');return}window.open(url.startsWith('http')?url:'https://'+url,'_blank');}
 function goHome(){state.current=null;document.getElementById('lessonShell').classList.remove('show');document.getElementById('homeHero').style.display='grid';save();return false}
 function openNextLesson(){const next=lessons.find(l=>l.ready&&!state.completed.includes(l.n))||lessons.find(l=>l.ready);openLesson(next.n)}
 function openLesson(n){const l=lessons.find(x=>x.n===n);state.current=n;save();document.getElementById('homeHero').style.display='none';document.getElementById('lessonShell').classList.add('show');document.getElementById('lessonShellTitle').textContent='Stop '+n+': '+l.title;document.getElementById('lessonContent').innerHTML='<p>Loading...</p>';fetch(l.file).then(r=>r.text()).then(html=>{document.getElementById('lessonContent').innerHTML=html;setupCopyButtons();window.scrollTo({top:0,behavior:'smooth'});}).catch(()=>{document.getElementById('lessonContent').innerHTML='<div class="callout"><strong>Lesson loading issue.</strong> Refresh and try again.</div>';});}
