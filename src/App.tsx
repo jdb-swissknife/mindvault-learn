@@ -66,53 +66,60 @@ const lessonTracks: CardItem[] = [
 type LessonPreviewItem = {
   day: string
   title: string
-  body: string
-  outcome: string
-  href: string
+  focus: string
+  sampleCommand: string
+  agentResponse: string
+  result: string
 }
 
 const lessonPreviewDays: LessonPreviewItem[] = [
   {
     day: 'Day 1',
-    title: 'Subscription Tracker',
-    body: 'Learn what makes an agent different from a chatbot, then use your first skill to track subscriptions, trial end dates, and monthly spend.',
-    outcome: 'Outcome: your first working skill with memory and daily alerts.',
-    href: '/lesson1.html',
+    title: 'Teach your agent a useful skill',
+    focus: 'Memory and recurring checks',
+    sampleCommand: 'Remember Canva Pro is $13/month and the trial ends June 20.',
+    agentResponse: 'Saved. I will remind you before the trial ends and include it in your monthly subscription report.',
+    result: 'Your first working skill with memory, dates, spend tracking, and a practical daily alert.',
   },
   {
     day: 'Day 2',
-    title: 'Idea Capture',
-    body: 'Teach your agent a new trick. Turn random ideas into something you can save, search, and review later instead of losing them.',
-    outcome: 'Outcome: a simple prompting pattern you can reuse to teach new workflows.',
-    href: '/lesson2.html',
+    title: 'Capture ideas before they disappear',
+    focus: 'Fast context capture',
+    sampleCommand: 'Save this as an idea: build a simple client onboarding checklist for roofers.',
+    agentResponse: 'Captured, tagged, and ready to review when you ask for business workflow ideas.',
+    result: 'A repeatable way to save thoughts, tag them, and turn scattered ideas into useful next steps.',
   },
   {
     day: 'Day 3',
-    title: 'Video Briefs',
-    body: 'Paste a YouTube link and get the useful business takeaways without sitting through the whole video yourself.',
-    outcome: 'Outcome: faster research, better summaries, and clearer next steps.',
-    href: '/lesson3.html',
+    title: 'Turn videos into action briefs',
+    focus: 'Research and summarization',
+    sampleCommand: 'Watch this video and give me the practical actions, not a generic summary.',
+    agentResponse: 'Brief created with key points, useful quotes, risks, and the next actions worth testing.',
+    result: 'A faster research habit that turns long videos into decisions, notes, and usable tasks.',
   },
   {
     day: 'Day 4',
-    title: 'Daily Command Habit',
-    body: 'Build the habit that most people miss. One useful command per day turns the agent into a work partner instead of a novelty.',
-    outcome: 'Outcome: a repeatable daily menu that makes the system stick.',
-    href: '/lesson4.html',
+    title: 'Build your daily command habit',
+    focus: 'Personal operating rhythm',
+    sampleCommand: 'Give me my daily command menu for planning, follow-up, learning, and cleanup.',
+    agentResponse: 'Here are the 5 commands worth running today, ordered by impact and time required.',
+    result: 'A simple daily routine that makes the agent useful every morning instead of occasional.',
   },
   {
     day: 'Day 5',
-    title: 'Tool Request Builder',
-    body: 'Learn how to describe repeated work, inputs, outputs, triggers, and success so vague AI ideas become clear workflow requests.',
-    outcome: 'Outcome: a cleaner way to ask for real tools and business workflows.',
-    href: '/lesson5.html',
+    title: 'Request better tools',
+    focus: 'Workflow design',
+    sampleCommand: 'Help me describe a tool that turns missed calls into follow-up tasks.',
+    agentResponse: 'Tool request drafted with trigger, inputs, output, approval rules, and success criteria.',
+    result: 'A cleaner way to turn vague AI ideas into practical workflows a real system can run.',
   },
   {
     day: 'Day 6',
-    title: 'Agent Safety Basics',
-    body: 'Set boundaries for trust, sharing, and human approval so the system becomes more useful without getting reckless.',
-    outcome: 'Outcome: a safety card that keeps you in control of risky actions.',
-    href: '/lesson6.html',
+    title: 'Set safety rules',
+    focus: 'Control and human approval',
+    sampleCommand: 'Create rules for what you can do automatically and what needs my approval.',
+    agentResponse: 'Safety card created with low-risk actions, approval-required actions, and never-do boundaries.',
+    result: 'A control layer that lets the agent become more useful without becoming reckless.',
   },
 ]
 
@@ -200,6 +207,8 @@ export default function App() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(() => localStorage.getItem('mv_learn_submitted') === 'true')
+  const [selectedLessonIndex, setSelectedLessonIndex] = useState(0)
+  const selectedLesson = lessonPreviewDays[selectedLessonIndex]
 
   const scrollToId = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
@@ -267,9 +276,9 @@ export default function App() {
               <button onClick={() => scrollToId('lessons')} className="inline-flex items-center justify-center rounded-lg border border-stone-500 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-300 hover:text-white">
                 See the lessons
               </button>
-              <a href="/quest.html" className="inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-7 py-3.5 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/10">
-                Open the lesson journey
-              </a>
+              <button onClick={() => scrollToId('lesson-preview')} className="inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-7 py-3.5 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/10">
+                Preview the learning system
+              </button>
             </div>
             <div className="mt-10 grid gap-4 text-sm text-stone-400 sm:grid-cols-3">
               <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Memory that sticks</div>
@@ -361,49 +370,105 @@ export default function App() {
           <SectionHeading
             eyebrow="LEARN.MINDVAULTSTUDIO.NET"
             title="Practical lessons that turn the idea into a working habit."
-            body="The learning side is simple on purpose. Short lessons. Real workflows. Practical tool walkthroughs. Enough structure to help you build your own personal agent without drowning in theory. The live lesson journey stays available alongside this landing page."
+            body="The learning side is simple on purpose. Short lessons. Real workflows. Practical tool walkthroughs. Enough structure to help you build your own personal agent without drowning in theory. The public page shows the flow. The full lesson journey stays protected inside access."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {lessonTracks.map((item) => (
               <Card key={item.title} {...item} />
             ))}
           </div>
-          <div className="mt-14 rounded-3xl border border-sand-300 bg-white p-6 shadow-sm sm:p-8">
-            <div className="max-w-3xl">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">FIRST WEEK PREVIEW</p>
-              <h3 className="mt-4 font-serif text-2xl leading-tight text-onyx sm:text-3xl">
-                See what the first 6 days actually look like.
-              </h3>
-              <p className="mt-4 text-base leading-7 text-stone-600">
-                This is the kind of hands-on ramp people want after the demo. Not more hype. Real lessons that help you build habits, useful workflows, and safe operating rules from day one.
-              </p>
-            </div>
-            <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
-              {lessonPreviewDays.map((lesson) => (
-                <div key={lesson.day} className="rounded-2xl border border-sand-300 bg-sand-100 p-5 shadow-sm">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="rounded-full bg-rust-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-rust-600">
-                      {lesson.day}
-                    </span>
-                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-stone-500">Week 1</span>
-                  </div>
-                  <h4 className="mt-4 text-xl font-semibold text-onyx">{lesson.title}</h4>
-                  <p className="mt-3 text-sm leading-7 text-stone-600">{lesson.body}</p>
-                  <p className="mt-4 text-sm font-medium leading-6 text-stone-700">{lesson.outcome}</p>
-                  <a
-                    href={lesson.href}
-                    className="mt-5 inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-4 py-2 text-sm font-semibold text-rust-600 transition-colors hover:border-rust-500 hover:bg-rust-100"
-                  >
-                    Preview {lesson.day.toLowerCase()}
-                  </a>
+          <div id="lesson-preview" className="mt-14 overflow-hidden rounded-[2rem] border border-charcoal-700 bg-charcoal-900 shadow-2xl shadow-black/20">
+            <div className="border-b border-charcoal-700 bg-charcoal-800 px-5 py-4 sm:px-6">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="h-3 w-3 rounded-full bg-rust-500" />
+                  <span className="h-3 w-3 rounded-full bg-sand-300" />
+                  <span className="h-3 w-3 rounded-full bg-stone-500" />
+                  <span className="ml-2 rounded-full border border-charcoal-700 bg-charcoal-900 px-3 py-1 text-xs font-medium text-stone-400">learn.mindvaultstudio.net</span>
                 </div>
-              ))}
+                <div className="rounded-full border border-rust-500/30 bg-rust-100/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-rust-500">
+                  Guided preview
+                </div>
+              </div>
             </div>
-          </div>
-          <div className="mt-8">
-            <a href="/quest.html" className="inline-flex items-center justify-center rounded-lg bg-charcoal-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800">
-              Explore the current lesson journey
-            </a>
+
+            <div className="grid lg:grid-cols-[260px_1fr_280px]">
+              <aside className="border-b border-charcoal-700 bg-charcoal-950 p-5 lg:border-b-0 lg:border-r">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Week 1</p>
+                <h3 className="mt-3 font-serif text-2xl leading-tight text-white">From demo curiosity to daily habit.</h3>
+                <div className="mt-6 space-y-3">
+                  {lessonPreviewDays.map((lesson, index) => (
+                    <button
+                      key={lesson.day}
+                      type="button"
+                      onClick={() => setSelectedLessonIndex(index)}
+                      className={`w-full rounded-2xl border p-4 text-left transition ${
+                        selectedLessonIndex === index
+                          ? 'border-rust-500/60 bg-rust-100 text-onyx'
+                          : 'border-charcoal-700 bg-charcoal-800 text-stone-300 hover:border-rust-500/40'
+                      }`}
+                    >
+                      <span className={`text-xs font-semibold uppercase tracking-[0.18em] ${selectedLessonIndex === index ? 'text-rust-600' : 'text-rust-500'}`}>
+                        {lesson.day}
+                      </span>
+                      <span className="mt-2 block text-sm font-semibold leading-5">{lesson.title}</span>
+                    </button>
+                  ))}
+                </div>
+              </aside>
+
+              <div className="bg-sand-100 p-5 sm:p-7">
+                <div className="rounded-3xl border border-sand-300 bg-white p-6 shadow-sm sm:p-8">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">Sample lesson flow</p>
+                      <h3 className="mt-3 font-serif text-3xl leading-tight text-onyx">{selectedLesson.title}</h3>
+                      <p className="mt-3 text-sm font-medium text-stone-500">Focus: {selectedLesson.focus}</p>
+                    </div>
+                    <div className="rounded-full border border-sand-300 bg-sand-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
+                      Preview only
+                    </div>
+                  </div>
+
+                  <div className="mt-8 grid gap-4">
+                    <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">You ask</div>
+                      <p className="mt-3 rounded-xl bg-charcoal-900 p-4 text-sm leading-7 text-sand-100">“{selectedLesson.sampleCommand}”</p>
+                    </div>
+                    <div className="rounded-2xl border border-rust-500/30 bg-rust-100 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Agent responds</div>
+                      <p className="mt-3 text-sm leading-7 text-stone-700">{selectedLesson.agentResponse}</p>
+                    </div>
+                    <div className="relative overflow-hidden rounded-2xl border border-sand-300 bg-white p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Inside the full lesson</div>
+                      <div className="mt-4 grid gap-3 blur-[2px] sm:grid-cols-3">
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Walkthrough</div>
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Practice task</div>
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Saved skill</div>
+                      </div>
+                      <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-rust-500/30 bg-white/90 px-4 py-3 text-sm font-semibold text-onyx shadow-lg backdrop-blur">
+                        Full instructions unlock inside the learning system. The preview shows the flow, not the whole library.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <aside className="border-t border-charcoal-700 bg-charcoal-950 p-5 text-white lg:border-l lg:border-t-0">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Agent result</p>
+                <div className="mt-5 rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
+                  <div className="text-sm font-semibold text-stone-300">By the end of {selectedLesson.day}</div>
+                  <p className="mt-3 text-lg font-semibold leading-7 text-white">{selectedLesson.result}</p>
+                </div>
+                <div className="mt-5 rounded-2xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Why this works</div>
+                  <p className="mt-3 text-sm leading-7 text-stone-700">Each lesson connects a command, a tool, memory, and an outcome. That is how a demo becomes a working habit.</p>
+                </div>
+                <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
+                  Join the list to unlock week 1
+                </button>
+              </aside>
+            </div>
           </div>
         </div>
       </section>
