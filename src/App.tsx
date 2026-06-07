@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { supabase } from './lib/supabase'
 
 type CardItem = {
@@ -266,6 +266,17 @@ export default function App() {
   const [submitted, setSubmitted] = useState(() => localStorage.getItem('mv_learn_submitted') === 'true')
   const [selectedLessonIndex, setSelectedLessonIndex] = useState(0)
   const selectedLesson = lessonPreviewDays[selectedLessonIndex]
+
+  useEffect(() => {
+    const hasPreviewUrl = window.location.search.includes('v=') || window.location.hash === '#lesson-preview'
+    if (!hasPreviewUrl) return
+
+    const timer = window.setTimeout(() => {
+      window.history.replaceState(null, '', '/')
+    }, 400)
+
+    return () => window.clearTimeout(timer)
+  }, [])
 
   const scrollToId = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
