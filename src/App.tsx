@@ -16,12 +16,12 @@ const featureCards: CardItem[] = [
     body: 'Keep preferences, decisions, reusable context, and facts in one place so the system stops making you start from zero every day.',
   },
   {
-    title: 'Self-improving workflow',
-    body: 'Successful steps can turn into reusable skills, better prompts, and cleaner handoffs so the agent improves with use.',
+    title: 'Real use cases, not demo theater',
+    body: 'Most people have seen the demos and still cannot recreate them in real work. We focus on the workflows people actually want to run, then show how to turn them into repeatable personal and business operations.',
   },
   {
-    title: 'Practical lessons',
-    body: 'Short lessons show how to actually build and use these workflows, with examples you can copy into work, learning, and daily life.',
+    title: 'Managed models and tools',
+    body: 'You do not have to babysit token usage, pick LLM models, or chase the latest stack. We handle the moving parts and stay current on the best tools.',
   },
 ]
 
@@ -36,7 +36,7 @@ const useCases: CardItem[] = [
   },
   {
     title: 'Build a real operator for your day',
-    body: 'Use the agent to prep meetings, summarize decisions, manage recurring tasks, and keep the next step obvious.',
+    body: 'Use the agent to prep meetings, summarize decisions, manage recurring tasks, and support actual business operations instead of one-off experiments.',
   },
   {
     title: 'Learn by doing, not by theory',
@@ -51,7 +51,7 @@ const lessonTracks: CardItem[] = [
   },
   {
     title: 'Workflow lessons',
-    body: 'See how to build daily assistants for planning, writing, research, travel, personal ops, and focused learning.',
+    body: 'See how to move from impressive demos to daily assistants for planning, writing, research, travel, personal ops, and focused learning.',
   },
   {
     title: 'Tool recipes',
@@ -93,7 +93,15 @@ const faqs: CardItem[] = [
   },
   {
     title: 'What makes this different from a normal chatbot?',
-    body: 'A normal chatbot gives you answers. This is about giving an agent memory, tools, practical workflows, and lessons so it can help you act, not just talk.',
+    body: 'A normal chatbot gives you answers. This gives you a managed agent system with memory, tools, practical workflows, and lessons so you can get to real use instead of chasing prompts, models, and settings.',
+  },
+  {
+    title: 'What if I have already tried agent demos?',
+    body: 'That is exactly the gap we care about. Most people do not need another flashy demo. They need help turning what they saw into repeatable personal workflows and real business operations.',
+  },
+  {
+    title: 'Do I need to manage models, tokens, or tool updates?',
+    body: 'No. We handle token usage, model selection, and staying on top of the latest tools so you can stay focused on outcomes instead of AI plumbing.',
   },
   {
     title: 'Who is learn.mindvaultstudio.net for?',
@@ -197,7 +205,7 @@ export default function App() {
               A virtual computer that learns how you work.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-400">
-              Mind<span className="text-rust-500">Vault</span> Personal gives you an agent with memory, practical tools, and improvement loops. Then learn.mindvaultstudio.net shows you how to actually use it through short, useful lessons.
+              Most people have tried an agent demo and still struggled to recreate it in real life. Mind<span className="text-rust-500">Vault</span> Personal gives you the memory, tools, and operating structure to turn that potential into real workflows. Then learn.mindvaultstudio.net shows you how to apply it in personal work and business operations.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => scrollToId('waitlist')} className="inline-flex items-center justify-center rounded-lg bg-rust-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
@@ -253,8 +261,8 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
           <SectionHeading
             eyebrow="WHY THIS MATTERS"
-            title="Most AI usage resets every tab. This is the fix."
-            body="People do not need more prompts. They need one system that can remember context, use tools, improve over time, and teach them how to make it useful in real life."
+            title="Most agent demos do not survive contact with real work."
+            body="People do not need another flashy walkthrough. They need one system that can remember context, use tools, improve over time, and teach them how to turn agent potential into repeatable use cases and business operations."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featureCards.map((item) => (
