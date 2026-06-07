@@ -78,6 +78,75 @@ const lessonTracks: CardItem[] = [
   },
 ]
 
+type QuestMilestone = {
+  quest: string
+  title: string
+  xp: string
+  unlock: string
+  outcome: string
+}
+
+const questPrinciples: CardItem[] = [
+  {
+    title: 'Streaks with a purpose',
+    body: 'The streak is not there to make you click. It is there to help you build a real habit of using your agent for work that matters.',
+  },
+  {
+    title: 'XP for useful outcomes',
+    body: 'Progress comes from finishing practical work: saving memory, building a tracker, creating a task agent, or turning a repeat task into a workflow.',
+  },
+  {
+    title: 'Unlocks that pay off',
+    body: 'New prompts, tool recipes, templates, and advanced agent patterns unlock as you prove the basics and build your own system.',
+  },
+]
+
+const questMilestones: QuestMilestone[] = [
+  {
+    quest: 'Quest 01',
+    title: 'Build your first useful personal agent',
+    xp: '250 XP',
+    unlock: 'Daily command menu',
+    outcome: 'Leave with a morning workflow for planning, follow-up, learning, cleanup, and one time-saving action.',
+  },
+  {
+    quest: 'Quest 02',
+    title: 'Create a specialized task agent',
+    xp: '400 XP',
+    unlock: 'Task agent templates',
+    outcome: 'Turn one repeatable job into a focused agent with a role, rules, memory, and a success checklist.',
+  },
+  {
+    quest: 'Quest 03',
+    title: 'Connect memory to real tools',
+    xp: '600 XP',
+    unlock: 'Workflow skill library',
+    outcome: 'Build a small system that remembers context, uses tools, and saves the winning steps for next time.',
+  },
+  {
+    quest: 'Quest 04',
+    title: 'Run a personal or business ops mission',
+    xp: '800 XP',
+    unlock: 'Advanced agent patterns',
+    outcome: 'Apply the system to a real outcome like renewals, inbox follow-up, client prep, research, or content planning.',
+  },
+]
+
+const launchPerks: CardItem[] = [
+  {
+    title: 'Founding member path',
+    body: 'Join before launch and help shape which quests, templates, and task-agent examples get built first.',
+  },
+  {
+    title: 'Early unlocks',
+    body: 'Get the starter quest pack for memory, personal agents, business agents, safety rules, and practical tool workflows.',
+  },
+  {
+    title: 'Real feedback loop',
+    body: 'The system gets better from member use. Useful workflows become lessons, saved skills, templates, and managed upgrades.',
+  },
+]
+
 type LessonPreviewItem = {
   day: string
   title: string
@@ -221,6 +290,10 @@ const faqs: CardItem[] = [
     body: 'No. MindVault Studio keeps watch on the agentic tool landscape every day. We handle token usage, model selection, tool changes, and useful new features so you can stay focused on outcomes instead of AI plumbing.',
   },
   {
+    title: 'What is Agent Quest?',
+    body: 'Agent Quest is the guided launch path inside MindVault Personal. You complete practical missions, build agents, earn XP, keep streaks, and unlock templates or tool recipes as your system gets more useful.',
+  },
+  {
     title: 'Who is learn.mindvaultstudio.net for?',
     body: 'Founders, creators, operators, curious professionals, and anyone who wants a personal AI system that is useful in real life, not just fun for five minutes.',
   },
@@ -237,15 +310,34 @@ function Logo() {
   )
 }
 
+function BrandText({ text }: { text: string }) {
+  const parts = text.split('MindVault')
+
+  return (
+    <>
+      {parts.map((part, index) => (
+        <span key={`${part}-${index}`}>
+          {index > 0 && (
+            <>
+              Mind<span className="text-rust-500">Vault</span>
+            </>
+          )}
+          {part}
+        </span>
+      ))}
+    </>
+  )
+}
+
 function SectionHeading({ eyebrow, title, body, dark = false }: { eyebrow: string; title: string; body: string; dark?: boolean }) {
   return (
     <div className="max-w-3xl">
       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">{eyebrow}</p>
       <h2 className={`mt-4 font-serif text-3xl leading-tight sm:text-4xl ${dark ? 'text-white' : 'text-onyx'}`}>
-        {title}
+        <BrandText text={title} />
       </h2>
       <p className={`mt-5 max-w-2xl text-base leading-7 ${dark ? 'text-stone-400' : 'text-stone-600'}`}>
-        {body}
+        <BrandText text={body} />
       </p>
     </div>
   )
@@ -254,8 +346,8 @@ function SectionHeading({ eyebrow, title, body, dark = false }: { eyebrow: strin
 function Card({ title, body, dark = false }: CardItem & { dark?: boolean }) {
   return (
     <div className={`rounded-2xl border p-6 shadow-sm ${dark ? 'border-charcoal-700 bg-charcoal-800' : 'border-sand-300 bg-white'}`}>
-      <h3 className={`text-xl font-semibold ${dark ? 'text-white' : 'text-onyx'}`}>{title}</h3>
-      <p className={`mt-3 text-sm leading-7 ${dark ? 'text-stone-400' : 'text-stone-600'}`}>{body}</p>
+      <h3 className={`text-xl font-semibold ${dark ? 'text-white' : 'text-onyx'}`}><BrandText text={title} /></h3>
+      <p className={`mt-3 text-sm leading-7 ${dark ? 'text-stone-400' : 'text-stone-600'}`}><BrandText text={body} /></p>
     </div>
   )
 }
@@ -317,6 +409,9 @@ export default function App() {
             <button onClick={() => scrollToId('what-you-get')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white sm:inline">
               What You Get
             </button>
+            <button onClick={() => scrollToId('agent-quest')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white md:inline">
+              Agent Quest
+            </button>
             <button onClick={() => scrollToId('lessons')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white sm:inline">
               Lessons
             </button>
@@ -330,56 +425,56 @@ export default function App() {
       <section className="bg-charcoal-900 text-white">
         <div className="mx-auto grid max-w-6xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:py-24">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-rust-500">PERSONAL AI SYSTEM</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-rust-500">AGENT QUEST LAUNCHING SOON</p>
             <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-              A virtual computer that learns how you work.
+              A virtual computer that turns AI curiosity into real wins.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-400">
-              Most people have tried an agent demo and still struggled to recreate it in real life. Mind<span className="text-rust-500">Vault</span> Personal gives you the memory, tools, and operating structure to turn that potential into real workflows. Then learn.mindvaultstudio.net shows you how to apply it in personal work and business operations.
+              Mind<span className="text-rust-500">Vault</span> Personal gives you the memory, tools, and operating structure to build practical personal and business agents. Agent Quest adds the motivation layer: streaks, XP, unlocks, and guided missions tied to real outcomes.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => scrollToId('waitlist')} className="inline-flex items-center justify-center rounded-lg bg-rust-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                Join the waitlist
+                Join the launch list
               </button>
-              <button onClick={() => scrollToId('lessons')} className="inline-flex items-center justify-center rounded-lg border border-stone-500 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-300 hover:text-white">
-                See the lessons
+              <button onClick={() => scrollToId('agent-quest')} className="inline-flex items-center justify-center rounded-lg border border-stone-500 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-300 hover:text-white">
+                See Agent Quest
               </button>
               <button onClick={() => scrollToId('lesson-preview')} className="inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-7 py-3.5 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/10">
                 Preview the learning system
               </button>
             </div>
             <div className="mt-10 grid gap-4 text-sm text-stone-400 sm:grid-cols-3">
-              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Memory that sticks</div>
-              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Tools that do real work</div>
-              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Lessons you can apply fast</div>
+              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Streaks with a purpose</div>
+              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">XP for real outcomes</div>
+              <div className="rounded-xl border border-charcoal-700 bg-charcoal-800/80 px-4 py-4">Unlock practical tools</div>
             </div>
           </div>
 
           <div className="rounded-3xl border border-charcoal-700 bg-charcoal-800 p-5 shadow-2xl shadow-black/20">
             <div className="rounded-2xl border border-charcoal-700 bg-charcoal-900 p-5">
               <div className="flex items-center justify-between text-xs uppercase tracking-[0.22em] text-stone-500">
-                <span>System view</span>
-                <span>Live loop</span>
+                <span>Agent Quest</span>
+                <span>Launch preview</span>
               </div>
               <div className="mt-5 grid gap-4">
                 <div className="rounded-2xl bg-sand-100 p-5 text-onyx">
-                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Virtual computer</div>
-                  <p className="mt-3 font-serif text-2xl leading-tight">Browser, notes, docs, files, search, calendar.</p>
-                  <p className="mt-3 text-sm leading-7 text-stone-600">One system that can move between the tools you already use instead of forcing every task into one blank chat box.</p>
+                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Quest engine</div>
+                  <p className="mt-3 font-serif text-2xl leading-tight">Build agents. Earn XP. Unlock the next tool.</p>
+                  <p className="mt-3 text-sm leading-7 text-stone-600">The game layer points at real work: trackers, briefs, follow-ups, saved memory, task agents, and workflows you can use again.</p>
                 </div>
                 <div className="grid gap-4 sm:grid-cols-2">
                   <div className="rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
-                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Memory</div>
-                    <p className="mt-3 text-lg font-semibold text-white">Preferences, facts, lessons, and decisions stay searchable.</p>
+                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Streak</div>
+                    <p className="mt-3 text-lg font-semibold text-white">Daily missions keep the agent from becoming another forgotten login.</p>
                   </div>
                   <div className="rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
-                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Improvement</div>
-                    <p className="mt-3 text-lg font-semibold text-white">Good workflows become reusable skills instead of disappearing after one session.</p>
+                    <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Unlocks</div>
+                    <p className="mt-3 text-lg font-semibold text-white">Templates, tool recipes, and advanced agent patterns open as you build.</p>
                   </div>
                 </div>
                 <div className="rounded-2xl border border-rust-500/40 bg-rust-100 p-5 text-onyx">
-                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-600">Learn</div>
-                  <p className="mt-3 text-lg font-semibold">Short lessons turn the system into something you can actually use every week.</p>
+                  <div className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-600">Launch soon</div>
+                  <p className="mt-3 text-lg font-semibold">Founding members help shape the first quest packs and task-agent examples.</p>
                 </div>
               </div>
             </div>
@@ -415,7 +510,7 @@ export default function App() {
             <div className="mt-8 rounded-2xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
               <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rust-600">What membership means</p>
               <p className="mt-3 text-lg font-semibold leading-7">
-                Your agent system should keep getting sharper because MindVault Studio keeps doing the research, testing, and tool packaging behind the scenes.
+                Your agent system should keep getting sharper because Mind<span className="text-rust-500">Vault</span> Studio keeps doing the research, testing, and tool packaging behind the scenes.
               </p>
             </div>
           </div>
@@ -443,6 +538,77 @@ export default function App() {
         </div>
       </section>
 
+      <section id="agent-quest" className="border-b border-sand-300 bg-sand-100">
+        <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <SectionHeading
+                eyebrow="AGENT QUEST"
+                title="Make building your agent feel like progress you can see."
+                body="Agent Quest brings streaks, XP, unlocks, and guided missions into the MindVault Personal launch. It should feel fun, but it stays honest: progress is tied to real artifacts, practical agents, saved memory, and workflows you can use in your personal life or business."
+              />
+              <div className="mt-8 rounded-3xl border border-rust-500/30 bg-white p-6 shadow-sm">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rust-600">Launch soon</p>
+                <p className="mt-3 font-serif text-2xl leading-tight text-onyx">Join early, build the first quest path, and help shape what gets unlocked next.</p>
+                <p className="mt-4 text-sm leading-7 text-stone-600">The goal is not a cute badge system. The goal is momentum. You always know what to build next, why it matters, and what new capability opens when you finish.</p>
+                <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
+                  Get launch access
+                </button>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] border border-charcoal-700 bg-charcoal-900 p-5 text-white shadow-2xl shadow-black/20">
+              <div className="flex flex-col gap-4 border-b border-charcoal-700 pb-5 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Quest dashboard</p>
+                  <h3 className="mt-2 font-serif text-3xl leading-tight">Your launch path</h3>
+                </div>
+                <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                  <div className="rounded-xl border border-charcoal-700 bg-charcoal-800 px-3 py-2">
+                    <div className="font-semibold text-white">05</div>
+                    <div className="mt-1 text-stone-500">Streak</div>
+                  </div>
+                  <div className="rounded-xl border border-rust-500/30 bg-rust-100 px-3 py-2 text-onyx">
+                    <div className="font-semibold">1,250</div>
+                    <div className="mt-1 text-stone-600">XP</div>
+                  </div>
+                  <div className="rounded-xl border border-charcoal-700 bg-charcoal-800 px-3 py-2">
+                    <div className="font-semibold text-white">12</div>
+                    <div className="mt-1 text-stone-500">Unlocks</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-4">
+                {questMilestones.map((item) => (
+                  <div key={item.quest} className="rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rust-500">{item.quest}</p>
+                        <h4 className="mt-2 text-lg font-semibold text-white">{item.title}</h4>
+                      </div>
+                      <div className="flex shrink-0 items-center gap-2">
+                        <span className="rounded-full border border-rust-500/40 bg-rust-100 px-3 py-1 text-xs font-semibold text-rust-700">{item.xp}</span>
+                      </div>
+                    </div>
+                    <div className="mt-4 grid gap-3 md:grid-cols-[0.8fr_1.2fr]">
+                      <div className="rounded-xl border border-rust-500/20 bg-rust-100 px-4 py-3 text-sm font-semibold text-onyx">Unlock: {item.unlock}</div>
+                      <div className="rounded-xl border border-charcoal-700 bg-charcoal-900 px-4 py-3 text-sm leading-6 text-stone-300">{item.outcome}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {questPrinciples.map((item) => (
+              <Card key={item.title} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-sand-300 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
           <SectionHeading
@@ -462,8 +628,8 @@ export default function App() {
         <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
           <SectionHeading
             eyebrow="LEARN.MINDVAULTSTUDIO.NET"
-            title="Practical lessons that turn the idea into a working habit."
-            body="The learning side is simple on purpose. Short lessons. Real workflows. Practical tool walkthroughs. Each preview shows the scenario, the reusable prompt, what the agent builds, and the finished outcome. The full lesson journey stays protected inside access."
+            title="Agent Quest turns lessons into a working habit."
+            body="The learning side is simple on purpose. Short missions. Real workflows. Practical tool walkthroughs. Each preview shows the scenario, the reusable prompt, what the agent builds, and the finished outcome. The full quest path stays protected inside access."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {lessonTracks.map((item) => (
@@ -609,12 +775,12 @@ export default function App() {
       <section id="waitlist" className="bg-sand-100">
         <div className="mx-auto max-w-4xl px-4 py-18 sm:px-6 sm:py-20">
           <div className="rounded-3xl border border-sand-300 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">GET ACCESS</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">GET LAUNCH ACCESS</p>
             <h2 className="mt-4 font-serif text-3xl leading-tight text-onyx sm:text-4xl">
-              Join the list for launch updates, early lessons, and practical tool drops.
+              Join the launch list for Agent Quest and the Mind<span className="text-rust-500">Vault</span> Personal system.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
-              If this is the kind of personal AI system you want, drop your email. I will send the first useful lessons and launch updates through learn.mindvaultstudio.net.
+              If this is the kind of personal AI system you want, drop your email. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.mindvaultstudio.net.
             </p>
 
             {submitted ? (
@@ -642,6 +808,15 @@ export default function App() {
                 </button>
               </form>
             )}
+
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {launchPerks.map((item) => (
+                <div key={item.title} className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
+                  <h3 className="text-sm font-semibold text-onyx">{item.title}</h3>
+                  <p className="mt-3 text-sm leading-6 text-stone-600">{item.body}</p>
+                </div>
+              ))}
+            </div>
 
             <div className="mt-6 flex flex-col gap-2 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between">
               <p>No spam. Just lessons, launch notes, and practical workflows.</p>

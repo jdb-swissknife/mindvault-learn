@@ -96,23 +96,23 @@ export default function EstimateTracker() {
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <svg width="28" height="28" viewBox="0 0 200 200">
-              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#1a2a6c" stroke="#1a2a6c" strokeWidth="6" strokeLinejoin="miter"/>
-              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#4f6ef7" strokeWidth="2.5" strokeLinejoin="miter"/>
+              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#111111" stroke="#111111" strokeWidth="6" strokeLinejoin="miter"/>
+              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#c2703e" strokeWidth="2.5" strokeLinejoin="miter"/>
               <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#ffffff" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#4f6ef7" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#c2703e" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
             </svg>
-            <span className="text-base font-bold text-navy-900 tracking-tight">Mind<tspan className="text-navy-500">Vault</tspan></span>
+            <span className="text-base font-bold text-onyx tracking-tight">Mind<tspan className="text-rust-500">Vault</tspan></span>
           </Link>
-          <Link to="/" className="text-sm text-gray-400 hover:text-navy-900 transition-colors">Back to Tools</Link>
+          <Link to="/" className="text-sm text-gray-400 hover:text-onyx transition-colors">Back to Tools</Link>
         </div>
       </nav>
 
       <div className="max-w-3xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-navy-500 bg-navy-50 px-2.5 py-1 rounded-full">Free Tool</span>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-rust-500 bg-rust-100 px-2.5 py-1 rounded-full">Free Tool</span>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-onyx tracking-tight">
             Estimate<br />Follow-Up Tracker
           </h1>
           <p className="mt-3 text-gray-500 text-sm max-w-md mx-auto">
@@ -137,9 +137,9 @@ export default function EstimateTracker() {
               <p className="text-xs text-green-600">Booked</p>
               <p className="text-xl font-bold text-green-700">{booked.length}</p>
             </div>
-            <div className="bg-navy-50 rounded-xl p-3 text-center">
-              <p className="text-xs text-navy-500">Close rate</p>
-              <p className="text-xl font-bold text-navy-900">{closeRate}%</p>
+            <div className="bg-rust-100 rounded-xl p-3 text-center">
+              <p className="text-xs text-rust-500">Close rate</p>
+              <p className="text-xl font-bold text-onyx">{closeRate}%</p>
             </div>
           </div>
         )}
@@ -147,7 +147,7 @@ export default function EstimateTracker() {
         {/* Add estimate */}
         {!showForm ? (
           <button onClick={() => setShowForm(true)}
-            className="w-full py-3 rounded-lg border-2 border-dashed border-gray-300 text-gray-500 font-medium text-sm hover:border-navy-500 hover:text-navy-500 transition-colors mb-6">
+            className="w-full py-3 rounded-lg border-2 border-dashed border-gray-300 text-gray-500 font-medium text-sm hover:border-rust-500 hover:text-rust-500 transition-colors mb-6">
             + Add an Estimate
           </button>
         ) : (
@@ -157,12 +157,12 @@ export default function EstimateTracker() {
                 <label className="block text-xs font-medium text-gray-500 mb-1">Customer name</label>
                 <input type="text" required placeholder="John Smith"
                   value={customer} onChange={e => setCustomer(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-500"/>
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rust-500"/>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1">Job type</label>
                 <select required value={jobType} onChange={e => setJobType(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-500">
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rust-500">
                   <option value="">Select</option>
                   {JOB_TYPES.map(j => <option key={j} value={j}>{j}</option>)}
                 </select>
@@ -171,16 +171,16 @@ export default function EstimateTracker() {
                 <label className="block text-xs font-medium text-gray-500 mb-1">Estimate value ($)</label>
                 <input type="number" required min="1" placeholder="5000"
                   value={value} onChange={e => setValue(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-500"/>
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rust-500"/>
               </div>
               <div>
                 <label className="block text-xs font-medium text-gray-500 mb-1">Date sent</label>
                 <input type="date" required value={dateSent} onChange={e => setDateSent(e.target.value)}
-                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-navy-500"/>
+                  className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-rust-500"/>
               </div>
             </div>
             <div className="flex gap-2">
-              <button type="submit" className="flex-1 py-2 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+              <button type="submit" className="flex-1 py-2 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
                 Add Estimate
               </button>
               <button type="button" onClick={() => setShowForm(false)}
@@ -206,7 +206,7 @@ export default function EstimateTracker() {
                     <div>
                       <div className="flex items-center gap-2 mb-1">
                         <span className="text-sm font-semibold text-gray-900">{est.customer}</span>
-                        <span className="text-[11px] font-medium text-navy-500 bg-navy-50 px-1.5 py-0.5 rounded">{est.jobType}</span>
+                        <span className="text-[11px] font-medium text-rust-500 bg-rust-100 px-1.5 py-0.5 rounded">{est.jobType}</span>
                         {est.status === 'pending' && days >= 3 && (
                           <span className={`text-[11px] font-medium px-1.5 py-0.5 rounded ${days >= 7 ? 'bg-red-100 text-red-600' : 'bg-amber-100 text-amber-600'}`}>
                             {days}d overdue
@@ -220,7 +220,7 @@ export default function EstimateTracker() {
                       {est.status === 'pending' && (
                         <>
                           <button onClick={() => updateStatus(est.id, 'followed-up')}
-                            className="px-2.5 py-1.5 rounded text-xs font-medium bg-navy-900 text-white hover:bg-navy-950 transition-colors">
+                            className="px-2.5 py-1.5 rounded text-xs font-medium bg-charcoal-900 text-white hover:bg-charcoal-800 transition-colors">
                             Followed Up
                           </button>
                           <button onClick={() => updateStatus(est.id, 'booked')}
@@ -254,7 +254,7 @@ export default function EstimateTracker() {
 
             <div className="text-center">
               <a href="https://calendly.com/john-bird-mindvaultstudio/30min" target="_blank" rel="noopener noreferrer"
-                className="block w-full py-3 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+                className="block w-full py-3 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
                 Automate My Estimate Follow-Ups
               </a>
             </div>

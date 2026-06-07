@@ -102,23 +102,23 @@ export default function FollowUpGen() {
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <svg width="28" height="28" viewBox="0 0 200 200">
-              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#1a2a6c" stroke="#1a2a6c" strokeWidth="6" strokeLinejoin="miter"/>
-              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#4f6ef7" strokeWidth="2.5" strokeLinejoin="miter"/>
+              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#111111" stroke="#111111" strokeWidth="6" strokeLinejoin="miter"/>
+              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#c2703e" strokeWidth="2.5" strokeLinejoin="miter"/>
               <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#ffffff" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#4f6ef7" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#c2703e" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
             </svg>
-            <span className="text-base font-bold text-navy-900 tracking-tight">Mind<tspan className="text-navy-500">Vault</tspan></span>
+            <span className="text-base font-bold text-onyx tracking-tight">Mind<tspan className="text-rust-500">Vault</tspan></span>
           </Link>
-          <Link to="/" className="text-sm text-gray-400 hover:text-navy-900 transition-colors">Back to Tools</Link>
+          <Link to="/" className="text-sm text-gray-400 hover:text-onyx transition-colors">Back to Tools</Link>
         </div>
       </nav>
 
       <div className="max-w-2xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-navy-500 bg-navy-50 px-2.5 py-1 rounded-full">Free Tool</span>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-rust-500 bg-rust-100 px-2.5 py-1 rounded-full">Free Tool</span>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-onyx tracking-tight">
             Follow-Up<br />Sequence Generator
           </h1>
           <p className="mt-3 text-gray-500 text-sm max-w-md mx-auto">
@@ -134,7 +134,7 @@ export default function FollowUpGen() {
                 required
                 value={industry}
                 onChange={e => setIndustry(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent"
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent"
               >
                 <option value="">Select your industry</option>
                 {INDUSTRIES.map(i => <option key={i.value} value={i.value}>{i.label}</option>)}
@@ -148,10 +148,10 @@ export default function FollowUpGen() {
                 placeholder="e.g. Twin Cities Roofing"
                 value={bizName}
                 onChange={e => setBizName(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent"
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent"
               />
             </div>
-            <button type="submit" className="w-full py-3 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+            <button type="submit" className="w-full py-3 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
               Generate My Follow-Up Sequence
             </button>
           </form>
@@ -160,7 +160,7 @@ export default function FollowUpGen() {
             {/* Copy all */}
             <div className="flex justify-end">
               <button onClick={copyAll}
-                className="text-sm font-medium text-navy-500 hover:text-navy-900 transition-colors flex items-center gap-1.5">
+                className="text-sm font-medium text-rust-500 hover:text-onyx transition-colors flex items-center gap-1.5">
                 {copied === 0 ? 'Copied!' : 'Copy All 5 Steps'}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
               </button>
@@ -170,14 +170,14 @@ export default function FollowUpGen() {
               <div key={s.step} className="bg-gray-50 rounded-xl p-5 border border-gray-100">
                 <div className="flex items-center justify-between mb-3">
                   <div className="flex items-center gap-2">
-                    <span className="w-7 h-7 rounded-full bg-navy-500 text-white text-xs font-bold flex items-center justify-center">{s.step}</span>
+                    <span className="w-7 h-7 rounded-full bg-rust-500 text-white text-xs font-bold flex items-center justify-center">{s.step}</span>
                     <div>
                       <span className="text-sm font-semibold text-gray-900">{s.timing}</span>
-                      <span className="ml-2 text-[11px] font-medium text-white bg-navy-500/80 px-1.5 py-0.5 rounded">{s.channel}</span>
+                      <span className="ml-2 text-[11px] font-medium text-white bg-rust-500/80 px-1.5 py-0.5 rounded">{s.channel}</span>
                     </div>
                   </div>
                   <button onClick={() => copyStep(s)}
-                    className="text-xs font-medium text-navy-500 hover:text-navy-900 transition-colors">
+                    className="text-xs font-medium text-rust-500 hover:text-onyx transition-colors">
                     {copied === s.step ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
@@ -195,11 +195,11 @@ export default function FollowUpGen() {
 
             <div className="pt-4 text-center space-y-3">
               <a href="https://calendly.com/john-bird-mindvaultstudio/30min" target="_blank" rel="noopener noreferrer"
-                className="block w-full py-3 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+                className="block w-full py-3 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
                 Automate This Entire Sequence with AI
               </a>
               <button onClick={() => setSequence(null)}
-                className="text-sm text-gray-400 hover:text-navy-900 transition-colors underline">
+                className="text-sm text-gray-400 hover:text-onyx transition-colors underline">
                 Generate a different sequence
               </button>
             </div>

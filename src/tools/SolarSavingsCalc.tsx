@@ -50,23 +50,23 @@ export default function SolarSavingsCalc() {
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <svg width="28" height="28" viewBox="0 0 200 200">
-              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#1a2a6c" stroke="#1a2a6c" strokeWidth="6" strokeLinejoin="miter"/>
-              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#4f6ef7" strokeWidth="2.5" strokeLinejoin="miter"/>
+              <path d="M100,8 L180,48 L180,115 Q180,168 100,195 Q20,168 20,115 L20,48 Z" fill="#111111" stroke="#111111" strokeWidth="6" strokeLinejoin="miter"/>
+              <path d="M100,22 L168,56 L168,112 Q168,158 100,182 Q32,158 32,112 L32,56 Z" fill="none" stroke="#c2703e" strokeWidth="2.5" strokeLinejoin="miter"/>
               <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#ffffff" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#4f6ef7" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
-              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#1a2a6c" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M52,138 L52,80 L77,110 L100,80 L100,138" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#c2703e" strokeWidth="9" strokeLinecap="square" strokeLinejoin="miter"/>
+              <path d="M100,80 L126,122 L152,80" fill="none" stroke="#111111" strokeWidth="3.5" strokeLinecap="square" strokeLinejoin="miter"/>
             </svg>
-            <span className="text-base font-bold text-navy-900 tracking-tight">Mind<tspan className="text-navy-500">Vault</tspan></span>
+            <span className="text-base font-bold text-onyx tracking-tight">Mind<tspan className="text-rust-500">Vault</tspan></span>
           </Link>
-          <Link to="/" className="text-sm text-gray-400 hover:text-navy-900 transition-colors">Back to Tools</Link>
+          <Link to="/" className="text-sm text-gray-400 hover:text-onyx transition-colors">Back to Tools</Link>
         </div>
       </nav>
 
       <div className="max-w-xl mx-auto px-4 py-16">
         <div className="text-center mb-10">
-          <span className="text-[11px] font-semibold uppercase tracking-wider text-navy-500 bg-navy-50 px-2.5 py-1 rounded-full">Free Tool</span>
-          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-navy-900 tracking-tight">
+          <span className="text-[11px] font-semibold uppercase tracking-wider text-rust-500 bg-rust-100 px-2.5 py-1 rounded-full">Free Tool</span>
+          <h1 className="mt-4 text-3xl sm:text-4xl font-extrabold text-onyx tracking-tight">
             Solar Savings<br />Calculator
           </h1>
           <p className="mt-3 text-gray-500 text-sm max-w-md mx-auto">
@@ -80,12 +80,12 @@ export default function SolarSavingsCalc() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Monthly electric bill ($)</label>
               <input type="number" required min="1" placeholder="e.g. 200"
                 value={bill} onChange={e => setBill(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent"/>
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent"/>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Roof direction</label>
               <select required value={roofDir} onChange={e => setRoofDir(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent">
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent">
                 <option value="">Select direction</option>
                 <option value="S">South (best)</option>
                 <option value="SW">Southwest</option>
@@ -98,7 +98,7 @@ export default function SolarSavingsCalc() {
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Your state</label>
               <select required value={state} onChange={e => setState(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent">
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent">
                 <option value="">Select state</option>
                 {STATES.map(s => <option key={s.value} value={s.value}>{s.value}</option>)}
               </select>
@@ -107,9 +107,9 @@ export default function SolarSavingsCalc() {
               <label className="block text-sm font-medium text-gray-700 mb-1.5">Home square footage</label>
               <input type="number" required min="500" placeholder="e.g. 2000"
                 value={sqft} onChange={e => setSqft(e.target.value)}
-                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-navy-500 focus:border-transparent"/>
+                className="w-full rounded-lg border border-gray-200 px-4 py-3 text-sm bg-white text-gray-900 placeholder:text-gray-300 focus:outline-none focus:ring-2 focus:ring-rust-500 focus:border-transparent"/>
             </div>
-            <button type="submit" className="w-full py-3 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+            <button type="submit" className="w-full py-3 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
               Show Me My Savings
             </button>
           </form>
@@ -153,11 +153,11 @@ export default function SolarSavingsCalc() {
 
             <div className="text-center space-y-3">
               <a href="https://calendly.com/john-bird-mindvaultstudio/30min" target="_blank" rel="noopener noreferrer"
-                className="block w-full py-3 rounded-lg bg-navy-900 text-white font-semibold text-sm hover:bg-navy-950 transition-colors">
+                className="block w-full py-3 rounded-lg bg-charcoal-900 text-white font-semibold text-sm hover:bg-charcoal-800 transition-colors">
                 Get a Custom Solar Analysis
               </a>
               <button onClick={() => setShowResult(false)}
-                className="text-sm text-gray-400 hover:text-navy-900 transition-colors underline">
+                className="text-sm text-gray-400 hover:text-onyx transition-colors underline">
                 Recalculate with different numbers
               </button>
             </div>
