@@ -42,20 +42,20 @@ const memberAdvantages: CardItem[] = [
 
 const useCases: CardItem[] = [
   {
-    title: 'Run life admin without the chaos',
-    body: 'Handle inbox cleanup, research purchases, compare options, draft follow-ups, and keep personal projects moving.',
+    title: 'Create as many specialized task agents as you want',
+    body: 'Build a research agent, planning agent, subscription tracker, inbox follow-up agent, sales research agent, client ops helper, or any other focused helper you need. Each one gets a clear job instead of forcing everything through one generic chat.',
   },
   {
-    title: 'Turn scattered context into one working system',
-    body: 'Connect notes, tasks, docs, links, and conversations so the agent can act with context instead of guessing.',
+    title: 'Work inside a controlled virtual computer',
+    body: 'Give your agents a contained workspace with browser, files, notes, tools, and workflow structure. You can test ideas, set boundaries, and build confidence before connecting anything to higher-stakes systems.',
   },
   {
-    title: 'Build a real operator for your day',
-    body: 'Use the agent to prep meetings, summarize decisions, manage recurring tasks, and support actual business operations instead of one-off experiments.',
+    title: 'Run personal and business workflows side by side',
+    body: 'Use the same environment for life admin, learning, planning, research, content, follow-up, client work, and operations. Personal agents and business agents can live in one system without becoming a mess.',
   },
   {
-    title: 'Learn by doing, not by theory',
-    body: 'Each lesson is tied to a workflow you can actually run. Less inspiration. More useful output on day one.',
+    title: 'Use tools and lessons to build better agents',
+    body: 'You are not left staring at a blank prompt box. Lessons, examples, templates, and practical tools show you how to create agents that remember context, follow rules, complete tasks, and improve over time.',
   },
 ]
 
@@ -432,8 +432,8 @@ export default function App() {
           <SectionHeading
             dark
             eyebrow="WHAT YOU GET"
-            title="One personal agent system, built for actual use."
-            body="This is for the person who wants more than a clever demo. You get the structure for a usable personal agent, the tools to make it productive, and the lessons to keep improving it."
+            title="Build your own bench of personal and business agents."
+            body="MindVault Personal gives you a controlled virtual computer for creating as many specialized task agents as you want. Each agent can have a clear job, memory, rules, tools, and lessons behind it, so you can build useful helpers without giving them uncontrolled access to your real world."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {useCases.map((item) => (
