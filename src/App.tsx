@@ -82,59 +82,101 @@ type LessonPreviewItem = {
   day: string
   title: string
   focus: string
+  scenario: string
   sampleCommand: string
   agentResponse: string
+  lessonSteps: string[]
+  outcomeTitle: string
+  outcomeItems: string[]
   result: string
 }
 
 const lessonPreviewDays: LessonPreviewItem[] = [
   {
     day: 'Day 1',
-    title: 'Teach your agent a useful skill',
-    focus: 'Memory and recurring checks',
-    sampleCommand: 'Remember Canva Pro is $13/month and the trial ends June 20.',
-    agentResponse: 'Saved. I will remind you before the trial ends and include it in your monthly subscription report.',
-    result: 'Your first working skill with memory, dates, spend tracking, and a practical daily alert.',
+    title: 'Build a subscription tracker that catches renewals',
+    focus: 'Memory, spending, reminders, and recurring checks',
+    scenario: 'You have subscriptions spread across personal tools, business tools, phone apps, and free trials. The lesson shows how to turn that mess into a small agent workflow that remembers renewal dates and checks in before money leaves your account.',
+    sampleCommand: 'Create a subscription tracker for me. Add Claude Pro at $20/month on the 12th, Canva Pro at $13/month with a trial ending June 20, Google One at $9.99/month on the 3rd, and ChatGPT Plus at $20/month on the 18th. Remind me 3 days before each renewal and give me a monthly keep, cancel, or downgrade review.',
+    agentResponse: 'I created the tracker, saved each renewal date, flagged Canva as trial risk, calculated your visible monthly spend at $62.99, and set a recurring review command so we can check value before each charge.',
+    lessonSteps: [
+      'Enter messy subscription details in plain English.',
+      'Turn them into a clean tracker with price, renewal date, category, and owner.',
+      'Save reminder rules and a monthly review command.',
+      'Ask the agent to identify trial risk, duplicate tools, and subscriptions you forgot about.',
+    ],
+    outcomeTitle: 'Your finished subscription system',
+    outcomeItems: [
+      'Renewal calendar with reminders',
+      'Monthly spend total and trial risks',
+      'Keep, cancel, or downgrade review prompt',
+    ],
+    result: 'You leave with a real subscription tracker, not a chat answer. The agent remembers renewals, checks trial risk, and gives you a repeatable monthly money review.',
   },
   {
     day: 'Day 2',
     title: 'Capture ideas before they disappear',
-    focus: 'Fast context capture',
-    sampleCommand: 'Save this as an idea: build a simple client onboarding checklist for roofers.',
-    agentResponse: 'Captured, tagged, and ready to review when you ask for business workflow ideas.',
-    result: 'A repeatable way to save thoughts, tag them, and turn scattered ideas into useful next steps.',
+    focus: 'Fast context capture and retrieval',
+    scenario: 'The lesson turns random thoughts, client ideas, and project notes into searchable memory so they can come back when they are useful.',
+    sampleCommand: 'Save this as a business idea: build a client onboarding checklist for roofers with intake questions, first follow-up, install schedule, and review request timing.',
+    agentResponse: 'Captured and tagged under business workflows, roofing, onboarding, and client experience. I also created three next questions to turn it into a usable checklist later.',
+    lessonSteps: [
+      'Capture raw ideas without cleaning them up first.',
+      'Add useful tags and context so the idea can be found later.',
+      'Ask the agent to turn the idea into next questions.',
+      'Review saved ideas by topic when you are ready to build.',
+    ],
+    outcomeTitle: 'Your idea capture habit',
+    outcomeItems: ['Tagged idea memory', 'Next questions for action', 'A retrieval command for future review'],
+    result: 'You get a repeatable way to save thoughts, tag them, and turn scattered ideas into useful next steps.',
   },
   {
     day: 'Day 3',
     title: 'Turn videos into action briefs',
-    focus: 'Research and summarization',
-    sampleCommand: 'Watch this video and give me the practical actions, not a generic summary.',
-    agentResponse: 'Brief created with key points, useful quotes, risks, and the next actions worth testing.',
-    result: 'A faster research habit that turns long videos into decisions, notes, and usable tasks.',
+    focus: 'Research, summarization, and decisions',
+    scenario: 'Instead of collecting long videos you never act on, the lesson shows how to pull out decisions, warnings, useful quotes, and experiments worth trying.',
+    sampleCommand: 'Watch this video and give me the practical actions. I want decisions, quotes worth saving, risks, and 3 experiments I could run this week.',
+    agentResponse: 'Brief created with key points, useful quotes, risks, action items, and a short experiment list sorted by time required.',
+    lessonSteps: ['Give the agent a video or transcript.', 'Ask for actions instead of a generic summary.', 'Save useful quotes and risks.', 'Turn the best points into experiments or tasks.'],
+    outcomeTitle: 'Your action brief',
+    outcomeItems: ['Practical actions', 'Saved quotes and risks', 'Small experiments to test'],
+    result: 'You get a faster research habit that turns long videos into decisions, notes, and usable tasks.',
   },
   {
     day: 'Day 4',
     title: 'Build your daily command habit',
     focus: 'Personal operating rhythm',
-    sampleCommand: 'Give me my daily command menu for planning, follow-up, learning, and cleanup.',
-    agentResponse: 'Here are the 5 commands worth running today, ordered by impact and time required.',
-    result: 'A simple daily routine that makes the agent useful every morning instead of occasional.',
+    scenario: 'The lesson gives you a short daily menu so the agent becomes useful every morning instead of sitting unused until you remember it exists.',
+    sampleCommand: 'Give me my daily command menu for planning, follow-up, learning, cleanup, and anything that could save me time today.',
+    agentResponse: 'Here are the 5 commands worth running today, ordered by impact and time required. I included one planning command, one follow-up command, one cleanup command, one learning command, and one money check.',
+    lessonSteps: ['Create a short daily command menu.', 'Tie each command to a real outcome.', 'Pick the highest-impact command first.', 'Save the menu so it becomes a routine.'],
+    outcomeTitle: 'Your daily agent menu',
+    outcomeItems: ['Morning planning command', 'Follow-up and cleanup command', 'One learning or money check'],
+    result: 'You leave with a simple daily routine that makes the agent useful every morning instead of occasional.',
   },
   {
     day: 'Day 5',
     title: 'Request better tools',
-    focus: 'Workflow design',
-    sampleCommand: 'Help me describe a tool that turns missed calls into follow-up tasks.',
-    agentResponse: 'Tool request drafted with trigger, inputs, output, approval rules, and success criteria.',
-    result: 'A cleaner way to turn vague AI ideas into practical workflows a real system can run.',
+    focus: 'Workflow design and tool requests',
+    scenario: 'The lesson shows how to describe a tool request clearly enough that it can become a workflow, not just a vague AI idea.',
+    sampleCommand: 'Help me describe a tool that turns missed calls into follow-up tasks with caller name, callback window, urgency, and approval rules.',
+    agentResponse: 'Tool request drafted with trigger, inputs, output, approval rules, edge cases, and success criteria so it can be built or handed off cleanly.',
+    lessonSteps: ['Name the workflow trigger.', 'Define inputs and outputs.', 'Set approval rules and failure cases.', 'Write success criteria so the tool can be judged later.'],
+    outcomeTitle: 'Your tool request brief',
+    outcomeItems: ['Trigger and input list', 'Approval and safety rules', 'Build-ready success criteria'],
+    result: 'You get a cleaner way to turn vague AI ideas into practical workflows a real system can run.',
   },
   {
     day: 'Day 6',
     title: 'Set safety rules',
     focus: 'Control and human approval',
-    sampleCommand: 'Create rules for what you can do automatically and what needs my approval.',
-    agentResponse: 'Safety card created with low-risk actions, approval-required actions, and never-do boundaries.',
-    result: 'A control layer that lets the agent become more useful without becoming reckless.',
+    scenario: 'The lesson helps you decide what the agent can do automatically, what needs approval, and what it should never do without you.',
+    sampleCommand: 'Create rules for what you can do automatically, what needs my approval, and what you should never do for email, spending, files, and outreach.',
+    agentResponse: 'Safety card created with low-risk actions, approval-required actions, and never-do boundaries for each area.',
+    lessonSteps: ['List the areas where the agent may act.', 'Separate low-risk actions from approval-required actions.', 'Write never-do boundaries.', 'Save the safety card for future workflows.'],
+    outcomeTitle: 'Your safety card',
+    outcomeItems: ['Automatic actions', 'Approval-required actions', 'Never-do boundaries'],
+    result: 'You get a control layer that lets the agent become more useful without becoming reckless.',
   },
 ]
 
@@ -410,7 +452,7 @@ export default function App() {
           <SectionHeading
             eyebrow="LEARN.MINDVAULTSTUDIO.NET"
             title="Practical lessons that turn the idea into a working habit."
-            body="The learning side is simple on purpose. Short lessons. Real workflows. Practical tool walkthroughs. Enough structure to help you build your own personal agent without drowning in theory. The public page shows the flow. The full lesson journey stays protected inside access."
+            body="The learning side is simple on purpose. Short lessons. Real workflows. Practical tool walkthroughs. Each preview shows the scenario, the reusable prompt, what the agent builds, and the finished outcome. The full lesson journey stays protected inside access."
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {lessonTracks.map((item) => (
@@ -472,22 +514,36 @@ export default function App() {
 
                   <div className="mt-8 grid gap-4">
                     <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">You ask</div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Real scenario</div>
+                      <p className="mt-3 text-sm leading-7 text-stone-700">{selectedLesson.scenario}</p>
+                    </div>
+                    <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Prompt you can reuse</div>
                       <p className="mt-3 rounded-xl bg-charcoal-900 p-4 text-sm leading-7 text-sand-100">“{selectedLesson.sampleCommand}”</p>
                     </div>
                     <div className="rounded-2xl border border-rust-500/30 bg-rust-100 p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Agent responds</div>
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Agent builds</div>
                       <p className="mt-3 text-sm leading-7 text-stone-700">{selectedLesson.agentResponse}</p>
+                    </div>
+                    <div className="rounded-2xl border border-sand-300 bg-white p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">What the lesson teaches</div>
+                      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                        {selectedLesson.lessonSteps.map((step, index) => (
+                          <div key={step} className="rounded-xl border border-sand-300 bg-sand-100 p-4 text-sm leading-6 text-stone-700">
+                            <span className="font-semibold text-rust-600">{index + 1}. </span>{step}
+                          </div>
+                        ))}
+                      </div>
                     </div>
                     <div className="relative overflow-hidden rounded-2xl border border-sand-300 bg-white p-5">
                       <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Inside the full lesson</div>
                       <div className="mt-4 grid gap-3 blur-[2px] sm:grid-cols-3">
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Walkthrough</div>
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Practice task</div>
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Saved skill</div>
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Exact setup steps</div>
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Copy-ready commands</div>
+                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Troubleshooting notes</div>
                       </div>
                       <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-rust-500/30 bg-white/90 px-4 py-3 text-sm font-semibold text-onyx shadow-lg backdrop-blur">
-                        Full instructions unlock inside the learning system. The preview shows the flow, not the whole library.
+                        The preview shows a real use case and outcome. The member version includes the full walkthrough and saved workflow.
                       </div>
                     </div>
                   </div>
@@ -495,14 +551,24 @@ export default function App() {
               </div>
 
               <aside className="border-t border-charcoal-700 bg-charcoal-950 p-5 text-white lg:border-l lg:border-t-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Agent result</p>
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Finished outcome</p>
                 <div className="mt-5 rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
                   <div className="text-sm font-semibold text-stone-300">By the end of {selectedLesson.day}</div>
                   <p className="mt-3 text-lg font-semibold leading-7 text-white">{selectedLesson.result}</p>
                 </div>
                 <div className="mt-5 rounded-2xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Why this works</div>
-                  <p className="mt-3 text-sm leading-7 text-stone-700">Each lesson connects a command, a tool, memory, and an outcome. That is how a demo becomes a working habit.</p>
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">{selectedLesson.outcomeTitle}</div>
+                  <div className="mt-4 grid gap-3">
+                    {selectedLesson.outcomeItems.map((item) => (
+                      <div key={item} className="rounded-xl border border-rust-500/20 bg-white px-4 py-3 text-sm font-semibold leading-6 text-stone-700">
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-5 rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
+                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-500">Why this works</div>
+                  <p className="mt-3 text-sm leading-7 text-stone-300">Each lesson teaches a real workflow, gives you a reusable prompt, shows what the agent builds, and leaves you with a saved system you can use again.</p>
                 </div>
                 <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
                   Join the list to unlock week 1
