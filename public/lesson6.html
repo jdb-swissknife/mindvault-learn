@@ -1,0 +1,129 @@
+<!-- Lesson 6: Agent Safety Basics (partial, loaded into index.html) -->
+
+<div class="lesson-header">
+    <div class="lesson-number">Lesson 6</div>
+    <div class="lesson-title">Agent Safety Basics</div>
+    <div class="lesson-subtitle">Use powerful agents with clear boundaries</div>
+</div>
+
+<div class="section">
+    <h2>The Problem With Trust</h2>
+    <p>As your agent gets more useful, a natural question shows up: what should I trust it with?</p>
+    <p>That question is healthy. You should not blindly hand a powerful system every password, client detail, and business decision.</p>
+    <p>But fear can create the opposite problem too. If you never give the agent useful context, it cannot do useful work.</p>
+    <p><strong>The goal is not blind trust. The goal is clear boundaries.</strong></p>
+</div>
+
+<div class="section">
+    <h2>The Solution</h2>
+    <p>Today you are creating your agent safety rules card. These rules help you use agentic AI with confidence.</p>
+    <ol>
+        <li><strong>Know what not to share</strong> -- Passwords, private secrets, sensitive client data</li>
+        <li><strong>Use safe access paths</strong> -- Config files, official login flows, and permissioned tools</li>
+        <li><strong>Confirm before risky actions</strong> -- Money, deletion, publishing, sending, legal, hiring, firing</li>
+        <li><strong>Ask for the plan first</strong> -- Make the agent explain what it will do</li>
+        <li><strong>Keep judgment with you</strong> -- The agent supports decisions. It does not own them</li>
+    </ol>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 1</div>
+    <h2>Save Your Safety Rules</h2>
+    <p>Copy this into your agent so the boundaries are clear.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>Remember these safety rules for working with me:
+
+1. Never ask me to type passwords in chat.
+2. If credentials are needed, give me a safe config path, official login flow, or manual setup step.
+3. Before deleting, sending, publishing, charging, buying, or changing access, explain the plan and ask for confirmation.
+4. Do not make legal, financial, hiring, firing, medical, or client-commitment decisions for me. Help me think, but keep me in charge.
+5. If something is sensitive, tell me what you need and the safest way to provide it.
+
+When I say "safety check," review the current task against these rules.</div>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 2</div>
+    <h2>What Is Safe to Share?</h2>
+    <table class="styled-table">
+        <tr><th>Usually Safe</th><th>Be Careful</th><th>Do Not Paste</th></tr>
+        <tr><td>Business goals</td><td>Client names</td><td>Passwords</td></tr>
+        <tr><td>Workflow descriptions</td><td>Contract details</td><td>API keys</td></tr>
+        <tr><td>Public website links</td><td>Private financials</td><td>Bank login codes</td></tr>
+        <tr><td>Draft copy</td><td>Employee issues</td><td>Private medical or legal documents</td></tr>
+        <tr><td>Non-sensitive notes</td><td>Customer records</td><td>Anything you would not want exposed</td></tr>
+    </table>
+    <div class="callout"><strong>Simple test:</strong> If you would not put it in an email to a vendor, pause and ask for the safest way to handle it.</div>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 3</div>
+    <h2>Ask for a Plan Before Action</h2>
+    <p>When an agent is about to do something with consequences, make it slow down.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>Before you take action, give me a safety check.
+
+Tell me:
+1. What you are about to do
+2. What could go wrong
+3. What information or access you need
+4. Whether this changes, deletes, sends, publishes, buys, or commits anything
+5. What you need me to confirm before proceeding</div>
+
+    <p>This is not about making the agent timid. It is about making the work controlled.</p>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 4</div>
+    <h2>Know the Human-in-the-Loop Moments</h2>
+    <p>Keep yourself in the loop for decisions that carry real consequences:</p>
+    <ul>
+        <li>Sending messages to customers</li>
+        <li>Publishing public content</li>
+        <li>Deleting files or records</li>
+        <li>Charging money or changing billing</li>
+        <li>Signing contracts or making legal claims</li>
+        <li>Hiring, firing, discipline, or employee issues</li>
+        <li>Anything involving private client information</li>
+    </ul>
+</div>
+
+<div class="section">
+    <h2>What's Happening Behind the Scenes</h2>
+    <p>You are learning the difference between <strong>capability</strong> and <strong>permission</strong>.</p>
+    <table class="styled-table">
+        <tr><th>Capability</th><th>Permission</th></tr>
+        <tr><td>The agent can draft an email</td><td>You decide when it gets sent</td></tr>
+        <tr><td>The agent can inspect files</td><td>You decide what files it can access</td></tr>
+        <tr><td>The agent can recommend a decision</td><td>You make the decision</td></tr>
+        <tr><td>The agent can run a workflow</td><td>You set the boundaries</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 5</div>
+    <h2>Your Assignment</h2>
+    <div class="callout">
+        <strong>Your to-do list:</strong><br>
+        1. Copy the safety rules into your agent<br>
+        2. Ask it to remember them<br>
+        3. Run the safety check prompt on your last tool request<br>
+        4. Identify what information is safe to share<br>
+        5. Identify what requires confirmation before action
+    </div>
+</div>
+
+<div class="section">
+    <h2>The Bigger Picture</h2>
+    <p>Strong systems need strong boundaries. This lesson gives you the confidence to keep learning without treating every new capability like a risk.</p>
+    <div class="callout"><strong>The real takeaway:</strong> Safe agent use is not about doing less. It is about making the right things explicit before the agent acts.</div>
+    <p>Coming up next: you will review Week 1 and see what your agent can now do.</p>
+</div>
+
+<div class="bottom-nav">
+    <button class="btn btn-secondary" onclick="openLesson(5)">&larr; Lesson 5</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-success" id="completeBtn" onclick="completeCurrentLesson()">Mark Complete</button>
+        <button class="btn btn-primary" onclick="goHome()">Home &rarr;</button>
+    </div>
+</div>

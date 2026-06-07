@@ -1,0 +1,129 @@
+<!-- Lesson 5: Tool Request Builder (partial, loaded into index.html) -->
+
+<div class="lesson-header">
+    <div class="lesson-number">Lesson 5</div>
+    <div class="lesson-title">Tool Request Builder</div>
+    <div class="lesson-subtitle">Describe the next workflow you want your agent to handle</div>
+</div>
+
+<div class="section">
+    <h2>The Problem With "Can AI Help With This?"</h2>
+    <p>Most business owners can feel where the friction is. Follow-ups. Notes. Estimates. Hiring. Scheduling. Reporting. But they do not always know how to turn that friction into an agent task.</p>
+    <p>So they ask vague questions:</p>
+    <ul>
+        <li>"Can you automate my sales?"</li>
+        <li>"Can AI help with operations?"</li>
+        <li>"Can we make a tool for this?"</li>
+    </ul>
+    <p>Those are fair questions, but they are too broad. Agents work best when you describe the workflow.</p>
+</div>
+
+<div class="section">
+    <h2>The Solution</h2>
+    <p>Today you are learning how to write a clear tool request. This is how non-technical users start shaping agentic systems.</p>
+    <ol>
+        <li><strong>Name the repeated work</strong> -- What do you do again and again?</li>
+        <li><strong>List the inputs</strong> -- What information does the agent need?</li>
+        <li><strong>Define the output</strong> -- What should come back?</li>
+        <li><strong>Set the trigger</strong> -- When should it happen?</li>
+        <li><strong>Describe success</strong> -- What does done right look like?</li>
+    </ol>
+    <div class="callout"><strong>The shift:</strong> Stop asking for generic AI help. Start describing repeatable business workflows.</div>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 1</div>
+    <h2>Use the Tool Request Formula</h2>
+    <p>Copy this prompt into your agent. It will interview you and turn your answers into a clean request.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>I want to design a new agent tool or workflow.
+
+Interview me using these five questions, one at a time:
+1. What do I do repeatedly?
+2. What information does the agent need?
+3. What should the agent produce?
+4. When should this happen?
+5. What does "done right" look like?
+
+After I answer, write a clean tool request I can save or send to MindVault.</div>
+
+    <p>This teaches your agent to slow you down and get the important details before jumping to a solution.</p>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 2</div>
+    <h2>See the Difference</h2>
+    <table class="styled-table">
+        <tr><th>Vague Request</th><th>Better Tool Request</th></tr>
+        <tr><td>Help with leads</td><td>When I finish a call with a new lead, help me capture problem, budget, urgency, next step, and follow-up date</td></tr>
+        <tr><td>Automate estimates</td><td>When I paste job notes, turn them into an estimate draft with assumptions and missing questions</td></tr>
+        <tr><td>Help with hiring</td><td>When I paste a resume, compare it to my role requirements and flag concerns</td></tr>
+        <tr><td>Track customers</td><td>When I mention a customer issue, save it and remind me if it is not resolved by Friday</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 3</div>
+    <h2>Build Your First Request</h2>
+    <p>Use this if you already know the workflow you want to improve.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>Turn this into a clear agent tool request.
+
+Repeated work:
+[what you do again and again]
+
+Inputs:
+[what information the agent needs]
+
+Output:
+[what the agent should produce]
+
+Trigger:
+[when this should happen]
+
+Done right means:
+[what a good result looks like]
+
+Make the request simple enough that a non-technical business owner can understand it.</div>
+</div>
+
+<div class="section">
+    <h2>What's Happening Behind the Scenes</h2>
+    <p>You are learning one of the most important agent owner skills: <strong>workflow thinking</strong>.</p>
+    <table class="styled-table">
+        <tr><th>Chatbot Thinking</th><th>Agentic System Thinking</th></tr>
+        <tr><td>Ask one question</td><td>Define a repeatable workflow</td></tr>
+        <tr><td>Get one answer</td><td>Create a reusable tool</td></tr>
+        <tr><td>Start from curiosity</td><td>Start from business friction</td></tr>
+        <tr><td>Hope the answer helps</td><td>Define what done right looks like</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 4</div>
+    <h2>Your Assignment</h2>
+    <div class="callout">
+        <strong>Your to-do list:</strong><br>
+        1. Pick one repeated task that annoys you<br>
+        2. Run the tool request interview prompt<br>
+        3. Answer the five questions<br>
+        4. Save the final request in your agent<br>
+        5. Ask: "What would be the smallest first version of this?"
+    </div>
+</div>
+
+<div class="section">
+    <h2>The Bigger Picture</h2>
+    <p>This is where your agent starts feeling less like a chat window and more like an operations designer.</p>
+    <p>You do not need to know how to code the system. You need to know how to describe the work clearly.</p>
+    <div class="callout"><strong>The real takeaway:</strong> If you can describe the workflow, your agent can help you shape the tool.</div>
+    <p>Coming up next: how to use powerful agents safely, without turning fear into a blocker.</p>
+</div>
+
+<div class="bottom-nav">
+    <button class="btn btn-secondary" onclick="openLesson(4)">&larr; Lesson 4</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-success" id="completeBtn" onclick="completeCurrentLesson()">Mark Complete</button>
+        <button class="btn btn-primary" onclick="openLesson(6)">Lesson 6 &rarr;</button>
+    </div>
+</div>
