@@ -21,7 +21,22 @@ const featureCards: CardItem[] = [
   },
   {
     title: 'Managed models and tools',
-    body: 'You do not have to babysit token usage, pick LLM models, or chase the latest stack. We handle the moving parts and stay current on the best tools.',
+    body: 'You do not have to babysit token usage, pick LLM models, or chase the latest stack. MindVault Studio tracks the tools, tests what is useful, and brings the best pieces into the member experience.',
+  },
+]
+
+const memberAdvantages: CardItem[] = [
+  {
+    title: 'Daily tool watch',
+    body: 'MindVault Studio keeps up with new agentic tools, model releases, browser agents, memory systems, and practical features so members do not have to live in AI news.',
+  },
+  {
+    title: 'Tested before it reaches you',
+    body: 'We sort through the noise, try the tools against real workflows, and only bring forward what can help you save time, remember more, or run better personal operations.',
+  },
+  {
+    title: 'Member drops and upgrades',
+    body: 'When something becomes useful enough, it turns into a lesson, workflow, template, saved skill, or managed feature inside the MindVault Personal experience.',
   },
 ]
 
@@ -161,7 +176,7 @@ const faqs: CardItem[] = [
   },
   {
     title: 'Do I need to manage models, tokens, or tool updates?',
-    body: 'No. We handle token usage, model selection, and staying on top of the latest tools so you can stay focused on outcomes instead of AI plumbing.',
+    body: 'No. MindVault Studio keeps watch on the agentic tool landscape every day. We handle token usage, model selection, tool changes, and useful new features so you can stay focused on outcomes instead of AI plumbing.',
   },
   {
     title: 'Who is learn.mindvaultstudio.net for?',
@@ -329,6 +344,31 @@ export default function App() {
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featureCards.map((item) => (
               <Card key={item.title} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-charcoal-700 bg-charcoal-900 text-white">
+        <div className="mx-auto grid max-w-6xl gap-10 px-4 py-18 sm:px-6 sm:py-20 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">MEMBER ADVANTAGE</p>
+            <h2 className="mt-4 font-serif text-3xl leading-tight text-white sm:text-4xl">
+              You do not have to keep up with the agent race. That is our job.
+            </h2>
+            <p className="mt-5 text-base leading-7 text-stone-400">
+              Mind<span className="text-rust-500">Vault</span> Studio is not just handing you a login and walking away. We will be working every day to stay current on the latest agentic tools, features, models, and workflows, then bring the useful ones to you as a member.
+            </p>
+            <div className="mt-8 rounded-2xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
+              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-rust-600">What membership means</p>
+              <p className="mt-3 text-lg font-semibold leading-7">
+                Your agent system should keep getting sharper because MindVault Studio keeps doing the research, testing, and tool packaging behind the scenes.
+              </p>
+            </div>
+          </div>
+          <div className="grid gap-5">
+            {memberAdvantages.map((item) => (
+              <Card key={item.title} {...item} dark />
             ))}
           </div>
         </div>
