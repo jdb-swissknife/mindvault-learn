@@ -63,6 +63,59 @@ const lessonTracks: CardItem[] = [
   },
 ]
 
+type LessonPreviewItem = {
+  day: string
+  title: string
+  body: string
+  outcome: string
+  href: string
+}
+
+const lessonPreviewDays: LessonPreviewItem[] = [
+  {
+    day: 'Day 1',
+    title: 'Subscription Tracker',
+    body: 'Learn what makes an agent different from a chatbot, then use your first skill to track subscriptions, trial end dates, and monthly spend.',
+    outcome: 'Outcome: your first working skill with memory and daily alerts.',
+    href: '/lesson1.html',
+  },
+  {
+    day: 'Day 2',
+    title: 'Idea Capture',
+    body: 'Teach your agent a new trick. Turn random ideas into something you can save, search, and review later instead of losing them.',
+    outcome: 'Outcome: a simple prompting pattern you can reuse to teach new workflows.',
+    href: '/lesson2.html',
+  },
+  {
+    day: 'Day 3',
+    title: 'Video Briefs',
+    body: 'Paste a YouTube link and get the useful business takeaways without sitting through the whole video yourself.',
+    outcome: 'Outcome: faster research, better summaries, and clearer next steps.',
+    href: '/lesson3.html',
+  },
+  {
+    day: 'Day 4',
+    title: 'Daily Command Habit',
+    body: 'Build the habit that most people miss. One useful command per day turns the agent into a work partner instead of a novelty.',
+    outcome: 'Outcome: a repeatable daily menu that makes the system stick.',
+    href: '/lesson4.html',
+  },
+  {
+    day: 'Day 5',
+    title: 'Tool Request Builder',
+    body: 'Learn how to describe repeated work, inputs, outputs, triggers, and success so vague AI ideas become clear workflow requests.',
+    outcome: 'Outcome: a cleaner way to ask for real tools and business workflows.',
+    href: '/lesson5.html',
+  },
+  {
+    day: 'Day 6',
+    title: 'Agent Safety Basics',
+    body: 'Set boundaries for trust, sharing, and human approval so the system becomes more useful without getting reckless.',
+    outcome: 'Outcome: a safety card that keeps you in control of risky actions.',
+    href: '/lesson6.html',
+  },
+]
+
 const buildLoop: CardItem[] = [
   {
     title: '1. Capture context',
@@ -314,6 +367,38 @@ export default function App() {
             {lessonTracks.map((item) => (
               <Card key={item.title} {...item} />
             ))}
+          </div>
+          <div className="mt-14 rounded-3xl border border-sand-300 bg-white p-6 shadow-sm sm:p-8">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">FIRST WEEK PREVIEW</p>
+              <h3 className="mt-4 font-serif text-2xl leading-tight text-onyx sm:text-3xl">
+                See what the first 6 days actually look like.
+              </h3>
+              <p className="mt-4 text-base leading-7 text-stone-600">
+                This is the kind of hands-on ramp people want after the demo. Not more hype. Real lessons that help you build habits, useful workflows, and safe operating rules from day one.
+              </p>
+            </div>
+            <div className="mt-8 grid gap-5 lg:grid-cols-2 xl:grid-cols-3">
+              {lessonPreviewDays.map((lesson) => (
+                <div key={lesson.day} className="rounded-2xl border border-sand-300 bg-sand-100 p-5 shadow-sm">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="rounded-full bg-rust-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-rust-600">
+                      {lesson.day}
+                    </span>
+                    <span className="text-xs font-medium uppercase tracking-[0.14em] text-stone-500">Week 1</span>
+                  </div>
+                  <h4 className="mt-4 text-xl font-semibold text-onyx">{lesson.title}</h4>
+                  <p className="mt-3 text-sm leading-7 text-stone-600">{lesson.body}</p>
+                  <p className="mt-4 text-sm font-medium leading-6 text-stone-700">{lesson.outcome}</p>
+                  <a
+                    href={lesson.href}
+                    className="mt-5 inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-4 py-2 text-sm font-semibold text-rust-600 transition-colors hover:border-rust-500 hover:bg-rust-100"
+                  >
+                    Preview {lesson.day.toLowerCase()}
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
           <div className="mt-8">
             <a href="/quest.html" className="inline-flex items-center justify-center rounded-lg bg-charcoal-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-charcoal-800">
