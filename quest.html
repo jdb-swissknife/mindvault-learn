@@ -3,41 +3,169 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindVault Learn | Lesson Access</title>
-  <meta http-equiv="refresh" content="8; url=/" />
+  <title>Agent Quest -- MindVault Studio</title>
   <style>
-    :root { color-scheme: light; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f7f3ee; color: #1c1917; font-family: Inter, Arial, sans-serif; }
-    .card { width: min(680px, calc(100% - 32px)); border: 1px solid #e7ddd3; border-radius: 28px; background: #fff; box-shadow: 0 24px 70px rgba(17,17,17,.12); overflow: hidden; }
-    .bar { background: #111; color: #f7f3ee; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { font-weight: 700; letter-spacing: -0.02em; }
-    .vault { color: #c2703e; }
-    .pill { border: 1px solid rgba(194,112,62,.45); color: #c2703e; border-radius: 999px; padding: 7px 11px; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; }
-    .body { padding: 34px; }
-    .eyebrow { color: #c2703e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; }
-    h1 { margin: 14px 0 0; font-family: Georgia, serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; }
-    p { color: #57534e; font-size: 16px; line-height: 1.7; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-    a { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; padding: 13px 18px; font-weight: 700; text-decoration: none; }
-    .primary { background: #c2703e; color: white; }
-    .secondary { border: 1px solid #e7ddd3; color: #1c1917; background: #f7f3ee; }
+    :root{
+      --charcoal:#111111;--charcoal-800:#1c1c1c;--sand-100:#f7f3ee;--sand-200:#ede6db;--sand-300:#e7ddd3;--stone-400:#a8a29e;--stone-500:#78716c;--stone-600:#57534e;--stone-700:#44403c;--rust-500:#c2703e;--rust-600:#a85a2a;--rust-700:#8f4a22;--rust-100:#fdf2ec;--success:#22C55E;--gold:#f6c453;--blue:#3b82f6;--ink:#1E293B;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 20% 0%,#fff8ef 0%,var(--sand-100) 38%,#efe3d4 100%);color:var(--stone-600);line-height:1.6;min-height:100vh;overflow-x:hidden}
+    body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.35;background-image:linear-gradient(rgba(194,112,62,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(194,112,62,.07) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,#000,transparent 80%)}
+    .topbar{position:sticky;top:0;z-index:50;background:rgba(17,17,17,.94);backdrop-filter:blur(10px);color:white;border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-family:Georgia,serif;font-size:20px;color:white;text-decoration:none;white-space:nowrap}.vault{color:var(--rust-500)}
+    .stats{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:7px 11px;font-size:12px;color:#f5f5f4;white-space:nowrap}.pill strong{color:var(--gold)}
+    .progress-wrap{height:5px;background:rgba(255,255,255,.1)}.progress-fill{height:5px;background:linear-gradient(90deg,var(--rust-500),var(--gold));width:20%;transition:.4s ease}
+    .container{max-width:1120px;margin:0 auto;padding:24px 20px 56px}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;padding:32px 0 20px}.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--rust-100);color:var(--rust-700);border:1px solid #f1d2bd;border-radius:999px;padding:7px 13px;font-size:12px;font-weight:bold;letter-spacing:.08em;text-transform:uppercase}.hero h1{font-family:Georgia,serif;color:var(--ink);font-size:46px;line-height:1.05;margin:16px 0 12px}.hero p{font-size:17px;color:var(--stone-600);max-width:610px}.hero-card{background:linear-gradient(145deg,var(--charcoal),#2a2019);border:1px solid rgba(255,255,255,.08);border-radius:22px;padding:22px;box-shadow:0 20px 50px rgba(17,17,17,.18);color:white;position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;right:-70px;top:-70px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,var(--rust-500),transparent 65%);opacity:.45}.map-title{font-family:Georgia,serif;font-size:22px;margin-bottom:8px}.map-sub{color:#cfc7bf;font-size:14px;margin-bottom:18px}.reward-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:relative;z-index:1}.reward{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:13px;border-radius:14px}.reward b{display:block;color:white;font-size:14px}.reward span{display:block;color:#c9c0b8;font-size:12px;margin-top:2px}
+    .quest-board{background:rgba(255,255,255,.78);border:1px solid rgba(194,112,62,.18);border-radius:24px;padding:28px;box-shadow:0 16px 38px rgba(85,55,30,.12);backdrop-filter:blur(8px);position:relative;overflow:hidden}.quest-board:before{content:"";position:absolute;inset:18px;border:1px dashed rgba(194,112,62,.22);border-radius:18px;pointer-events:none}.board-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-end;margin-bottom:18px;position:relative;z-index:1}.board-head h2{font-family:Georgia,serif;color:var(--ink);font-size:28px}.board-head p{font-size:14px;color:var(--stone-500)}
+    .journey{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:26px 0 8px;z-index:1}.journey:before{content:"";position:absolute;left:8%;right:8%;top:76px;height:8px;background:linear-gradient(90deg,var(--success) 0%,var(--success) var(--path-progress,20%),var(--sand-300) var(--path-progress,20%));border-radius:999px;box-shadow:inset 0 1px 0 rgba(255,255,255,.45)}
+    .stop{position:relative;background:white;border:1px solid var(--sand-300);border-radius:18px;padding:58px 14px 16px;min-height:188px;cursor:pointer;box-shadow:0 10px 22px rgba(78,52,30,.08);transition:.2s}.stop:hover{transform:translateY(-4px);border-color:var(--rust-500);box-shadow:0 14px 28px rgba(78,52,30,.14)}.stop.locked{opacity:.55;cursor:default}.stop.locked:hover{transform:none;border-color:var(--sand-300)}.stop.active{border:2px solid var(--rust-500)}.stop.completed{border-color:rgba(34,197,94,.45)}
+    .node{position:absolute;top:18px;left:50%;transform:translateX(-50%);width:54px;height:54px;border-radius:50%;background:var(--sand-200);border:4px solid white;box-shadow:0 0 0 2px var(--sand-300),0 8px 18px rgba(0,0,0,.16);display:flex;align-items:center;justify-content:center;font-size:24px;z-index:2}.completed .node{background:var(--success);box-shadow:0 0 0 2px rgba(34,197,94,.45),0 8px 18px rgba(0,0,0,.16)}.active .node{background:var(--rust-500);animation:pulse 1.8s infinite}.locked .node{filter:grayscale(1)}@keyframes pulse{0%,100%{box-shadow:0 0 0 2px rgba(194,112,62,.3),0 0 0 0 rgba(194,112,62,.35)}50%{box-shadow:0 0 0 2px rgba(194,112,62,.3),0 0 0 13px rgba(194,112,62,0)}}
+    .stop small{display:block;color:var(--rust-600);font-weight:bold;font-size:11px;letter-spacing:.08em;text-transform:uppercase}.stop h3{font-family:Georgia,serif;color:var(--ink);font-size:17px;line-height:1.15;margin:6px 0}.stop p{font-size:13px;color:var(--stone-500);line-height:1.35}.unlock{margin-top:10px;font-size:12px;color:var(--stone-600);background:var(--sand-100);border-radius:8px;padding:8px}.completed .unlock{background:#eefbf2;color:#166534}.locked .unlock{background:#eee;color:#777}
+    .daily-panel{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:22px 0}.panel{background:white;border:1px solid var(--sand-300);border-radius:16px;padding:18px;box-shadow:0 8px 18px rgba(78,52,30,.07)}.panel h3{font-family:Georgia,serif;color:var(--ink);font-size:18px;margin-bottom:6px}.panel p{font-size:14px;color:var(--stone-500)}.panel .mini{margin-top:10px;color:var(--rust-600);font-size:12px;font-weight:bold}
+    .lesson-shell{display:none;margin-top:22px;background:rgba(255,255,255,.9);border:1px solid var(--sand-300);border-radius:22px;padding:28px;box-shadow:0 14px 34px rgba(78,52,30,.10)}.lesson-shell.show{display:block}.lesson-close{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid var(--sand-300);padding-bottom:14px;margin-bottom:18px}.lesson-close h2{font-family:Georgia,serif;color:var(--ink);font-size:24px}.btn{border:0;border-radius:10px;padding:11px 18px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-size:14px;transition:.2s}.btn-primary{background:var(--rust-500);color:white}.btn-primary:hover{background:var(--rust-600);transform:translateY(-1px)}.btn-secondary{background:white;color:var(--stone-700);border:1px solid var(--sand-300)}.btn-success{background:var(--success);color:white}.btn-dark{background:var(--charcoal);color:white}
+    .toast{position:fixed;right:18px;bottom:18px;max-width:360px;background:var(--charcoal);color:white;border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 18px;box-shadow:0 14px 40px rgba(0,0,0,.28);transform:translateY(120%);transition:.35s;z-index:100}.toast.show{transform:translateY(0)}.toast b{color:var(--gold)}
+    .modal{display:none;position:fixed;inset:0;background:rgba(17,17,17,.55);backdrop-filter:blur(4px);z-index:90;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.modal-card{max-width:520px;background:var(--sand-100);border-radius:24px;border:1px solid var(--sand-300);box-shadow:0 28px 80px rgba(0,0,0,.28);padding:26px;text-align:center}.modal-card .big{font-size:52px;margin-bottom:10px}.modal-card h2{font-family:Georgia,serif;color:var(--ink);font-size:30px;margin-bottom:8px}.modal-card p{color:var(--stone-600);margin-bottom:18px}.modal-reward{background:white;border:1px solid var(--sand-300);border-left:5px solid var(--rust-500);border-radius:12px;text-align:left;padding:14px;margin:14px 0}.modal-reward b{display:block;color:var(--ink)}
+    .footer{background:var(--charcoal);color:var(--stone-400);text-align:center;padding:28px 20px;font-size:13px}.footer .tagline{font-family:Georgia,serif;font-style:italic;color:var(--stone-500);margin-top:6px;font-size:14px}
+    /* Lesson content reused from lesson files */
+    .lesson-header{text-align:center;margin-bottom:28px}.lesson-number{display:inline-block;background:var(--rust-100);color:var(--rust-500);font-size:12px;font-weight:bold;padding:4px 14px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px}.lesson-title{font-family:Georgia,serif;font-size:28px;color:var(--ink);line-height:1.2;margin-bottom:8px}.lesson-subtitle{font-style:italic;color:var(--stone-500);font-size:15px}.section{margin-bottom:30px}.section h2{font-family:Georgia,serif;font-size:22px;color:var(--ink);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--sand-300)}.section h3{font-size:17px;font-weight:bold;color:var(--stone-700);margin:20px 0 8px}.section p{margin-bottom:12px;font-size:15px}.section ul,.section ol{margin:8px 0 16px 24px;font-size:15px}.section li{margin-bottom:6px}.callout{background:var(--rust-100);border-left:4px solid var(--rust-500);padding:16px 20px;margin:16px 0;border-radius:0 8px 8px 0;font-size:15px}.callout strong{color:var(--rust-600)}.prompt-block{position:relative;background:var(--charcoal);color:#e2e8f0;padding:20px;border-radius:8px;margin:16px 0;font-family:'Courier New',monospace;font-size:13px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word}.copy-btn{position:absolute;top:8px;right:8px;background:var(--rust-500);color:white;border:none;padding:6px 14px;border-radius:6px;font-size:12px;font-weight:bold;cursor:pointer}.copy-btn.copied{background:var(--success)}.styled-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px;background:white;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.08)}.styled-table th{background:var(--charcoal);color:white;padding:10px 14px;text-align:left;font-size:13px}.styled-table td{padding:10px 14px;border-bottom:1px solid var(--sand-300)}.example{background:white;border-left:4px solid var(--rust-500);padding:12px 16px;margin:8px 0;font-style:italic;color:var(--stone-700);border-radius:0 6px 6px 0;font-siz... [truncated]
+    @media(max-width:900px){.hero{grid-template-columns:1fr}.journey{grid-template-columns:1fr;gap:12px}.journey:before{left:42px;right:auto;top:26px;bottom:26px;width:8px;height:auto;background:linear-gradient(180deg,var(--success) 0%,var(--success) var(--path-progress,20%),var(--sand-300) var(--path-progress,20%))}.stop{padding:18px 16px 18px 86px;min-height:auto}.node{left:28px;top:50%;transform:translateY(-50%)}.daily-panel{grid-template-columns:1fr}.board-head{display:block}.hero h1{font-size:36px}.stats{gap:6px}.pill{font-size:11px;padding:6px 8px}.lesson-shell{padding:18px}.reward-row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-  <main class="card">
-    <div class="bar">
-      <div class="brand">Mind<span class="vault">Vault</span> Learn</div>
-      <div class="pill">Protected journey</div>
-    </div>
-    <div class="body">
-      <div class="eyebrow">Preview only</div>
-      <h1>The full journey opens inside access.</h1>
-      <p>The public page now shows the flow, sample commands, and outcomes without exposing the lesson journey. You will be sent back to the learning-system preview.</p>
-      <div class="actions">
-        <a class="primary" href="/">Return to MindVault Personal</a>
-        <a class="secondary" href="/#waitlist">Join the access list</a>
+  <div class="topbar">
+    <div class="nav">
+      <a class="brand" href="#home" onclick="return goHome()">Mind<span class="vault">Vault</span> Studio</a>
+      <div class="stats">
+        <span class="pill">🔥 Streak: <strong id="streak">0</strong></span>
+        <span class="pill">⚡ XP: <strong id="xp">0</strong></span>
+        <span class="pill">🎒 Unlocks: <strong id="toolkit">0</strong>/30</span>
       </div>
     </div>
+    <div class="progress-wrap"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <main class="container">
+    <section class="hero" id="homeHero">
+      <div>
+        <span class="eyebrow">🧭 30-Day Agent Journey</span>
+        <h1 id="heroTitle">Your first month becoming an AI-powered business owner.</h1>
+        <p id="heroSubtitle">The first 30 days build the habit: open your agent, try one useful command, unlock one new capability. After that, the map keeps expanding into advanced tools, automations, and business systems.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:18px">
+          <button class="btn btn-primary" onclick="openNextLesson()">Continue Journey</button>
+          <button class="btn btn-secondary" onclick="claimDaily()">2-Minute Daily Win</button>
+          <button class="btn btn-dark" id="agentButton" onclick="openAgent()" style="display:none">Open My Agent</button>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="map-title">Today's Mission</div>
+        <div class="map-sub" id="missionText">Open one lesson, try one agent command, mark the stop complete.</div>
+        <div class="reward-row">
+          <div class="reward"><b>Next unlock</b><span id="nextUnlock">Prompting formula card</span></div>
+          <div class="reward"><b>Month 1 prize</b><span>Agent Operating Playbook</span></div>
+          <div class="reward"><b>Habit target</b><span>30-day agent streak</span></div>
+          <div class="reward"><b>Safety rule</b><span>No passwords in chat</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="quest-board">
+      <div class="board-head">
+        <div><h2>The Agent Quest</h2><p>Month 1 builds the habit. Future regions keep the journey going after onboarding.</p></div>
+        <button class="btn btn-dark" onclick="resetProgress()">Reset Demo Progress</button>
+      </div>
+      <div class="journey" id="journey"></div>
+    </section>
+
+    <section class="daily-panel">
+      <div class="panel"><h3>Daily Win</h3><p>A tiny action that keeps the habit alive. Takes under two minutes.</p><div class="mini" id="dailyStatus">Available today</div></div>
+      <div class="panel"><h3>Hidden Unlocks</h3><p>Complete lessons to collect prompt cards, checklists, and templates.</p><div class="mini" id="unlockStatus">0 unlocked</div></div>
+      <div class="panel"><h3>Beyond Month 1</h3><p>After onboarding, new regions unlock: research, sales, operations, reporting, and automations.</p><div class="mini">Designed to keep expanding</div></div>
+    </section>
+
+    <section class="lesson-shell" id="lessonShell">
+      <div class="lesson-close">
+        <h2 id="lessonShellTitle">Lesson</h2>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-secondary" onclick="goHome()">Map</button>
+          <button class="btn btn-success" id="completeBtn" onclick="completeCurrentLesson()">Complete Stop</button>
+        </div>
+      </div>
+      <div id="lessonContent"></div>
+    </section>
   </main>
+
+  <div class="toast" id="toast"></div>
+  <div class="modal" id="rewardModal"><div class="modal-card"><div class="big" id="modalIcon">🎁</div><h2 id="modalTitle">Reward Unlocked</h2><p id="modalText">You unlocked a new tool.</p><div class="modal-reward" id="modalReward"></div><button class="btn btn-primary" onclick="closeReward()">Back to Map</button></div></div>
+
+  <footer class="footer">Mind<span class="vault">Vault</span> Studio<div class="tagline">"When you're stuck, our agents get you unstuck."</div></footer>
+
+<script>
+const params=new URLSearchParams(location.search);
+const clientName=params.get('client')||localStorage.getItem('mvClient')||'';
+const agentUrl=params.get('agent')||localStorage.getItem('mvAgent')||'';
+if(clientName)localStorage.setItem('mvClient',clientName);
+if(agentUrl)localStorage.setItem('mvAgent',agentUrl);
+function prettyClient(name){return name?name.replace(/[-_]+/g,' ').replace(/\b\w/g,c=>c.toUpperCase()):''}
+const lessons=[
+  {n:1,week:'Week 1',icon:'💳',title:'Subscription Tracker',subtitle:'Your agent remembers and reminds you',file:'lesson1.html',unlock:'Subscription command cheat sheet',xp:100,ready:true},
+  {n:2,week:'Week 1',icon:'🧠',title:'Idea Capture',subtitle:'Teach your agent a new trick',file:'lesson2.html',unlock:'Prompting formula card',xp:125,ready:true},
+  {n:3,week:'Week 1',icon:'🎬',title:'Video Briefs',subtitle:'Turn long videos into quick business takeaways',file:'lesson3.html',unlock:'Video brief prompt card',xp:150,ready:true},
+  {n:4,week:'Week 1',icon:'📝',title:'Daily Command Habit',subtitle:'Use one tiny agent command every day',file:'lesson4.html',unlock:'Daily command menu',xp:125,ready:true},
+  {n:5,week:'Week 1',icon:'🧭',title:'Tool Request Builder',subtitle:'Describe the next workflow you want your agent to handle',file:'lesson5.html',unlock:'Tool request worksheet',xp:150,ready:true},
+  {n:6,week:'Week 1',icon:'🛡️',title:'Agent Safety Basics',subtitle:'Use powerful agents with clear boundaries',file:'lesson6.html',unlock:'Agent safety rules card',xp:150,ready:true},
+  {n:7,week:'Week 1',icon:'🏁',title:'Week 1 Review',subtitle:'See what your agent now knows',file:null,unlock:'Week 1 field report',xp:175,ready:false},
+
+  {n:8,week:'Week 2',icon:'📇',title:'Lead Capture',subtitle:'Track people, context, and follow-ups',file:null,unlock:'Lead capture prompt',xp:150,ready:false},
+  {n:9,week:'Week 2',icon:'☎️',title:'Follow-Up Coach',subtitle:'Draft better replies and next steps',file:null,unlock:'Follow-up script pack',xp:150,ready:false},
+  {n:10,week:'Week 2',icon:'🗂️',title:'Decision Log',subtitle:'Stop losing business decisions',file:null,unlock:'Decision log template',xp:125,ready:false},
+  {n:11,week:'Week 2',icon:'🧾',title:'Expense Notes',subtitle:'Capture spending in plain English',file:null,unlock:'Expense tracking prompt',xp:125,ready:false},
+  {n:12,week:'Week 2',icon:'📣',title:'Marketing Ideas',subtitle:'Turn rough ideas into campaigns',file:null,unlock:'Campaign brainstorm prompt',xp:150,ready:false},
+  {n:13,week:'Week 2',icon:'🧑‍🔧',title:'Team SOP Builder',subtitle:'Have your agent draft checklists',file:null,unlock:'SOP starter kit',xp:150,ready:false},
+  {n:14,week:'Week 2',icon:'🏁',title:'Week 2 Review',subtitle:'Pick one system to keep using',file:null,unlock:'Business systems scorecard',xp:175,ready:false},
+
+  {n:15,week:'Week 3',icon:'⏰',title:'Scheduled Reminders',subtitle:'Your agent works while you sleep',file:null,unlock:'Reminder design sheet',xp:175,ready:false},
+  {n:16,week:'Week 3',icon:'🌅',title:'Morning Briefing',subtitle:'Start the day with context',file:null,unlock:'Briefing blueprint',xp:175,ready:false},
+  {n:17,week:'Week 3',icon:'🔁',title:'Weekly Review',subtitle:'Turn notes into a business rhythm',file:null,unlock:'Weekly review prompt',xp:150,ready:false},
+  {n:18,week:'Week 3',icon:'🧭',title:'Audience Intelligence',subtitle:'Research business ideas before you build',file:'lesson18.html',unlock:'Market research prompt pack',xp:175,ready:true},
+  {n:19,week:'Week 3',icon:'🚨',title:'Watch Lists',subtitle:'Have your agent flag what matters',file:null,unlock:'Watch-list prompt',xp:150,ready:false},
+  {n:20,week:'Week 3',icon:'🧪',title:'Automation Experiment',subtitle:'Test one small recurring workflow',file:null,unlock:'Automation checklist',xp:175,ready:false},
+  {n:21,week:'Week 3',icon:'🏁',title:'Week 3 Review',subtitle:'Choose your first real automation',file:null,unlock:'Automation readiness score',xp:200,ready:false},
+
+  {n:22,week:'Week 4',icon:'📬',title:'Email Prep',subtitle:'Prepare for connected tools',file:null,unlock:'Email integration checklist',xp:150,ready:false},
+  {n:23,week:'Week 4',icon:'🗓️',title:'Calendar Prep',subtitle:'Think in events, deadlines, and reminders',file:null,unlock:'Calendar workflow map',xp:150,ready:false},
+  {n:24,week:'Week 4',icon:'📁',title:'Files & Docs',subtitle:'Give your agent useful materials',file:null,unlock:'Document handoff checklist',xp:150,ready:false},
+  {n:25,week:'Week 4',icon:'🔐',title:'Safe Access',subtitle:'Learn what to connect and what not to',file:null,unlock:'Access rules card',xp:175,ready:false},
+  {n:26,week:'Week 4',icon:'🧰',title:'My Toolbelt',subtitle:'See all the tools you created',file:null,unlock:'Personal toolbelt index',xp:175,ready:false},
+  {n:27,week:'Week 4',icon:'🚀',title:'Advanced Request',subtitle:'Design a custom business automation',file:null,unlock:'Advanced build request',xp:200,ready:false},
+  {n:28,week:'Week 4',icon:'🎓',title:'Operating Playbook',subtitle:'Document how you use your agent',file:null,unlock:'Agent operating playbook',xp:225,ready:false},
+  {n:29,week:'Week 4',icon:'🧱',title:'Next Region Plan',subtitle:'Choose your post-onboarding path',file:null,unlock:'Advanced path selector',xp:175,ready:false},
+  {n:30,week:'Week 4',icon:'🏆',title:'Month 1 Finish Line',subtitle:'Graduate from setup to ongoing mastery',file:null,unlock:'Month 1 certificate + toolkit',xp:300,ready:false},
+
+  {n:31,week:'Advanced',icon:'🗺️',title:'Research Region',subtitle:'Competitors, pricing, vendors, markets',file:null,unlock:'Research operating system',xp:250,ready:false,advanced:true},
+  {n:32,week:'Advanced',icon:'💼',title:'Sales Region',subtitle:'Lead flow, follow-up, proposals',file:null,unlock:'Sales agent toolkit',xp:250,ready:false,advanced:true},
+  {n:33,week:'Advanced',icon:'⚙️',title:'Operations Region',subtitle:'SOPs, handoffs, checklists, QA',file:null,unlock:'Operations agent toolkit',xp:250,ready:false,advanced:true},
+  {n:34,week:'Advanced',icon:'📈',title:'Reporting Region',subtitle:'Weekly numbers, decisions, accountability',file:null,unlock:'Reporting agent toolkit',xp:250,ready:false,advanced:true}
+];
+let state=JSON.parse(localStorage.getItem('mvQuest')||'{}');
+state.completed=state.completed||[];state.xp=state.xp||0;state.streak=state.streak||0;state.lastDaily=state.lastDaily||'';state.unlocked=state.unlocked||[];state.current=state.current||null;
+function save(){localStorage.setItem('mvQuest',JSON.stringify(state));render();}
+function today(){return new Date().toISOString().slice(0,10)}
+function pathPct(){return Math.max(8,(state.completed.filter(n=>n<=30).length/30)*100)}
+function render(){const label=prettyClient(clientName);if(label){document.getElementById('heroTitle').textContent=label+"'s first month becoming an AI-powered business owner.";document.getElementById('heroSubtitle').textContent='This journey is tied to your MindVault agent. Learn a skill, then jump back into your own agent and use it right away.';document.getElementById('missionText').textContent='Open one lesson, try one command inside '+label+"'s agent, then mark the stop complete.";}if(agentUrl){document.getElementById('agentButton').style.display='inline-flex';}document.getElementById('streak').textContent=state.streak;document.getElementById('xp').textContent=state.xp;document.getElementById('toolkit').textContent=state.unlocked.length;document.getElementById('progressFill').style.width=pathPct()+'%';document.documentElement.style.setProperty('--path-progress',pathPct()+'%');document.getElementById('unlockStatus').textContent=state.unlocked.length+' unlocked';document.getElementById('dailyStatus').textContent=state.lastDaily===today()?'Claimed today':'Available today';let next=lessons.find(l=>l.ready&&!state.completed.includes(l.n))||lessons.find(l=>!state.completed.includes(l.n));document.getElementById('nextUnlock').textContent=next?next.unlock:'Full toolkit unlocked';const j=document.getElementById('journey');j.innerHTML='';lessons.forEach((l,i)=>{const completed=state.completed.includes(l.n);const active=state.current===l.n;const locked=!l.ready;const advanced=!!l.advanced;const stop=document.createElement('div');stop.className='stop '+(completed?'completed ':'')+(active?'active ':'')+(locked?'locked ':'')+(advanced?'advanced':'');stop.onclick=()=>locked?toast('Coming soon','This stop is part of the longer journey. New lessons unlock as MindVault releases them.'):openLesson(l.n);stop.innerHTML=`<div class="node">${completed?'✓':l.icon}</div><small>${l.week} · Stop ${l.n}</small><h3>${l.title}</h3><p>${l.subtitle}</p><div class="unlock">${completed?'Unlocked: ':locked?'Coming unlock: ':'Unlock: '}${l.unlock}</div>`;j.appendChild(stop);});}
+function openAgent(){const url=agentUrl||localStorage.getItem('mvAgent');if(!url){toast('No agent linked','Open this course from your client portal to link your agent.');return}window.open(url.startsWith('http')?url:'https://'+url,'_blank');}
+function goHome(){state.current=null;document.getElementById('lessonShell').classList.remove('show');document.getElementById('homeHero').style.display='grid';save();return false}
+function openNextLesson(){const next=lessons.find(l=>l.ready&&!state.completed.includes(l.n))||lessons.find(l=>l.ready);openLesson(next.n)}
+function openLesson(n){const l=lessons.find(x=>x.n===n);state.current=n;save();document.getElementById('homeHero').style.display='none';document.getElementById('lessonShell').classList.add('show');document.getElementById('lessonShellTitle').textContent='Stop '+n+': '+l.title;document.getElementById('lessonContent').innerHTML='<p>Loading...</p>';fetch(l.file).then(r=>r.text()).then(html=>{document.getElementById('lessonContent').innerHTML=html;setupCopyButtons();window.scrollTo({top:0,behavior:'smooth'});}).catch(()=>{document.getElementById('lessonContent').innerHTML='<div class="callout"><strong>Lesson loading issue.</strong> Refresh and try again.</div>';});}
+function completeCurrentLesson(){if(!state.current)return;const l=lessons.find(x=>x.n===state.current);if(!state.completed.includes(l.n)){state.completed.push(l.n);state.xp+=l.xp;if(!state.unlocked.includes(l.unlock))state.unlocked.push(l.unlock);if(state.lastDaily!==today()){state.streak+=1;state.lastDaily=today();}showReward(l);}else toast('Already complete','This stop is already checked off.');save();}
+function showReward(l){document.getElementById('modalIcon').textContent=l.icon;document.getElementById('modalTitle').textContent='Stop '+l.n+' Complete';document.getElementById('modalText').textContent='You earned '+l.xp+' XP and unlocked a useful business asset.';document.getElementById('modalReward').innerHTML='<b>'+l.unlock+'</b><span>Use this with your agent whenever you need it.</span>';document.getElementById('rewardModal').classList.add('show');}
+function closeReward(){document.getElementById('rewardModal').classList.remove('show');goHome();}
+function claimDaily(){if(state.lastDaily===today()){toast('Daily win already claimed','Come back tomorrow to protect your streak.');return}state.lastDaily=today();state.streak+=1;state.xp+=25;toast('Daily win claimed','+25 XP. Ask your agent one useful question today.');save();}
+function resetProgress(){if(confirm('Reset local demo progress on this browser?')){localStorage.removeItem('mvQuest');state={completed:[],xp:0,streak:0,lastDaily:'',unlocked:[],current:null};goHome();}}
+function toast(title,msg){const t=document.getElementById('toast');t.innerHTML='<b>'+title+'</b><br>'+msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),3200)}
+function setupCopyButtons(){document.querySelectorAll('.copy-btn').forEach(btn=>{btn.onclick=function(){const block=this.parentElement;const copy=block.cloneNode(true);copy.querySelector('.copy-btn')?.remove();navigator.clipboard.writeText(copy.textContent.trim()).then(()=>{this.textContent='Copied!';this.classList.add('copied');state.xp+=10;save();toast('Prompt copied','+10 XP. Paste it into your agent to complete the mission.');setTimeout(()=>{this.textContent='Copy';this.classList.remove('copied')},1800);});};});}
+render();
+if(location.hash&&location.hash.startsWith('#lesson')){openLesson(parseInt(location.hash.replace('#lesson',''),10));}
+</script>
 </body>
 </html>

@@ -1,43 +1,138 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindVault Learn | Lesson Access</title>
-  <meta http-equiv="refresh" content="8; url=/" />
-  <style>
-    :root { color-scheme: light; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f7f3ee; color: #1c1917; font-family: Inter, Arial, sans-serif; }
-    .card { width: min(680px, calc(100% - 32px)); border: 1px solid #e7ddd3; border-radius: 28px; background: #fff; box-shadow: 0 24px 70px rgba(17,17,17,.12); overflow: hidden; }
-    .bar { background: #111; color: #f7f3ee; padding: 18px 22px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-    .brand { font-weight: 700; letter-spacing: -0.02em; }
-    .vault { color: #c2703e; }
-    .pill { border: 1px solid rgba(194,112,62,.45); color: #c2703e; border-radius: 999px; padding: 7px 11px; font-size: 11px; text-transform: uppercase; letter-spacing: .16em; }
-    .body { padding: 34px; }
-    .eyebrow { color: #c2703e; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .22em; }
-    h1 { margin: 14px 0 0; font-family: Georgia, serif; font-size: clamp(32px, 5vw, 48px); line-height: 1.05; }
-    p { color: #57534e; font-size: 16px; line-height: 1.7; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-    a { display: inline-flex; align-items: center; justify-content: center; border-radius: 12px; padding: 13px 18px; font-weight: 700; text-decoration: none; }
-    .primary { background: #c2703e; color: white; }
-    .secondary { border: 1px solid #e7ddd3; color: #1c1917; background: #f7f3ee; }
-  </style>
-</head>
-<body>
-  <main class="card">
-    <div class="bar">
-      <div class="brand">Mind<span class="vault">Vault</span> Learn</div>
-      <div class="pill">Protected lesson</div>
+<!-- Lesson 4: Daily Command Habit (partial, loaded into index.html) -->
+
+<div class="lesson-header">
+    <div class="lesson-number">Lesson 4</div>
+    <div class="lesson-title">Daily Command Habit</div>
+    <div class="lesson-subtitle">Use one tiny agent command every day</div>
+</div>
+
+<div class="section">
+    <h2>The Problem With New Tools</h2>
+    <p>Most people try a new tool once, think "that's useful," then forget it exists.</p>
+    <p>That is not a failure of intelligence. It is a habit problem.</p>
+    <ul>
+        <li>You get busy and go back to old patterns</li>
+        <li>You only open the agent when you have a big problem</li>
+        <li>You forget that small questions are where the agent becomes valuable</li>
+        <li>You treat the agent like a search box instead of a work partner</li>
+    </ul>
+    <p><strong>Agentic AI gets powerful through steady use, not one big magic prompt.</strong></p>
+</div>
+
+<div class="section">
+    <h2>The Solution</h2>
+    <p>Today you are building a simple daily habit: open your agent and ask one useful command.</p>
+    <ol>
+        <li><strong>Pick a command</strong> -- Use one of the five below</li>
+        <li><strong>Give context</strong> -- Tell the agent what situation you are dealing with</li>
+        <li><strong>Ask for output</strong> -- Plan, summary, checklist, decision, or reminder</li>
+        <li><strong>Use the answer</strong> -- Do one small thing with it</li>
+        <li><strong>Repeat tomorrow</strong> -- The habit matters more than the size of the task</li>
+    </ol>
+    <div class="callout"><strong>The rule:</strong> One useful command per day beats one perfect prompt per month.</div>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 1</div>
+    <h2>Your Five Daily Commands</h2>
+    <p>Copy this into your agent and ask it to remember your daily command menu.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>I want to build a daily agent habit.
+
+Here are my five daily commands:
+1. Help me think through this decision.
+2. Turn this messy note into a clean plan.
+3. What am I missing?
+4. Summarize this and give me next steps.
+5. Save this for later and remind me why it matters.
+
+When I say "daily command," show me this menu and ask which one I want to use today.</div>
+
+    <table class="styled-table">
+        <tr><th>Command</th><th>When to Use It</th></tr>
+        <tr><td>Help me think through this decision</td><td>When you are stuck between options</td></tr>
+        <tr><td>Turn this messy note into a clean plan</td><td>When your thoughts are scattered</td></tr>
+        <tr><td>What am I missing?</td><td>When you want a second brain before acting</td></tr>
+        <tr><td>Summarize this and give me next steps</td><td>When you have too much information</td></tr>
+        <tr><td>Save this for later</td><td>When something might matter again</td></tr>
+    </table>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 2</div>
+    <h2>Try One Right Now</h2>
+    <p>Use this simple prompt. Replace the bracketed part with something real from your day.</p>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>Daily command: help me think through this decision.
+
+Situation:
+[describe the decision in 2-5 sentences]
+
+Give me:
+1. The real decision I am making
+2. The best options
+3. What I might be missing
+4. The smallest next step</div>
+
+    <p>This is not about getting a perfect answer. It is about learning to bring real work into the agent instead of waiting for a special occasion.</p>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 3</div>
+    <h2>Make It Part of Your Day</h2>
+    <p>Pick one anchor you already do every day:</p>
+    <ul>
+        <li>Morning coffee</li>
+        <li>Before opening email</li>
+        <li>After your first customer call</li>
+        <li>End of the workday</li>
+        <li>Right before planning tomorrow</li>
+    </ul>
+
+    <div class="prompt-block"><button class="copy-btn">Copy</button>Help me choose a daily agent habit anchor.
+
+My typical day looks like this:
+[describe your morning, work rhythm, and end of day]
+
+Recommend the best 2-minute moment for me to use one daily command. Keep it practical.</div>
+</div>
+
+<div class="section">
+    <h2>What's Happening Behind the Scenes</h2>
+    <p>Here is how this fits what you have already learned:</p>
+    <table class="styled-table">
+        <tr><th>Earlier Lessons</th><th>Lesson 4</th></tr>
+        <tr><td>Your agent remembers and reminds</td><td>You start using that memory daily</td></tr>
+        <tr><td>Your agent captures ideas</td><td>You bring it small thoughts before they disappear</td></tr>
+        <tr><td>Your agent briefs long videos</td><td>You ask for short outputs from messy inputs</td></tr>
+    </table>
+    <p>The new twist is <strong>rhythm</strong>. Your agent becomes useful faster when it sees more of your real work.</p>
+</div>
+
+<div class="section">
+    <div class="step-badge">Step 4</div>
+    <h2>Your Assignment</h2>
+    <div class="callout">
+        <strong>Your to-do list:</strong><br>
+        1. Copy the five daily commands into your agent<br>
+        2. Ask it to remember the menu<br>
+        3. Pick one real decision, note, or problem from today<br>
+        4. Run one daily command<br>
+        5. Choose your 2-minute habit anchor for tomorrow
     </div>
-    <div class="body">
-      <div class="eyebrow">Preview only</div>
-      <h1>The full lesson lives inside the guided learning system.</h1>
-      <p>The public page now shows the flow, sample commands, and outcomes without exposing the full lesson library. You will be sent back to the learning-system preview.</p>
-      <div class="actions">
-        <a class="primary" href="/">Return to MindVault Personal</a>
-        <a class="secondary" href="/#waitlist">Join the access list</a>
-      </div>
+</div>
+
+<div class="section">
+    <h2>The Bigger Picture</h2>
+    <p>Non-technical users win with agents by building a simple loop: notice something, tell the agent, use the output, repeat.</p>
+    <div class="callout"><strong>The real takeaway:</strong> Your agent does not become powerful because you know technical terms. It becomes powerful because you bring it real work every day.</div>
+    <p>Coming up next: you will learn how to ask for new tools and workflows, not just answers.</p>
+</div>
+
+<div class="bottom-nav">
+    <button class="btn btn-secondary" onclick="openLesson(3)">&larr; Lesson 3</button>
+    <div style="display:flex; gap:10px; align-items:center;">
+        <button class="btn btn-success" id="completeBtn" onclick="completeCurrentLesson()">Mark Complete</button>
+        <button class="btn btn-primary" onclick="openLesson(5)">Lesson 5 &rarr;</button>
     </div>
-  </main>
-</body>
-</html>
+</div>
