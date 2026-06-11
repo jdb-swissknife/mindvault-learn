@@ -427,10 +427,10 @@ export default function App() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-rust-500">AGENT QUEST LAUNCHING SOON</p>
             <h1 className="mt-6 max-w-3xl font-serif text-4xl leading-tight sm:text-5xl lg:text-6xl">
-              A virtual computer that turns AI curiosity into real wins.
+              Your personal agent for building what matters.
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-400">
-              Mind<span className="text-rust-500">Vault</span> Personal gives you the memory, tools, and operating structure to build practical personal and business agents. Agent Quest adds the motivation layer: streaks, XP, unlocks, and guided missions tied to real outcomes.
+              Start a business, organize your work, build a side gig, and learn faster with an agent that remembers where you are going. Mind<span className="text-rust-500">Vault</span> Personal gives you memory, tools, lessons, and Agent Quest to turn ideas into real outcomes.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => scrollToId('waitlist')} className="inline-flex items-center justify-center rounded-lg bg-rust-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
