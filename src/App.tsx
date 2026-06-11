@@ -416,7 +416,7 @@ export default function App() {
               Lessons
             </button>
             <button onClick={() => scrollToId('waitlist')} className="rounded-lg bg-rust-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-              Get Access
+              Secure your agent
             </button>
           </div>
         </div>
@@ -434,7 +434,7 @@ export default function App() {
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <button onClick={() => scrollToId('waitlist')} className="inline-flex items-center justify-center rounded-lg bg-rust-500 px-7 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                Join the launch list
+                Secure your agent
               </button>
               <button onClick={() => scrollToId('agent-quest')} className="inline-flex items-center justify-center rounded-lg border border-stone-500 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-300 hover:text-white">
                 See Agent Quest
@@ -549,10 +549,10 @@ export default function App() {
               />
               <div className="mt-8 rounded-3xl border border-rust-500/30 bg-white p-6 shadow-sm">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rust-600">Launch soon</p>
-                <p className="mt-3 font-serif text-2xl leading-tight text-onyx">Join early, build the first quest path, and help shape what gets unlocked next.</p>
+                <p className="mt-3 font-serif text-2xl leading-tight text-onyx">Secure your agent early, build the first quest path, and help shape what gets unlocked next.</p>
                 <p className="mt-4 text-sm leading-7 text-stone-600">The goal is not a cute badge system. The goal is momentum. You always know what to build next, why it matters, and what new capability opens when you finish.</p>
                 <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                  Get launch access
+                  Secure your agent
                 </button>
               </div>
             </div>
@@ -748,7 +748,7 @@ export default function App() {
                   <p className="mt-3 text-sm leading-7 text-stone-300">Each lesson teaches a real workflow, gives you a reusable prompt, shows what the agent builds, and leaves you with a saved system you can use again.</p>
                 </div>
                 <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                  Join the list to unlock week 1
+                  Secure your agent to unlock week 1
                 </button>
               </aside>
             </div>
@@ -775,17 +775,17 @@ export default function App() {
       <section id="waitlist" className="bg-sand-100">
         <div className="mx-auto max-w-4xl px-4 py-18 sm:px-6 sm:py-20">
           <div className="rounded-3xl border border-sand-300 bg-white p-8 shadow-sm sm:p-10">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">GET LAUNCH ACCESS</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">SECURE YOUR AGENT</p>
             <h2 className="mt-4 font-serif text-3xl leading-tight text-onyx sm:text-4xl">
-              Join the launch list for Agent Quest and the Mind<span className="text-rust-500">Vault</span> Personal system.
+              Secure your agent for Agent Quest and the Mind<span className="text-rust-500">Vault</span> Personal system.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
-              If this is the kind of personal AI system you want, drop your email. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.mindvaultstudio.net.
+              If this is the kind of personal AI system you want, drop your email to secure your agent. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.mindvaultstudio.net.
             </p>
 
             {submitted ? (
               <div className="mt-8 rounded-2xl border border-rust-500/30 bg-rust-100 px-5 py-4 text-sm leading-7 text-stone-700">
-                You are on the list. I will send the first lessons when they are ready.
+                Your agent is secured. I will send the first lessons when they are ready.
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -804,7 +804,7 @@ export default function App() {
                   disabled={loading}
                   className="inline-flex h-12 items-center justify-center rounded-xl bg-rust-500 px-6 text-sm font-semibold text-white transition-colors hover:bg-rust-600 disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {loading ? 'Saving...' : 'Join the waitlist'}
+                  {loading ? 'Saving...' : 'Secure your agent'}
                 </button>
               </form>
             )}
