@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindVault Build Ledger Template</title>
+    <meta
+      name="description"
+      content="Reusable MindVault Build Ledger template for Guided Build Sprint members. Track the north star, build log, agent bench, workflow library, open loops, and renewal proof."
+    />
+    <link rel="canonical" href="https://learn.trustmvs.com/ledger-template/" />
+    <style>
+      :root {
+        --charcoal-950: #0a0a0a;
+        --charcoal-900: #111111;
+        --charcoal-800: #1c1c1c;
+        --charcoal-700: #2a2a2a;
+        --onyx: #1c1917;
+        --stone-700: #44403c;
+        --stone-600: #57534e;
+        --stone-500: #78716c;
+        --stone-400: #a8a29e;
+        --sand-100: #f7f3ee;
+        --sand-200: #ede6db;
+        --sand-300: #e7ddd3;
+        --rust-100: #fdf2ec;
+        --rust-500: #c2703e;
+        --rust-600: #a85a2a;
+        --rust-700: #8f4a22;
+        --green: #597a53;
+        --amber: #b7791f;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--sand-100);
+        color: var(--onyx);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      button { font: inherit; }
+      .topbar { background: var(--charcoal-900); border-bottom: 1px solid var(--charcoal-700); color: white; position: sticky; top: 0; z-index: 20; }
+      .nav { max-width: 1180px; margin: 0 auto; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: -0.02em; }
+      .brand img { width: 30px; height: 30px; border-radius: 5px; object-fit: cover; }
+      .rust { color: var(--rust-500); }
+      .nav-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: flex-end; }
+      .nav-link { color: var(--stone-400); font-size: 13px; font-weight: 700; }
+      .nav-link:hover { color: white; }
+      .cta-small { border-radius: 12px; background: var(--rust-500); color: white; padding: 10px 14px; font-size: 13px; font-weight: 800; }
+      .hero { background: radial-gradient(circle at 20% 10%, rgba(194,112,62,.25), transparent 28%), var(--charcoal-900); color: white; }
+      .hero-inner { max-width: 1180px; margin: 0 auto; padding: 72px 20px 56px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr); gap: 44px; align-items: center; }
+      .eyebrow { color: var(--rust-500); font-size: 12px; font-weight: 900; letter-spacing: .24em; text-transform: uppercase; }
+      h1, h2, h3, p { margin-top: 0; }
+      h1 { margin-bottom: 22px; font-family: Georgia, serif; font-size: clamp(42px, 7vw, 76px); line-height: .94; letter-spacing: -.05em; }
+      h2 { margin-bottom: 14px; font-family: Georgia, serif; font-size: clamp(31px, 4vw, 48px); line-height: 1.02; letter-spacing: -.035em; }
+      h3 { margin-bottom: 8px; font-size: 18px; line-height: 1.2; }
+      .hero-copy { color: var(--stone-400); font-size: 18px; line-height: 1.7; max-width: 670px; }
+      .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+      .button { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; border-radius: 15px; padding: 0 20px; font-weight: 850; font-size: 14px; border: 1px solid transparent; }
+      .button.primary { background: var(--rust-500); color: white; }
+      .button.primary:hover { background: var(--rust-600); }
+      .button.secondary { border-color: rgba(194,112,62,.45); color: var(--rust-500); background: rgba(253,242,236,.06); }
+      .button.secondary:hover { border-color: var(--rust-500); }
+      .frame { border: 1px solid var(--charcoal-700); background: var(--charcoal-800); border-radius: 32px; padding: 16px; box-shadow: 0 28px 90px rgba(0,0,0,.35); }
+      .mock { overflow: hidden; border: 1px solid var(--charcoal-700); border-radius: 24px; background: var(--sand-100); color: var(--onyx); }
+      .mock-head { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--sand-300); background: white; padding: 16px; }
+      .dots { display: flex; gap: 7px; align-items: center; }
+      .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--rust-500); }
+      .dot:nth-child(2) { background: var(--sand-300); }
+      .dot:nth-child(3) { background: var(--stone-500); }
+      .pill { display: inline-flex; align-items: center; border-radius: 999px; padding: 6px 10px; font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; border: 1px solid var(--sand-300); background: white; color: var(--stone-600); }
+      .mock-body { display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; padding: 18px; }
+      .score-card, .mini-card { border: 1px solid var(--sand-300); background: white; border-radius: 20px; padding: 18px; }
+      .score-card { background: var(--rust-100); border-color: rgba(194,112,62,.25); }
+      .score-card strong { display: block; font-family: Georgia, serif; font-size: 28px; line-height: 1; letter-spacing: -.03em; }
+      .score-card span, .mini-card span { color: var(--stone-600); font-size: 13px; line-height: 1.55; }
+      .mock-grid { display: grid; gap: 10px; }
+      .mini-card h4 { margin: 0 0 7px; font-size: 14px; }
+      .status { border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 850; }
+      .status.live { background: #eef7ea; color: var(--green); }
+      .status.draft { background: #fff8e8; color: var(--amber); }
+      .section { border-bottom: 1px solid var(--sand-300); }
+      .inner { max-width: 1180px; margin: 0 auto; padding: 72px 20px; }
+      .section-head { max-width: 780px; margin-bottom: 34px; }
+      .section-head p { color: var(--stone-600); line-height: 1.75; font-size: 17px; }
+      .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+      .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+      .card { background: white; border: 1px solid var(--sand-300); border-radius: 24px; padding: 24px; box-shadow: 0 12px 45px rgba(28,25,23,.06); }
+      .card.dark { background: var(--charcoal-800); border-color: var(--charcoal-700); color: white; }
+      .card p, .card li { color: var(--stone-600); line-height: 1.65; }
+      .card.dark p, .card.dark li { color: var(--stone-400); }
+      .number { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 12px; margin-bottom: 16px; background: var(--rust-100); color: var(--rust-700); font-weight: 900; }
+      .dark-section { background: var(--charcoal-900); color: white; border-color: var(--charcoal-700); }
+      .dark-section .section-head p { color: var(--stone-400); }
+      .ledger { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 20px; align-items: start; }
+      .sidebar { position: sticky; top: 82px; border: 1px solid var(--charcoal-700); border-radius: 24px; background: var(--charcoal-800); padding: 16px; }
+      .sidebar a { display: block; padding: 11px 12px; border-radius: 13px; color: var(--stone-400); font-size: 13px; font-weight: 750; }
+      .sidebar a:hover { background: var(--charcoal-700); color: white; }
+      .sheet { border: 1px solid var(--sand-300); background: var(--sand-100); color: var(--onyx); border-radius: 30px; overflow: hidden; }
+      .sheet-top { background: white; border-bottom: 1px solid var(--sand-300); padding: 22px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; }
+      .sheet-title { font-family: Georgia, serif; font-size: 34px; line-height: 1; letter-spacing: -.035em; }
+      .sheet-body { padding: 22px; display: grid; gap: 20px; }
+      .panel { border: 1px solid var(--sand-300); border-radius: 22px; background: white; padding: 22px; }
+      .panel h3 { margin-bottom: 14px; font-size: 20px; }
+      .table { width: 100%; border-collapse: separate; border-spacing: 0; overflow: hidden; border: 1px solid var(--sand-300); border-radius: 16px; }
+      .table th, .table td { padding: 13px 14px; border-bottom: 1px solid var(--sand-300); text-align: left; vertical-align: top; font-size: 13px; line-height: 1.45; }
+      .table th { color: var(--stone-600); background: var(--sand-200); font-size: 11px; text-transform: uppercase; letter-spacing: .14em; }
+      .table tr:last-child td { border-bottom: 0; }
+      .checklist { display: grid; gap: 10px; padding: 0; margin: 0; list-style: none; }
+      .checklist li { display: flex; gap: 10px; align-items: flex-start; color: var(--stone-600); line-height: 1.55; }
+      .box { flex: 0 0 auto; width: 18px; height: 18px; margin-top: 2px; border-radius: 5px; border: 1.5px solid var(--rust-500); background: var(--rust-100); }
+      .call-log { display: grid; gap: 12px; }
+      .call { border: 1px solid var(--sand-300); border-radius: 18px; padding: 16px; background: var(--sand-100); }
+      .call h4 { margin: 0 0 8px; font-size: 15px; }
+      .call p { margin: 0; color: var(--stone-600); line-height: 1.55; }
+      .footer { background: var(--charcoal-950); color: var(--stone-400); }
+      .footer .inner { padding-top: 34px; padding-bottom: 34px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px; font-size: 13px; }
+      @media (max-width: 980px) {
+        .hero-inner, .mock-body, .ledger, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+        .hero-inner { padding-top: 50px; }
+        .sidebar { position: static; }
+      }
+      @media (max-width: 680px) {
+        .nav { align-items: flex-start; }
+        .nav-links a:not(.cta-small) { display: none; }
+        .sheet-top { align-items: flex-start; }
+        .table { display: block; overflow-x: auto; }
+        .inner { padding-top: 54px; padding-bottom: 54px; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <a href="/" class="brand" aria-label="MindVault home">
+          <img src="/logo.png" alt="MindVault" />
+          <span>Mind<span class="rust">Vault</span></span>
+        </a>
+        <div class="nav-links">
+          <a class="nav-link" href="/">Agent Quest</a>
+          <a class="nav-link" href="/apply/">Build Sprint Intake</a>
+          <a class="cta-small" href="build-ledger-template.md">Download template</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">MindVault Build Ledger</div>
+            <h1>The private proof page for every Build Sprint.</h1>
+            <p class="hero-copy">
+              The ledger turns each call into visible progress: what changed, what was built, what is next, and which useful assets now belong to the member.
+            </p>
+            <div class="hero-actions">
+              <a class="button primary" href="build-ledger-template.md">Download Markdown Template</a>
+              <a class="button secondary" href="#ledger-preview">Preview the ledger</a>
+            </div>
+          </div>
+
+          <div class="frame" aria-label="Build Ledger dashboard preview">
+            <div class="mock">
+              <div class="mock-head">
+                <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+                <span class="pill">Private member hub</span>
+              </div>
+              <div class="mock-body">
+                <div class="score-card">
+                  <div class="eyebrow">North Star</div>
+                  <strong>One agent system that runs daily follow-up, research, and admin.</strong>
+                  <span>30-day win: stop rebuilding context and ship one saved workflow.</span>
+                </div>
+                <div class="mock-grid">
+                  <div class="mini-card"><h4>Open loops <span class="status draft">4 active</span></h4><span>Waiting on calendar access, example emails, first workflow choice, and call recording.</span></div>
+                  <div class="mini-card"><h4>Build log <span class="status live">Call 01</span></h4><span>Personal context, safety rules, first task agent, and daily command installed.</span></div>
+                  <div class="mini-card"><h4>Agent bench <span class="status draft">2 draft</span></h4><span>Daily Command Agent and Research Agent ready for next test.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="inner">
+          <div class="section-head">
+            <div class="eyebrow">Why it exists</div>
+            <h2>The ledger does the talking.</h2>
+            <p>
+              A Build Sprint should never feel like a good call that disappears. The ledger makes the value visible after every session and gives the member one place to find their context, agents, workflows, and next steps.
+            </p>
+          </div>
+          <div class="grid-3">
+            <article class="card"><div class="number">1</div><h3>Show progress</h3><p>Every call records what was built, what changed, and what the member can reuse.</p></article>
+            <article class="card"><div class="number">2</div><h3>Reduce confusion</h3><p>Open loops, access needs, next call focus, and action items live in one place.</p></article>
+            <article class="card"><div class="number">3</div><h3>Earn renewal</h3><p>The renewal proof section summarizes assets created, time saved, and the next useful build.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark-section">
+        <div class="inner">
+          <div class="section-head">
+            <div class="eyebrow">Reusable structure</div>
+            <h2>Seven sections. One job each.</h2>
+            <p>Keep the template tight. Each surface should answer a specific member question instead of becoming a random notes dump.</p>
+          </div>
+          <div class="grid-3">
+            <article class="card dark"><h3>North Star</h3><p>What winning looks like in 30, 60, and 90 days.</p></article>
+            <article class="card dark"><h3>Agent Workspace</h3><p>Context, preferences, safety rules, tools, memory, and daily command status.</p></article>
+            <article class="card dark"><h3>Open Loops</h3><p>MindVault owes, member owes, waiting on access, and next call focus.</p></article>
+            <article class="card dark"><h3>Build Log</h3><p>Call summaries, action items, assets built, and next build target.</p></article>
+            <article class="card dark"><h3>Agent Bench</h3><p>The inventory of task agents, their jobs, inputs, outputs, and status.</p></article>
+            <article class="card dark"><h3>Workflow Library</h3><p>Saved prompts, commands, checklists, recurring tasks, and approval rules.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ledger-preview" class="section">
+        <div class="inner">
+          <div class="ledger">
+            <aside class="sidebar" aria-label="Ledger navigation">
+              <a href="#north-star">North Star</a>
+              <a href="#workspace">Agent Workspace</a>
+              <a href="#loops">Open Loops</a>
+              <a href="#build-log">Build Log</a>
+              <a href="#bench">Agent Bench</a>
+              <a href="#library">Workflow Library</a>
+              <a href="#renewal">Renewal Proof</a>
+            </aside>
+
+            <div class="sheet">
+              <div class="sheet-top">
+                <div>
+                  <div class="eyebrow">Reusable client template</div>
+                  <div class="sheet-title">MindVault Build Ledger</div>
+                </div>
+                <span class="pill">Template preview</span>
+              </div>
+              <div class="sheet-body">
+                <section id="north-star" class="panel">
+                  <h3>North Star</h3>
+                  <div class="grid-3">
+                    <div class="card"><h3>30-day win</h3><p>Leave with context, safety rules, one task agent, and one reusable workflow installed.</p></div>
+                    <div class="card"><h3>60-day win</h3><p>The daily command and first bottleneck workflow are being used weekly.</p></div>
+                    <div class="card"><h3>90-day win</h3><p>The member has an agent bench and a small library of repeatable workflows.</p></div>
+                  </div>
+                </section>
+
+                <section id="workspace" class="panel">
+                  <h3>Agent Workspace</h3>
+                  <table class="table">
+                    <thead><tr><th>Item</th><th>Status</th><th>Link / Notes</th></tr></thead>
+                    <tbody>
+                      <tr><td>Personal context</td><td><span class="status draft">Draft</span></td><td>Goals, working style, current projects, examples, and preferences.</td></tr>
+                      <tr><td>Safety rules</td><td><span class="status live">Installed</span></td><td>Approval needed for sending, spending, deleting, or contacting clients.</td></tr>
+                      <tr><td>Daily command</td><td><span class="status draft">Testing</span></td><td>Morning menu: plan, follow-up, learning, cleanup, useful action.</td></tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <section id="loops" class="panel">
+                  <h3>Open Loops</h3>
+                  <div class="grid-2">
+                    <div>
+                      <h3>MindVault owes</h3>
+                      <ul class="checklist">
+                        <li><span class="box"></span>Draft first daily command workflow.</li>
+                        <li><span class="box"></span>Summarize call one and add assets to ledger.</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h3>Member owes</h3>
+                      <ul class="checklist">
+                        <li><span class="box"></span>Share example weekly task that should become a workflow.</li>
+                        <li><span class="box"></span>Confirm tools that can be connected safely.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="build-log" class="panel">
+                  <h3>Build Log</h3>
+                  <div class="call-log">
+                    <article class="call"><h4>Call 01: Foundation Build</h4><p>Installed personal context, working preferences, safety rules, first task-agent draft, and reusable daily command outline.</p></article>
+                    <article class="call"><h4>Call 02: First Bottleneck Build</h4><p>Map → Cut → Build. Pick one repeated task, remove unnecessary steps, and save the workflow.</p></article>
+                  </div>
+                </section>
+
+                <section id="bench" class="panel">
+                  <h3>Agent Bench</h3>
+                  <table class="table">
+                    <thead><tr><th>Agent</th><th>Job</th><th>Output</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr><td>Daily Command Agent</td><td>Plan, follow-up, learning, cleanup.</td><td>Daily command menu.</td><td><span class="status draft">Draft</span></td></tr>
+                      <tr><td>Research Agent</td><td>Turn links, videos, and topics into briefs.</td><td>Action brief.</td><td><span class="status draft">Draft</span></td></tr>
+                      <tr><td>Follow-up Agent</td><td>Find and draft follow-ups.</td><td>Drafts or task list.</td><td><span class="status draft">Not started</span></td></tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <section id="library" class="panel">
+                  <h3>Workflow Library</h3>
+                  <table class="table">
+                    <thead><tr><th>Workflow</th><th>Trigger</th><th>Human approval?</th><th>Status</th></tr></thead>
+                    <tbody>
+                      <tr><td>Daily command</td><td>Start of day</td><td>No</td><td><span class="status draft">Draft</span></td></tr>
+                      <tr><td>Video to action brief</td><td>New video or link</td><td>No</td><td><span class="status draft">Draft</span></td></tr>
+                      <tr><td>Renewal review</td><td>Three days before charge</td><td>Yes</td><td><span class="status draft">Not started</span></td></tr>
+                    </tbody>
+                  </table>
+                </section>
+
+                <section id="renewal" class="panel">
+                  <h3>Renewal Proof</h3>
+                  <div class="grid-3">
+                    <article class="card"><h3>Assets created</h3><p>Context file, safety rules, daily command, first task agent, first saved workflow.</p></article>
+                    <article class="card"><h3>Friction removed</h3><p>The member no longer starts from a blank prompt or rebuilds context every morning.</p></article>
+                    <article class="card"><h3>Next 30 days</h3><p>Test the daily command, build the first bottleneck workflow, and expand the agent bench.</p></article>
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="inner">
+        <span>Built by MindVault Studio</span>
+        <span><a href="/apply/">Apply for the Build Sprint</a> · <a href="build-ledger-template.md">Download Markdown</a></span>
+      </div>
+    </footer>
+  </body>
+</html>

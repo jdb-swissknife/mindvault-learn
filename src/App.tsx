@@ -719,6 +719,14 @@ export default function App() {
                 <Card key={item.title} {...item} />
               ))}
             </div>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="/ledger-template/" className="inline-flex items-center justify-center rounded-xl bg-rust-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
+                Preview the Build Ledger template
+              </a>
+              <a href="/ledger-template/build-ledger-template.md" className="inline-flex items-center justify-center rounded-xl border border-rust-500/40 px-6 py-3 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/60">
+                Download Markdown template
+              </a>
+            </div>
           </div>
         </div>
       </section>

@@ -25,6 +25,7 @@ const generatedEntries = [
   'favicon.svg',
   'demo.html',
   'apply',
+  'ledger-template',
   'audience-intelligence',
   'reports',
 ]
