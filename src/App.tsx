@@ -339,6 +339,10 @@ export default function App() {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const goToApply = () => {
+    window.location.href = '/apply/'
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!email) return
@@ -476,8 +480,8 @@ export default function App() {
                   <Card key={item.title} {...item} />
                 ))}
               </div>
-              <button onClick={() => scrollToId('waitlist')} className="mt-8 inline-flex items-center justify-center rounded-xl bg-rust-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                Secure your agent
+              <button onClick={goToApply} className="mt-8 inline-flex items-center justify-center rounded-xl bg-rust-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
+                Apply for the Build Sprint
               </button>
             </div>
 
@@ -744,6 +748,9 @@ export default function App() {
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
               If this is the kind of personal AI system you want, drop your email to secure your agent. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.trustmvs.com.
+            </p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-stone-600">
+              Want guided setup? <a href="/apply/" className="font-semibold text-rust-500 transition-colors hover:text-rust-600">Submit the Build Sprint intake</a> so the first call starts with a game plan.
             </p>
 
             {submitted ? (

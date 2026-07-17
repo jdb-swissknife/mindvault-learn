@@ -24,6 +24,7 @@ const generatedEntries = [
   'icons.svg',
   'favicon.svg',
   'demo.html',
+  'apply',
   'audience-intelligence',
   'reports',
 ]

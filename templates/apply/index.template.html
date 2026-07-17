@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apply for the MindVault Personal Build Sprint</title>
+    <meta
+      name="description"
+      content="Apply for the MindVault Personal Build Sprint. Tell us what you want your personal agent system to remember, build, and improve."
+    />
+    <link rel="canonical" href="https://learn.trustmvs.com/apply/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --charcoal-950: #0a0a0a;
+        --charcoal-900: #111111;
+        --charcoal-800: #1c1c1c;
+        --charcoal-700: #2a2a2a;
+        --onyx: #1c1917;
+        --stone-700: #44403c;
+        --stone-600: #57534e;
+        --stone-500: #78716c;
+        --stone-400: #a8a29e;
+        --sand-100: #f7f3ee;
+        --sand-200: #ede6db;
+        --sand-300: #e7ddd3;
+        --rust-100: #fdf2ec;
+        --rust-500: #c2703e;
+        --rust-600: #a85a2a;
+        --rust-700: #8f4a22;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        background: var(--sand-100);
+        color: var(--onyx);
+        font-family: Inter, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      a { color: inherit; text-decoration: none; }
+      .topbar { background: var(--charcoal-900); border-bottom: 1px solid var(--charcoal-700); color: white; }
+      .nav { max-width: 1120px; margin: 0 auto; padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+      .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -0.02em; }
+      .brand img { width: 30px; height: 30px; border-radius: 4px; object-fit: cover; }
+      .rust { color: var(--rust-500); }
+      .nav-link { color: var(--stone-400); font-size: 14px; font-weight: 600; }
+      .nav-link:hover { color: white; }
+      .hero { background: var(--charcoal-900); color: white; }
+      .hero-inner { max-width: 1120px; margin: 0 auto; padding: 72px 20px 56px; display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 36px; align-items: start; }
+      .eyebrow { color: var(--rust-500); font-size: 12px; font-weight: 800; letter-spacing: 0.24em; text-transform: uppercase; }
+      h1, h2, h3 { margin: 0; }
+      h1 { margin-top: 18px; font-family: Georgia, serif; font-size: clamp(40px, 6vw, 68px); line-height: 0.98; letter-spacing: -0.045em; }
+      .hero-copy { margin-top: 24px; color: var(--stone-400); font-size: 18px; line-height: 1.7; max-width: 620px; }
+      .notice { margin-top: 30px; padding: 18px; border: 1px solid rgba(194,112,62,.35); background: rgba(253,242,236,.08); border-radius: 22px; color: #efe6dd; line-height: 1.6; }
+      .steps { display: grid; gap: 12px; margin-top: 28px; }
+      .step { border: 1px solid var(--charcoal-700); background: var(--charcoal-800); border-radius: 18px; padding: 16px; color: var(--stone-400); font-size: 14px; line-height: 1.6; }
+      .step strong { color: white; display: block; margin-bottom: 4px; }
+      .card { background: white; border: 1px solid var(--sand-300); border-radius: 28px; box-shadow: 0 24px 70px rgba(0,0,0,.18); overflow: hidden; }
+      .form-head { padding: 28px; background: var(--rust-100); border-bottom: 1px solid #f1d2bd; }
+      .form-head h2 { font-family: Georgia, serif; font-size: 32px; line-height: 1.05; color: var(--onyx); }
+      .form-head p { margin: 12px 0 0; color: var(--stone-600); line-height: 1.6; }
+      form { padding: 28px; display: grid; gap: 18px; }
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+      label { display: grid; gap: 8px; color: var(--stone-700); font-size: 13px; font-weight: 800; letter-spacing: .02em; }
+      input, textarea, select {
+        width: 100%; border: 1px solid var(--sand-300); border-radius: 14px; background: var(--sand-100); color: var(--onyx);
+        font: inherit; font-size: 15px; line-height: 1.5; padding: 13px 14px; outline: none; transition: border-color .15s, box-shadow .15s, background .15s;
+      }
+      textarea { min-height: 112px; resize: vertical; }
+      input:focus, textarea:focus, select:focus { border-color: var(--rust-500); box-shadow: 0 0 0 4px rgba(194,112,62,.12); background: white; }
+      .help { color: var(--stone-500); font-size: 12px; font-weight: 500; line-height: 1.5; }
+      .actions { display: grid; gap: 12px; margin-top: 4px; }
+      button { border: 0; cursor: pointer; font: inherit; }
+      .submit { min-height: 52px; border-radius: 16px; background: var(--rust-500); color: white; font-weight: 800; padding: 0 22px; }
+      .submit:hover { background: var(--rust-600); }
+      .submit:disabled { opacity: .65; cursor: not-allowed; }
+      .fine { color: var(--stone-500); font-size: 12px; line-height: 1.6; }
+      .status { display: none; padding: 16px; border-radius: 18px; font-size: 14px; line-height: 1.6; }
+      .status.ok { display: block; color: var(--stone-700); background: var(--rust-100); border: 1px solid rgba(194,112,62,.28); }
+      .status.err { display: block; color: #7f1d1d; background: #fef2f2; border: 1px solid #fecaca; }
+      .success-panel { display: none; padding: 28px; }
+      .success-panel.show { display: block; }
+      .success-panel h2 { font-family: Georgia, serif; font-size: 34px; line-height: 1.1; }
+      .success-panel p { color: var(--stone-600); line-height: 1.7; }
+      .footer { border-top: 1px solid var(--sand-300); background: var(--sand-200); }
+      .footer-inner { max-width: 1120px; margin: 0 auto; padding: 28px 20px; display: flex; justify-content: space-between; gap: 16px; color: var(--stone-600); font-size: 14px; }
+      @media (max-width: 860px) {
+        .hero-inner { grid-template-columns: 1fr; padding-top: 48px; }
+        .grid-2 { grid-template-columns: 1fr; }
+        .nav { align-items: flex-start; }
+        .footer-inner { flex-direction: column; }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <nav class="nav">
+        <a href="/" class="brand" aria-label="MindVault home">
+          <img src="/logo.png" alt="MindVault" />
+          <span>Mind<span class="rust">Vault</span></span>
+        </a>
+        <a class="nav-link" href="/">Back to Agent Quest</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <div class="hero-inner">
+        <section>
+          <div class="eyebrow">Guided Build Sprint Intake</div>
+          <h1>No intake, no call.</h1>
+          <p class="hero-copy">
+            This form turns the first session into a build session. Tell us what you want the system to remember, where time leaks out, and what a real win looks like.
+          </p>
+          <div class="notice">
+            The goal is simple: arrive with a game plan, build the foundation live, then log exactly what was created in your private Build Ledger.
+          </div>
+          <div class="steps" aria-label="What happens next">
+            <div class="step"><strong>1. Submit the intake.</strong> Share goals, tools, bottlenecks, safety boundaries, and your 30/90-day wins.</div>
+            <div class="step"><strong>2. Get matched to the right first build.</strong> We choose the first useful agent or workflow before the call.</div>
+            <div class="step"><strong>3. Leave with installed assets.</strong> Context, rules, one task agent, and one reusable workflow go into your Build Ledger.</div>
+          </div>
+        </section>
+
+        <section class="card" aria-label="MindVault Build Sprint intake form">
+          <div class="form-head">
+            <div class="eyebrow">Apply for access</div>
+            <h2>Personal Agent Build Sprint</h2>
+            <p>Use plain English. Short answers are fine. Specific examples are better.</p>
+          </div>
+
+          <form id="intakeForm">
+            <div class="grid-2">
+              <label>
+                Name *
+                <input name="name" autocomplete="name" required />
+              </label>
+              <label>
+                Email *
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+            </div>
+
+            <div class="grid-2">
+              <label>
+                Phone
+                <input name="phone" type="tel" autocomplete="tel" />
+              </label>
+              <label>
+                Best support level *
+                <select name="support_level" required>
+                  <option value="">Choose one</option>
+                  <option>Setup session only</option>
+                  <option>Monthly Build Sprint</option>
+                  <option>Weekly accelerated build</option>
+                  <option>Not sure yet</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              What are you trying to build? *
+              <textarea name="primary_goal" required placeholder="Example: a personal agent that helps me run follow-up, research, planning, and recurring admin without starting from scratch every day."></textarea>
+              <span class="help">Name the outcome, not just the tool.</span>
+            </label>
+
+            <label>
+              What tools do you already use?
+              <textarea name="current_tools" placeholder="Example: Gmail, Google Calendar, Drive, Notion, Sheets, Claude, ChatGPT, Airtable, CRM, project tools..."></textarea>
+            </label>
+
+            <label>
+              What eats the most time or gets dropped when you get busy? *
+              <textarea name="time_sinks" required placeholder="List the repeated tasks, open loops, follow-ups, decisions, or cleanup that keep coming back."></textarea>
+            </label>
+
+            <label>
+              What repeat workflows happen weekly or monthly? *
+              <textarea name="repeat_workflows" required placeholder="Examples: client prep, invoices, content planning, renewals, inbox cleanup, outreach, reporting, research, family admin."></textarea>
+            </label>
+
+            <label>
+              What should your agent never do without approval?
+              <textarea name="safety_boundaries" placeholder="Examples: send messages, spend money, delete files, contact clients, change calendar events, touch business accounts."></textarea>
+            </label>
+
+            <div class="grid-2">
+              <label>
+                What would make this worth it in 30 days? *
+                <textarea name="thirty_day_win" required></textarea>
+              </label>
+              <label>
+                What would make this worth it in 90 days? *
+                <textarea name="ninety_day_win" required></textarea>
+              </label>
+            </div>
+
+            <label>
+              Preferred call window
+              <input name="preferred_call_window" placeholder="Example: weekday mornings, Tuesday/Thursday afternoon, after 4pm Central" />
+            </label>
+
+            <label>
+              Anything else I should know?
+              <textarea name="notes"></textarea>
+            </label>
+
+            <div id="status" class="status" role="status"></div>
+            <div class="actions">
+              <button class="submit" type="submit">Submit intake</button>
+              <div class="fine">By submitting, you agree to be contacted by MindVault Studio about MindVault Personal and the Build Sprint. No spam.</div>
+            </div>
+          </form>
+
+          <div id="successPanel" class="success-panel">
+            <div class="eyebrow">Intake received</div>
+            <h2>Your Build Sprint intake is in.</h2>
+            <p>I’ll review the answers and use them to choose the first useful build: context, safety rules, one task agent, or one repeatable workflow.</p>
+            <p><a class="rust" href="/">Back to MindVault Personal</a></p>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© 2026 MindVault Studio. Personal systems, practical tools, and lessons that compound.</span>
+        <span class="rust">Build the system once. Let it keep getting smarter.</span>
+      </div>
+    </footer>
+
+    <script>
+      const SUPABASE_URL = '__SUPABASE_URL__'
+      const SUPABASE_ANON_KEY = '__SUPABASE_ANON_KEY__'
+      const TABLE = 'personal_build_sprint_applications'
+      const form = document.getElementById('intakeForm')
+      const statusBox = document.getElementById('status')
+      const successPanel = document.getElementById('successPanel')
+      const submitButton = form.querySelector('button[type="submit"]')
+
+      function setStatus(type, message) {
+        statusBox.className = 'status ' + type
+        statusBox.textContent = message
+      }
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault()
+        const data = Object.fromEntries(new FormData(form).entries())
+        const payload = {
+          name: String(data.name || '').trim(),
+          email: String(data.email || '').trim(),
+          phone: String(data.phone || '').trim() || null,
+          primary_goal: String(data.primary_goal || '').trim(),
+          current_tools: String(data.current_tools || '').trim() || null,
+          time_sinks: String(data.time_sinks || '').trim(),
+          repeat_workflows: String(data.repeat_workflows || '').trim(),
+          safety_boundaries: String(data.safety_boundaries || '').trim() || null,
+          thirty_day_win: String(data.thirty_day_win || '').trim(),
+          ninety_day_win: String(data.ninety_day_win || '').trim(),
+          support_level: String(data.support_level || '').trim(),
+          preferred_call_window: String(data.preferred_call_window || '').trim() || null,
+          notes: String(data.notes || '').trim() || null,
+          source: 'learn-apply',
+          user_agent: navigator.userAgent,
+          page_url: window.location.href,
+        }
+
+        submitButton.disabled = true
+        submitButton.textContent = 'Submitting...'
+        setStatus('ok', 'Saving your intake...')
+
+        try {
+          if (!SUPABASE_URL || !SUPABASE_ANON_KEY || SUPABASE_URL.includes('__')) {
+            throw new Error('Lead capture is not configured yet.')
+          }
+
+          const response = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}`, {
+            method: 'POST',
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+              'Content-Type': 'application/json',
+              Prefer: 'return=minimal',
+            },
+            body: JSON.stringify(payload),
+          })
+
+          if (!response.ok) {
+            const text = await response.text()
+            throw new Error(text || `Request failed with ${response.status}`)
+          }
+
+          form.style.display = 'none'
+          successPanel.classList.add('show')
+          localStorage.setItem('mv_personal_apply_submitted', 'true')
+        } catch (error) {
+          console.error('Intake submission failed', error)
+          localStorage.setItem('mv_personal_apply_draft', JSON.stringify(payload))
+          setStatus('err', 'The form could not submit. Your answers were saved in this browser. Please text John or try again in a minute.')
+          submitButton.disabled = false
+          submitButton.textContent = 'Submit intake'
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/prepare-index.js && vite",
-    "build": "node scripts/prepare-index.js && tsc -b && vite build && node scripts/prerender.js",
+    "dev": "node scripts/prepare-index.js && node scripts/prepare-apply.js && vite",
+    "build": "node scripts/prepare-index.js && node scripts/prepare-apply.js && tsc -b && vite build && node scripts/prerender.js",
     "publish": "npm run build && node scripts/publish-root.js",
     "lint": "eslint .",
     "preview": "vite preview"
