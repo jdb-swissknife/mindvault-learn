@@ -59,25 +59,6 @@ const useCases: CardItem[] = [
   },
 ]
 
-const lessonTracks: CardItem[] = [
-  {
-    title: 'Agent setup',
-    body: 'Get the base system running with memory, tools, notes, and a repeatable structure that does not fall apart after the first session.',
-  },
-  {
-    title: 'Workflow lessons',
-    body: 'See how to move from impressive demos to daily assistants for planning, writing, research, travel, personal ops, and focused learning.',
-  },
-  {
-    title: 'Tool recipes',
-    body: 'Use practical tools like search, browser automation, files, notes, scheduling, summaries, and reusable templates.',
-  },
-  {
-    title: 'Improvement loops',
-    body: 'Capture what worked, save it as a repeatable skill, and tighten the system over time instead of letting it drift.',
-  },
-]
-
 type QuestMilestone = {
   quest: string
   title: string
@@ -147,105 +128,91 @@ const launchPerks: CardItem[] = [
   },
 ]
 
-type LessonPreviewItem = {
-  day: string
-  title: string
-  focus: string
-  scenario: string
-  sampleCommand: string
-  agentResponse: string
-  lessonSteps: string[]
-  outcomeTitle: string
-  outcomeItems: string[]
-  result: string
-}
+const offerPath: CardItem[] = [
+  {
+    title: 'Learn',
+    body: 'Start with short Agent Quest missions that show what to build, why it matters, and what a useful outcome looks like. Public previews show the shape without giving away the full walkthrough.',
+  },
+  {
+    title: 'Membership',
+    body: 'Use the managed MindVault Personal workspace for memory, tools, templates, member drops, and practical workflows that keep improving over time.',
+  },
+  {
+    title: 'Guided Build Sprint',
+    body: 'Work live with MindVault to install the system into your actual life or business. Each call ends with a visible asset added to your private Build Ledger.',
+  },
+]
 
-const lessonPreviewDays: LessonPreviewItem[] = [
+const firstCallOutcomes: CardItem[] = [
   {
-    day: 'Day 1',
-    title: 'Build a subscription tracker that catches renewals',
-    focus: 'Memory, spending, reminders, and recurring checks',
-    scenario: 'You have subscriptions spread across personal tools, business tools, phone apps, and free trials. The lesson shows how to turn that mess into a small agent workflow that remembers renewal dates and checks in before money leaves your account.',
-    sampleCommand: 'Create a subscription tracker for me. Add Claude Pro at $20/month on the 12th, Canva Pro at $13/month with a trial ending June 20, Google One at $9.99/month on the 3rd, and ChatGPT Plus at $20/month on the 18th. Remind me 3 days before each renewal and give me a monthly keep, cancel, or downgrade review.',
-    agentResponse: 'I created the tracker, saved each renewal date, flagged Canva as trial risk, calculated your visible monthly spend at $62.99, and set a recurring review command so we can check value before each charge.',
-    lessonSteps: [
-      'Enter messy subscription details in plain English.',
-      'Turn them into a clean tracker with price, renewal date, category, and owner.',
-      'Save reminder rules and a monthly review command.',
-      'Ask the agent to identify trial risk, duplicate tools, and subscriptions you forgot about.',
-    ],
-    outcomeTitle: 'Your finished subscription system',
-    outcomeItems: [
-      'Renewal calendar with reminders',
-      'Monthly spend total and trial risks',
-      'Keep, cancel, or downgrade review prompt',
-    ],
-    result: 'You leave with a real subscription tracker, not a chat answer. The agent remembers renewals, checks trial risk, and gives you a repeatable monthly money review.',
+    title: 'Personal context installed',
+    body: 'Goals, working style, current projects, preferences, and useful facts get saved so the agent stops starting from zero.',
   },
   {
-    day: 'Day 2',
-    title: 'Capture ideas before they disappear',
-    focus: 'Fast context capture and retrieval',
-    scenario: 'The lesson turns random thoughts, client ideas, and project notes into searchable memory so they can come back when they are useful.',
-    sampleCommand: 'Save this as a business idea: build a client onboarding checklist for roofers with intake questions, first follow-up, install schedule, and review request timing.',
-    agentResponse: 'Captured and tagged under business workflows, roofing, onboarding, and client experience. I also created three next questions to turn it into a usable checklist later.',
-    lessonSteps: [
-      'Capture raw ideas without cleaning them up first.',
-      'Add useful tags and context so the idea can be found later.',
-      'Ask the agent to turn the idea into next questions.',
-      'Review saved ideas by topic when you are ready to build.',
-    ],
-    outcomeTitle: 'Your idea capture habit',
-    outcomeItems: ['Tagged idea memory', 'Next questions for action', 'A retrieval command for future review'],
-    result: 'You get a repeatable way to save thoughts, tag them, and turn scattered ideas into useful next steps.',
+    title: 'Safety rules written',
+    body: 'Clear boundaries define what the agent can do, what needs approval, and what should never happen without you.',
   },
   {
-    day: 'Day 3',
-    title: 'Turn videos into action briefs',
-    focus: 'Research, summarization, and decisions',
-    scenario: 'Instead of collecting long videos you never act on, the lesson shows how to pull out decisions, warnings, useful quotes, and experiments worth trying.',
-    sampleCommand: 'Watch this video and give me the practical actions. I want decisions, quotes worth saving, risks, and 3 experiments I could run this week.',
-    agentResponse: 'Brief created with key points, useful quotes, risks, action items, and a short experiment list sorted by time required.',
-    lessonSteps: ['Give the agent a video or transcript.', 'Ask for actions instead of a generic summary.', 'Save useful quotes and risks.', 'Turn the best points into experiments or tasks.'],
-    outcomeTitle: 'Your action brief',
-    outcomeItems: ['Practical actions', 'Saved quotes and risks', 'Small experiments to test'],
-    result: 'You get a faster research habit that turns long videos into decisions, notes, and usable tasks.',
+    title: 'First task agent created',
+    body: 'One focused helper gets a role, rules, memory, tools, and a success checklist instead of becoming another generic chat.',
   },
   {
-    day: 'Day 4',
-    title: 'Build your daily command habit',
-    focus: 'Personal operating rhythm',
-    scenario: 'The lesson gives you a short daily menu so the agent becomes useful every morning instead of sitting unused until you remember it exists.',
-    sampleCommand: 'Give me my daily command menu for planning, follow-up, learning, cleanup, and anything that could save me time today.',
-    agentResponse: 'Here are the 5 commands worth running today, ordered by impact and time required. I included one planning command, one follow-up command, one cleanup command, one learning command, and one money check.',
-    lessonSteps: ['Create a short daily command menu.', 'Tie each command to a real outcome.', 'Pick the highest-impact command first.', 'Save the menu so it becomes a routine.'],
-    outcomeTitle: 'Your daily agent menu',
-    outcomeItems: ['Morning planning command', 'Follow-up and cleanup command', 'One learning or money check'],
-    result: 'You leave with a simple daily routine that makes the agent useful every morning instead of occasional.',
+    title: 'First workflow saved',
+    body: 'A real repeat task becomes a reusable command, checklist, or skill that can run again instead of disappearing after the call.',
+  },
+]
+
+const ledgerItems: CardItem[] = [
+  {
+    title: 'North Star',
+    body: 'The 30/60/90-day win stays visible at the top so every build session points at a real outcome.',
   },
   {
-    day: 'Day 5',
-    title: 'Request better tools',
-    focus: 'Workflow design and tool requests',
-    scenario: 'The lesson shows how to describe a tool request clearly enough that it can become a workflow, not just a vague AI idea.',
-    sampleCommand: 'Help me describe a tool that turns missed calls into follow-up tasks with caller name, callback window, urgency, and approval rules.',
-    agentResponse: 'Tool request drafted with trigger, inputs, output, approval rules, edge cases, and success criteria so it can be built or handed off cleanly.',
-    lessonSteps: ['Name the workflow trigger.', 'Define inputs and outputs.', 'Set approval rules and failure cases.', 'Write success criteria so the tool can be judged later.'],
-    outcomeTitle: 'Your tool request brief',
-    outcomeItems: ['Trigger and input list', 'Approval and safety rules', 'Build-ready success criteria'],
-    result: 'You get a cleaner way to turn vague AI ideas into practical workflows a real system can run.',
+    title: 'Open loops',
+    body: 'What MindVault owes, what the member owes, what is waiting on access, and what gets built next.',
   },
   {
-    day: 'Day 6',
-    title: 'Set safety rules',
-    focus: 'Control and human approval',
-    scenario: 'The lesson helps you decide what the agent can do automatically, what needs approval, and what it should never do without you.',
-    sampleCommand: 'Create rules for what you can do automatically, what needs my approval, and what you should never do for email, spending, files, and outreach.',
-    agentResponse: 'Safety card created with low-risk actions, approval-required actions, and never-do boundaries for each area.',
-    lessonSteps: ['List the areas where the agent may act.', 'Separate low-risk actions from approval-required actions.', 'Write never-do boundaries.', 'Save the safety card for future workflows.'],
-    outcomeTitle: 'Your safety card',
-    outcomeItems: ['Automatic actions', 'Approval-required actions', 'Never-do boundaries'],
-    result: 'You get a control layer that lets the agent become more useful without becoming reckless.',
+    title: 'Build log',
+    body: 'Every call records the date, focus, summary, action items, workflows built, agents created, and reusable assets saved.',
+  },
+  {
+    title: 'Agent bench',
+    body: 'Planning, research, follow-up, learning, money, client ops, and custom task agents live in one clear inventory.',
+  },
+  {
+    title: 'Workflow library',
+    body: 'Saved prompts, commands, checklists, recurring tasks, and lesson links are stored where they can be reused.',
+  },
+  {
+    title: 'Quest progress',
+    body: 'Streaks, XP, unlocked templates, completed missions, and the next best step stay connected to real work.',
+  },
+]
+
+const protectedQuestTiles: CardItem[] = [
+  {
+    title: 'Agent Home Base',
+    body: 'Set up the workspace, notes, files, memory, and daily command structure.',
+  },
+  {
+    title: 'Personal Context',
+    body: 'Capture goals, preferences, projects, voice, examples, and decisions.',
+  },
+  {
+    title: 'Safety Rules',
+    body: 'Separate automatic actions, approval-required actions, and never-do boundaries.',
+  },
+  {
+    title: 'First Task Agent',
+    body: 'Turn one repeatable job into a focused helper with a clear success checklist.',
+  },
+  {
+    title: 'Real Workflow Run',
+    body: 'Apply the system to a practical outcome like renewals, follow-up, research, or planning.',
+  },
+  {
+    title: 'Saved Skill',
+    body: 'Capture the winning move so the same workflow can run again later.',
   },
 ]
 
@@ -294,7 +261,7 @@ const faqs: CardItem[] = [
     body: 'Agent Quest is the guided launch path inside MindVault Personal. You complete practical missions, build agents, earn XP, keep streaks, and unlock templates or tool recipes as your system gets more useful.',
   },
   {
-    title: 'Who is learn.mindvaultstudio.net for?',
+    title: 'Who is learn.trustmvs.com for?',
     body: 'Founders, creators, operators, curious professionals, and anyone who wants a personal AI system that is useful in real life, not just fun for five minutes.',
   },
 ]
@@ -356,11 +323,9 @@ export default function App() {
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(() => localStorage.getItem('mv_learn_submitted') === 'true')
-  const [selectedLessonIndex, setSelectedLessonIndex] = useState(0)
-  const selectedLesson = lessonPreviewDays[selectedLessonIndex]
 
   useEffect(() => {
-    const hasPreviewUrl = window.location.search.includes('v=') || window.location.hash === '#lesson-preview'
+    const hasPreviewUrl = window.location.search.includes('v=')
     if (!hasPreviewUrl) return
 
     const timer = window.setTimeout(() => {
@@ -412,8 +377,8 @@ export default function App() {
             <button onClick={() => scrollToId('agent-quest')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white md:inline">
               Agent Quest
             </button>
-            <button onClick={() => scrollToId('lessons')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white sm:inline">
-              Lessons
+            <button onClick={() => scrollToId('build-sprint')} className="hidden text-sm font-medium text-stone-400 transition-colors hover:text-white sm:inline">
+              Build Sprint
             </button>
             <button onClick={() => scrollToId('waitlist')} className="rounded-lg bg-rust-500 px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
               Secure your agent
@@ -439,8 +404,8 @@ export default function App() {
               <button onClick={() => scrollToId('agent-quest')} className="inline-flex items-center justify-center rounded-lg border border-stone-500 px-7 py-3.5 text-sm font-semibold text-stone-200 transition-colors hover:border-stone-300 hover:text-white">
                 See Agent Quest
               </button>
-              <button onClick={() => scrollToId('lesson-preview')} className="inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-7 py-3.5 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/10">
-                Preview the learning system
+              <button onClick={() => scrollToId('build-sprint')} className="inline-flex items-center justify-center rounded-lg border border-rust-500/40 px-7 py-3.5 text-sm font-semibold text-rust-500 transition-colors hover:border-rust-500 hover:bg-rust-100/10">
+                See the Build Sprint
               </button>
             </div>
             <div className="mt-10 grid gap-4 text-sm text-stone-400 sm:grid-cols-3">
@@ -493,6 +458,41 @@ export default function App() {
             {featureCards.map((item) => (
               <Card key={item.title} {...item} />
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="build-sprint" className="border-b border-sand-300 bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <SectionHeading
+                eyebrow="GUIDED BUILD SPRINT"
+                title="Your personal agent, installed into real life."
+                body="Agent Quest teaches the system. MindVault Personal gives you the workspace. The Build Sprint helps you install it into your actual life or business with a private proof ledger that shows exactly what was built."
+              />
+              <div className="mt-8 grid gap-4">
+                {offerPath.map((item) => (
+                  <Card key={item.title} {...item} />
+                ))}
+              </div>
+              <button onClick={() => scrollToId('waitlist')} className="mt-8 inline-flex items-center justify-center rounded-xl bg-rust-500 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
+                Secure your agent
+              </button>
+            </div>
+
+            <div className="rounded-[2rem] border border-charcoal-700 bg-charcoal-900 p-5 text-white shadow-2xl shadow-black/20">
+              <div className="rounded-3xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">First setup call</p>
+                <h3 className="mt-3 font-serif text-3xl leading-tight">Leave with a working foundation, not notes.</h3>
+                <p className="mt-4 text-sm leading-7 text-stone-700">The first session creates the base system: context, rules, one task agent, and one workflow your agent can reuse.</p>
+              </div>
+              <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                {firstCallOutcomes.map((item) => (
+                  <Card key={item.title} {...item} dark />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -627,130 +627,93 @@ export default function App() {
       <section id="lessons" className="border-b border-sand-300 bg-sand-200">
         <div className="mx-auto max-w-6xl px-4 py-18 sm:px-6 sm:py-20">
           <SectionHeading
-            eyebrow="LEARN.MINDVAULTSTUDIO.NET"
-            title="Agent Quest turns lessons into a working habit."
-            body="The learning side is simple on purpose. Short missions. Real workflows. Practical tool walkthroughs. Each preview shows the scenario, the reusable prompt, what the agent builds, and the finished outcome. The full quest path stays protected inside access."
+            eyebrow="LEARN.TRUSTMVS.COM"
+            title="Show the learning system without giving away the lesson library."
+            body="The public page should feel like the real member area, not a word doc. Visitors see the quest path, outcomes, and locked structure. Full walkthroughs, commands, and templates stay inside member access."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {lessonTracks.map((item) => (
-              <Card key={item.title} {...item} />
-            ))}
-          </div>
-          <div id="lesson-preview" className="mt-14 overflow-hidden rounded-[2rem] border border-charcoal-700 bg-charcoal-900 shadow-2xl shadow-black/20">
+
+          <div className="mt-12 overflow-hidden rounded-[2rem] border border-charcoal-700 bg-charcoal-900 shadow-2xl shadow-black/20">
             <div className="border-b border-charcoal-700 bg-charcoal-800 px-5 py-4 sm:px-6">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center gap-3">
                   <span className="h-3 w-3 rounded-full bg-rust-500" />
                   <span className="h-3 w-3 rounded-full bg-sand-300" />
                   <span className="h-3 w-3 rounded-full bg-stone-500" />
-                  <span className="ml-2 rounded-full border border-charcoal-700 bg-charcoal-900 px-3 py-1 text-xs font-medium text-stone-400">learn.mindvaultstudio.net</span>
+                  <span className="ml-2 rounded-full border border-charcoal-700 bg-charcoal-900 px-3 py-1 text-xs font-medium text-stone-400">member quest room</span>
                 </div>
                 <div className="rounded-full border border-rust-500/30 bg-rust-100/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-rust-500">
-                  Guided preview
+                  Protected preview
                 </div>
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-[260px_1fr_280px]">
-              <aside className="border-b border-charcoal-700 bg-charcoal-950 p-5 lg:border-b-0 lg:border-r">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Week 1</p>
-                <h3 className="mt-3 font-serif text-2xl leading-tight text-white">From demo curiosity to daily habit.</h3>
-                <div className="mt-6 space-y-3">
-                  {lessonPreviewDays.map((lesson, index) => (
-                    <button
-                      key={lesson.day}
-                      type="button"
-                      onClick={() => setSelectedLessonIndex(index)}
-                      className={`w-full rounded-2xl border p-4 text-left transition ${
-                        selectedLessonIndex === index
-                          ? 'border-rust-500/60 bg-rust-100 text-onyx'
-                          : 'border-charcoal-700 bg-charcoal-800 text-stone-300 hover:border-rust-500/40'
-                      }`}
-                    >
-                      <span className={`text-xs font-semibold uppercase tracking-[0.18em] ${selectedLessonIndex === index ? 'text-rust-600' : 'text-rust-500'}`}>
-                        {lesson.day}
-                      </span>
-                      <span className="mt-2 block text-sm font-semibold leading-5">{lesson.title}</span>
-                    </button>
+            <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+              <div className="bg-charcoal-950 p-5 text-white sm:p-7">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Week 1 foundation path</p>
+                <h3 className="mt-3 font-serif text-3xl leading-tight">Build the base system first.</h3>
+                <p className="mt-4 text-sm leading-7 text-stone-400">The public preview shows the map. Members unlock the walkthrough, commands, troubleshooting notes, and reusable templates.</p>
+                <div className="mt-7 grid gap-3">
+                  {protectedQuestTiles.map((item, index) => (
+                    <div key={item.title} className="rounded-2xl border border-charcoal-700 bg-charcoal-800 p-4">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rust-500">Quest {String(index + 1).padStart(2, '0')}</p>
+                          <h4 className="mt-2 text-lg font-semibold text-white">{item.title}</h4>
+                          <p className="mt-2 text-sm leading-6 text-stone-400">{item.body}</p>
+                        </div>
+                        <span className="rounded-full border border-rust-500/30 bg-rust-100 px-3 py-1 text-xs font-semibold text-rust-700">Locked</span>
+                      </div>
+                    </div>
                   ))}
-                </div>
-              </aside>
-
-              <div className="bg-sand-100 p-5 sm:p-7">
-                <div className="rounded-3xl border border-sand-300 bg-white p-6 shadow-sm sm:p-8">
-                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">Sample lesson flow</p>
-                      <h3 className="mt-3 font-serif text-3xl leading-tight text-onyx">{selectedLesson.title}</h3>
-                      <p className="mt-3 text-sm font-medium text-stone-500">Focus: {selectedLesson.focus}</p>
-                    </div>
-                    <div className="rounded-full border border-sand-300 bg-sand-100 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-stone-600">
-                      Preview only
-                    </div>
-                  </div>
-
-                  <div className="mt-8 grid gap-4">
-                    <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Real scenario</div>
-                      <p className="mt-3 text-sm leading-7 text-stone-700">{selectedLesson.scenario}</p>
-                    </div>
-                    <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Prompt you can reuse</div>
-                      <p className="mt-3 rounded-xl bg-charcoal-900 p-4 text-sm leading-7 text-sand-100">“{selectedLesson.sampleCommand}”</p>
-                    </div>
-                    <div className="rounded-2xl border border-rust-500/30 bg-rust-100 p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Agent builds</div>
-                      <p className="mt-3 text-sm leading-7 text-stone-700">{selectedLesson.agentResponse}</p>
-                    </div>
-                    <div className="rounded-2xl border border-sand-300 bg-white p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">What the lesson teaches</div>
-                      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                        {selectedLesson.lessonSteps.map((step, index) => (
-                          <div key={step} className="rounded-xl border border-sand-300 bg-sand-100 p-4 text-sm leading-6 text-stone-700">
-                            <span className="font-semibold text-rust-600">{index + 1}. </span>{step}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <div className="relative overflow-hidden rounded-2xl border border-sand-300 bg-white p-5">
-                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Inside the full lesson</div>
-                      <div className="mt-4 grid gap-3 blur-[2px] sm:grid-cols-3">
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Exact setup steps</div>
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Copy-ready commands</div>
-                        <div className="rounded-xl bg-sand-100 p-4 text-sm font-semibold text-stone-600">Troubleshooting notes</div>
-                      </div>
-                      <div className="absolute inset-x-5 bottom-5 rounded-2xl border border-rust-500/30 bg-white/90 px-4 py-3 text-sm font-semibold text-onyx shadow-lg backdrop-blur">
-                        The preview shows a real use case and outcome. The member version includes the full walkthrough and saved workflow.
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
 
-              <aside className="border-t border-charcoal-700 bg-charcoal-950 p-5 text-white lg:border-l lg:border-t-0">
-                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-rust-500">Finished outcome</p>
-                <div className="mt-5 rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
-                  <div className="text-sm font-semibold text-stone-300">By the end of {selectedLesson.day}</div>
-                  <p className="mt-3 text-lg font-semibold leading-7 text-white">{selectedLesson.result}</p>
-                </div>
-                <div className="mt-5 rounded-2xl border border-rust-500/30 bg-rust-100 p-5 text-onyx">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">{selectedLesson.outcomeTitle}</div>
-                  <div className="mt-4 grid gap-3">
-                    {selectedLesson.outcomeItems.map((item) => (
-                      <div key={item} className="rounded-xl border border-rust-500/20 bg-white px-4 py-3 text-sm font-semibold leading-6 text-stone-700">
-                        {item}
-                      </div>
-                    ))}
+              <div className="bg-sand-100 p-5 sm:p-7">
+                <div className="rounded-3xl border border-sand-300 bg-white p-6 shadow-sm sm:p-8">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-rust-500">Member view</p>
+                  <h3 className="mt-3 font-serif text-3xl leading-tight text-onyx">A guided build room, not a document dump.</h3>
+                  <p className="mt-4 text-sm leading-7 text-stone-600">Each quest should show the scenario, the outcome, the next action, and what unlocks next. The full lesson content stays gated so the public page sells the system instead of exposing the product.</p>
+
+                  <div className="mt-8 grid gap-4 md:grid-cols-2">
+                    <div className="rounded-2xl border border-sand-300 bg-sand-100 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-500">Visible publicly</div>
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-stone-700">
+                        <li>• quest name and outcome</li>
+                        <li>• progress path and unlock logic</li>
+                        <li>• finished artifact examples</li>
+                        <li>• proof that the system is practical</li>
+                      </ul>
+                    </div>
+                    <div className="rounded-2xl border border-rust-500/30 bg-rust-100 p-5">
+                      <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-600">Member only</div>
+                      <ul className="mt-4 space-y-3 text-sm leading-6 text-stone-700">
+                        <li>• full walkthroughs</li>
+                        <li>• copy-ready commands</li>
+                        <li>• templates and troubleshooting</li>
+                        <li>• saved workflow installation steps</li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 rounded-2xl border border-charcoal-700 bg-charcoal-900 p-5 text-white">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-500">Example unlock</p>
+                    <p className="mt-3 text-lg font-semibold leading-7">Finish the first task agent, unlock the Build Ledger template and next workflow mission.</p>
                   </div>
                 </div>
-                <div className="mt-5 rounded-2xl border border-charcoal-700 bg-charcoal-800 p-5">
-                  <div className="text-xs font-semibold uppercase tracking-[0.2em] text-rust-500">Why this works</div>
-                  <p className="mt-3 text-sm leading-7 text-stone-300">Each lesson teaches a real workflow, gives you a reusable prompt, shows what the agent builds, and leaves you with a saved system you can use again.</p>
-                </div>
-                <button onClick={() => scrollToId('waitlist')} className="mt-6 inline-flex w-full items-center justify-center rounded-xl bg-rust-500 px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-rust-600">
-                  Secure your agent to unlock week 1
-                </button>
-              </aside>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-14">
+            <SectionHeading
+              eyebrow="BUILD LEDGER"
+              title="The private proof page that earns the renewal."
+              body="Every setup session and sprint call should leave a trace: what changed, what was built, what is next, and which useful assets now belong to the member."
+            />
+            <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+              {ledgerItems.map((item) => (
+                <Card key={item.title} {...item} />
+              ))}
             </div>
           </div>
         </div>
@@ -780,7 +743,7 @@ export default function App() {
               Secure your agent for Agent Quest and the Mind<span className="text-rust-500">Vault</span> Personal system.
             </h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-stone-600">
-              If this is the kind of personal AI system you want, drop your email to secure your agent. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.mindvaultstudio.net.
+              If this is the kind of personal AI system you want, drop your email to secure your agent. I will send launch updates, first quest access, practical lesson previews, and member tool drops through learn.trustmvs.com.
             </p>
 
             {submitted ? (
